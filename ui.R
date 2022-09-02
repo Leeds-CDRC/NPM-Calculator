@@ -56,18 +56,6 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                         actionButton('jumpToCalc', "Start calculation", icon = icon("nutritionix"),
                                      style = "color: white; background-color: teal", width = '50%'),
                         
-                        #tags$p("Our flexible approach means you can:"),
-                        #fluidRow(column(6, tags$strong(tags$span(style ="color:teal","Use the calculator to assess a single product",sep ="")), 
-                                 #       tags$i(tags$ul("Ideal for checking compliance in-situ"))),
-                                # column(6, actionButton('jumpToCalc', "Single product assessment", icon = icon("nutritionix"),
-                                                #        style = "color: white; background-color: teal", width = '70%'), align="center"),
-                                 #), #close fluidRow
-                        
-                        #fluidRow(column(6, tags$strong(tags$span(style ="color:teal","Download the form to assess multiple products at once",sep="")), 
-                        #                  tags$i(tags$ul("Handy for research, or to assess your whole product portfolio in just a few clicks"))),
-                        #         column(6, actionButton('jumpMulti', "Multiple product assessment", icon = icon("nutritionix"),
-                        #                                style = "color: white; background-color: teal", width = '70%'), align="center"),
-                        #), #close fluidRow
                         br(),
                hr(),
                h2("Who is it for?"),
@@ -786,13 +774,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                       
                ), # close tabset panel
                
-               # Multiple product assessment tab -----
-               #tabPanel("Multiple product assessment", value = "Multi",
-                   #     tabsetPanel(type = "tabs",
-                            #        tabPanel(title = "Step 1. Download form", value = "MPA"),
-                               #     tabPanel(title = "Step 2. Enter product data"),
-                                 #   tabPanel(title = "Step 3. Upload form"))),
-              
+                           
                # User guide page -----
                tabPanel("User guide", value = "Guide",
                         h1("User guide"),
