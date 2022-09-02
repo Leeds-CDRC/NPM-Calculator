@@ -41,18 +41,22 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                 ), #close fluid row
                         fluidRow(column(12, tags$h4(tags$span(style ="color:teal","Easy to use at your desk or on the go"),sep ="", align = "center"))
                                  ), #close fluid row
-                        fluidRow(column(12, tags$h4(tags$span(style ="color:teal","Transparent, approach promoting consistency and confidence in results"),sep ="", align = "center"))
+                        fluidRow(column(12, tags$h4(tags$span(style ="color:teal","Transparent approach, promoting consistency and confidence in results"),sep ="", align = "center"))
                                  ), #close fluid row
                         
                         br(),
                         hr(),
                         h2("Ready to get started?"),
-                        #tags$p("Our flexible approach means you can:"),
+                        p("Before you begin, tell us how you'll be using the tool?"),
+                        selectInput("purpose", label =h3("Select purpose"),
+                                    choices = list("Enforcement" = 1, "Check compliance" = 2, "Research" = 3,"Policy development"= 4, "Other"= 5),
+                                    selected = 1),
                         br(),
                         
-                        actionButton('jumpToCalc', "Start NPM calculation", icon = icon("nutritionix"),
-                                     style = "color: white; background-color: teal", width = '30%'),
+                        actionButton('jumpToCalc', "Start calculation", icon = icon("nutritionix"),
+                                     style = "color: white; background-color: teal", width = '50%'),
                         
+                        #tags$p("Our flexible approach means you can:"),
                         #fluidRow(column(6, tags$strong(tags$span(style ="color:teal","Use the calculator to assess a single product",sep ="")), 
                                  #       tags$i(tags$ul("Ideal for checking compliance in-situ"))),
                                 # column(6, actionButton('jumpToCalc', "Single product assessment", icon = icon("nutritionix"),
@@ -88,7 +92,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                             
                                             tabsetPanel(type = "tabs", shinyjs::useShinyjs(), id ="calc1",
                                                         # SPA calculator ----
-                                                        tabPanel(title = "Enter product information", value = "calc",
+                                                        tabPanel(title = tags$b("Enter data"), value = "calc",
                                                                  div(id="form",
                                                                  fluidRow(column(12,
                                                                                  h3("Calculate NPM score"),
@@ -520,6 +524,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                                           column(4, p("Select  unit"),
                                                                  radioButtons("fibre_button",label = NULL, choices = list("NSP" = FALSE, "AOAC" = TRUE),
                                                                               selected = TRUE)),
+                                                          bsPopover("fibre_button", "Fibre type", "NSP = Non starch polysaccharides, AOAC includes non-digestible. If unknown, assume AOAC."),
                                                           column(4, p("Fibre points"),
                                                                  verbatimTextOutput("Fib_points"))
                                                         ), #close fluid row
@@ -538,7 +543,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                                           column(4, p("FVN points"),
                                                                  verbatimTextOutput("FVN_points"),
                                                           bsPopover("in_FVNper", "Estimating fruit, veg and nuts %", 
-                                                                    "Check ingredients list. Ingredients are listed largest to smallest, use as guide if % not stated.", 
+                                                                    "Check ingredients list for %. If no fruit, veg and nuts stated, assume content is zero.", 
                                                                     placement = "top", trigger = "hover", options = NULL)),
                                                         ), # close fluid row
                                                         actionButton('jumpToResult', "Step 4. Calculate NPM score", icon = icon("nutritionix"),
@@ -550,7 +555,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                             
                                       # open new tabpanel for Results 
                                       # SPA results ----
-                                      tabPanel(title = "View results", value = "result", 
+                                      tabPanel(title = tags$b("View results"), value = "result", 
                                                h3("Results"),
                                                htmlOutput("result"),
                                                plotOutput("resultplot", height = 200),
@@ -769,7 +774,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                                br(),
                                                hr(),
                                                
-                                              fluidRow(column(12, actionButton('jumpBack', "Assess another product", icon = icon("nutritionix"),
+                                              fluidRow(column(12, actionButton('jumpBack', "Assess again", icon = icon("nutritionix"),
                                                                               style = "color: white; background-color: teal", width = '50%'), align="center"),
                                                        ),
                                               
@@ -788,15 +793,15 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                #     tabPanel(title = "Step 2. Enter product data"),
                                  #   tabPanel(title = "Step 3. Upload form"))),
               
-               # About page -----
-               tabPanel("About", value = "Guide",
-                        h1("About"),
+               # User guide page -----
+               tabPanel("User guide", value = "Guide",
+                        h1("User guide"),
                         p(tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12486","Our research"), "revealed", tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12468","challenges"), 
                         "and a need for consistency and transparency in NPM calculation."),
                         p("The NPM Online Calculator makes NPM score assessment easy, promoting consistency and transparency"),
                         br(),
                         tabsetPanel(type = "tabs",
-                                    tabPanel(title = "Completing an assessment",
+                                    tabPanel(title = tags$b("Completing an assessment"),
                                              br(),
                                              p(tags$b("The NPM calculator tells you:")),
                                              tags$ul(tags$span(style ="color:teal","The NPM score")),
@@ -811,14 +816,20 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                              tags$ul(tags$span(style ="color:teal","You'll need to provide information about the product category")),
                                              hr(),
                                              br(),
-                                             p("The nutrient panel and ingredients list can be found on the back of packaged products."),
-                                             p("If your product isn't packaged, you can refer to the product specification or online information if these are available."),
-                                             p("You'll also need to know the weight of product to which the nutrient information refers. That's because the NPM scores are allocated per 100g of product. But don't worry, there's no need to do any conversions. Just enter the weight and nutrient data and the tool will do the rest for you."),
-                                             p("You can identify the product category based on its name, format and ingredients list."),
+                                             p(tags$b("Additional information:")),
+                                             tags$li("The nutrient panel and ingredients list can be found on the back of packaged products."),
+                                             tags$li("If your product isn't packaged, you can refer to the product specification or online information if these are available."),
+                                             tags$li("You'll need to know the weight for which nutrient information is given. That's because NPM scores are allocated per 100g of product. "),
+                                             tags$li("No need to do any conversions. Just enter the weight and nutrient data - the tool will do the rest."),
+                                             tags$li("You can identify the product category based on its name, format and ingredients list."),
                                              br(),
+                                             p(tags$b("Disclaimer:")),
+                                             p("The Nutrient Profile Model Calculator was developed by researchers at the University of Leeds, to make NPM score calculation quicker, easier and more consistent."),
+                                             p("It is the user's responsibility to check compliance to current legislation by following the latest guidance."),
+                                             p("The University of Leeds does not accept any responsibility for products incorrect promotion of products under current legislation"),
                                              ),
                                     
-                                    tabPanel(title ="The NPM",
+                                    tabPanel(title = tags$b("About the NPM"),
                                              br(),
                                              h2("What is the NPM?"),
                                              p(tags$a(href="https://www.gov.uk/government/publications/the-nutrient-profiling-model","The UK Nutrient Profile Model"), "assesses the 'healthiness' of products by assigning a score"),
@@ -851,7 +862,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                              ),
                                     
                                     
-                                    tabPanel(title ="HFSS legislation", 
+                                    tabPanel(title = tags$b("About HFSS legislation"), 
                                              br(),
                                              h3("What is HFSS legislation?"),
                                              p("HFSS stands for 'High in Fat, Salt and Sugar'"),
@@ -861,10 +872,12 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                              tags$ul(tags$span(style ="color:teal","Falls into one of 13 categories")),
                                              tags$ul(tags$span(style ="color:teal","Fails the UK NPM")),
                                              p("Use our tool to check HFSS status"), 
-                                             hr(),
-                                             br(),
                                              p("Additionally, restrictions on promotions only apply to packaged products sold in eligible retailers."),
+                                             p("This tool is not designed to assess retailer eligibility"),
                                              p("Make sure you're up to date with",tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","the rules"),"."),
+                                             hr(),
+                                             h4("HFSS categories"),
+                                             tableOutput('CategoryTable'),
                                              ),
                                     ),# close tabsetpanel
                         hr(),
@@ -875,6 +888,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                # Acknowledgements page -----                     
                tabPanel("Acknowledgements",
                         p("The Nutrient Profile Model online calculator tool was developed by the Consumer Data Research Centre, University of Leeds."),
+                        h4("Cite the Nutrient Profile Model Calculator"),
                         p("Project team, Dr Vicki Jenneson , Rosalind Martin (Data Scientist Intern at the Leeds Institute for Data Analytics (LIDA)), and Dr Michelle Morris"),
                         br(),
                         p("The NPM Onine Calculator is based on the MSc work of Vicki Jenneson. The original code for that project
@@ -891,9 +905,10 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                # open new tabpanel to store logo in
                tabPanel(img(src="cropped-CDRC-Col-whitewriting.png", height = 60)
                         ), # close tabPanel
-                                      
-tags$footer(HTML(""),style = "background-color:teal; color: white; height:50px; position:bottom"),    
-tags$footer(HTML("<small>Designed by researchers at the University of Leeds</small>"), style = "background-color: teal; color: white; height:50px; position:bottom")    
+               
+tags$footer("",img(src="UoL_logo.png", height = 60, align ='right'),br(),style = "background-color:teal; color: white; height:50px; position:bottom"), 
+tags$footer(HTML("<small>Designed by researchers at the University of Leeds</small>"), style = "background-color: teal; color: white; height:50px; position:bottom",
+            br(), HTML("<small>Published under MIT License, Copyright (c) 2022 Leeds-CDRC</small>"))    
 
 )) # close fluidLayout and ShinyUI
 
