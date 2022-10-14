@@ -808,7 +808,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                              p(tags$b("Disclaimer:")),
                                              p("The Nutrient Profile Model Calculator was developed by researchers at the University of Leeds, to make NPM score calculation quicker, easier and more consistent."),
                                              p("It is the user's responsibility to check compliance to current legislation by following the", tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance", "latest guidance."),""),
-                                             p("The University of Leeds does not accept any responsibility for products incorrect promotion of products under current legislation"),
+                                             p("The University of Leeds does not accept any responsibility for incorrect promotion of products under current legislation"),
                                              ),
                                     
                                     tabPanel(title = tags$b("About the NPM"),
@@ -863,6 +863,18 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                              h4("HFSS categories in The Food (Promotion and Placement) (England) Regulations 2021"),
                                              tableOutput('CategoryTable'),
                                              ),
+                                    tabPanel(title = tags$b("NPM Calculator assumptions"),
+                                             h3("Specific gravity"),
+                                             p("Nutrient values for drinks, and some foods, are typically presented per 100ml of product. But the NPM applies per 100g of product."),
+                                             p("A specific gravity conversion factor can be applied to convert the volume in ml to weight in grams. This accounts for the density of the prodcut."),
+                                             p("While pure water has a specific gravity of 1, meaning that 1ml or pure water weighs 1g, most drinks will have a higher density."),
+                                             p("For ease for the user, this calculator uses pre-set specific gravity conversion factors, which will be applied according to the type of product you select."),
+                                             p("Specific gravity values are listed in the table below."),
+                                             br(),
+                                             h4("Specific gravity values"),
+                                             tableOutput('SGTable'),
+                                             p("Specific gravity values are taken from", tags$a(href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/694145/Annex__A_the_2018_review_of_the_UK_nutrient_profiling_model.pdf","The 2018 review of the UK Nutrient Profiling Model Appendix A"),", pages 95-96. For products not listed, a specific gravity of 1 is applied"),
+                                                                                 ),
                                     ),# close tabsetpanel
                         hr(),
                        
@@ -875,10 +887,11 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                         h4("Cite the Nutrient Profile Model Calculator"),
                         p("Project team, Dr Vicki Jenneson , Rosalind Martin (Data Scientist Intern at the Leeds Institute for Data Analytics (LIDA)), and Dr Michelle Morris"),
                         br(),
-                        p("The NPM Onine Calculator is based on the MSc work of Vicki Jenneson. The original code for that project
+                        p("The NPM Calculator is based on the MSc work of Vicki Jenneson. The original code for that project
                         can be found", a(href="https://github.com/VickiJenneson/NPM_Promotional_Restrictions", "on GitHub"), ", and  
                         was previously tested on a retail product dataset from Dietary
                         Assessment Ltd."),
+                        p("Current code for the NPM Calculator can be found on the", a(href="https://github.com/Leeds-CDRC/NPM-Calculator","CDRC GitHub")," page"),
                         br(),
                         p("An overview of the calculator's development is available in our blog,", 
                         a(href="https://lida.leeds.ac.uk/news/automating-a-nutrient-profiling-model/", "Automating a Nutrient Profiling

@@ -80,6 +80,30 @@ shinyServer(function(input, output, session) {
   # render table which will be displayed
   output$CategoryTable <- renderTable(tab)
 
+  # Specific Gravity table ----
+  
+  # create table to house specific gravity info
+  SGtab <- matrix(c('Semi-skimmed milk', '1.03',
+                    'Carbonated drink/fruit juice', '1.04',
+                    'Diet carbonated drink', '1.00',
+                    'Energy drink', '1.07',
+                    'Cordial/squash ready to drink', '1.03',
+                    'Cordial/squash undiluted', '1.09',
+                    'Ice cream', '1.30',
+                    'Ice lolly', '0.90',
+                    'Mayonnaise', '0.91',
+                    'Maple syrup', '1.32',
+                    'Single cream', '1.00',
+                    'Double cream', '0.94',
+                    'Whipping cream', '0.96',
+                    'Evaporated milk', '1.07'),
+                ncol=2, byrow=TRUE)
+  colnames(SGtab) <-c('Product', 'Specific gravity')
+  
+  
+  # render table which will be displayed
+  output$SGTable <- renderTable(SGtab)  
+  
     # Single product assessment ----
     
     # clear form button using shinyjs package
@@ -407,7 +431,9 @@ shinyServer(function(input, output, session) {
     # Calculate total NPM points
     Total_NPM <- reactive({ifelse((TOT_A())<11,
                                (TOT_A()) - (TOT_C()),
-                               (TOT_A()) - (FVN_P() + FIB()))
+                               ifelse((TOT_A())>=11 && FVN_P()>=5,
+                                      (TOT_A()) - (TOT_C()),
+                               (TOT_A()) - (FVN_P() + FIB())))
     })
     
     output$Total <- renderText({
