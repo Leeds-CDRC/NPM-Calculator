@@ -5,3 +5,4 @@ RUN install2.r --error --deps TRUE shinyBS shinythemes shinyjs shinydashboard sh
 COPY server.R /srv/shiny-server/server.R
 COPY ui.R /srv/shiny-server/ui.R
 COPY www /srv/shiny-server/www
+COPY shiny-server.conf /etc/shiny-server/shiny-server.conf
