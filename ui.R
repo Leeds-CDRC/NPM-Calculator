@@ -24,7 +24,8 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
     .shiny-output-error-validation {
     color: red;
     }
-    "))
+    ")), 
+        HTML("<!-- Google tag (gtag.js) --> <script async src=https://www.googletagmanager.com/gtag/js?id=G-SRBQ8RE3LV></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-SRBQ8RE3LV'); </script>")
     ), # close tags$head
     
     # Home page ----
@@ -903,9 +904,10 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                tabPanel(img(src="cropped-CDRC-Col-whitewriting.png", height = 60)
                         ), # close tabPanel
                
-tags$footer("",img(src="UoL_logo.png", height = 60, align ='right'),br(),style = "background-color:teal; color: white; height:50px; position:bottom"), 
-tags$footer(HTML("<small>Designed by researchers at the University of Leeds</small>"), style = "background-color: teal; color: white; height:50px; position:bottom",
-            br(), HTML("<small>Published under MIT License, Copyright (c) 2022 Leeds-CDRC</small>"))    
+tags$footer("",img(src="UoL_logo.png", height = 60, align ='right'), br(), style = "background-color:teal; color: white; height:50px; position:bottom"), 
+tags$footer(HTML("<small>Designed by researchers at the University of Leeds</small>"), style = "background-color: teal; color: white; height:60px; position:bottom",
+            br(), HTML("<small>Published under MIT License, Copyright (c) 2022 Leeds-CDRC</small>"), 
+            br(), HTML('<div style="color:white";><small><a href="https://www.cdrc.ac.uk/privacy/">Privacy and Cookies</a></small></div>'))
 
 )) # close fluidLayout and ShinyUI
 
