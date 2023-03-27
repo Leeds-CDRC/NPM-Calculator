@@ -9,34 +9,35 @@ tableTab <- tabPanel(
   sidebarLayout(
     # Sidebar panel for inputs ----
       sidebarPanel(
+        width = 2,
 
-          # Input: Select a file ----
-      fileInput("file1", "Choose CSV/Excel File",
-                multiple = FALSE,
-                accept = c("text/csv",
-                         "text/comma-separated-values,text/plain",
-                         ".csv",
-                         ".xlsx")),
+            # Input: Select a file ----
+        fileInput("file1", "Choose CSV/Excel File",
+                  multiple = FALSE,
+                  accept = c("text/csv",
+                          "text/comma-separated-values,text/plain",
+                          ".csv",
+                          ".xlsx")),
 
-      # Horizontal line ----
-      tags$hr(),
+        # Horizontal line ----
+        tags$hr(),
 
-      # Input: Checkbox if file has header ----
-      checkboxInput("header", "Header", TRUE),
+        # Input: Checkbox if file has header ----
+        checkboxInput("header", "Header", TRUE),
 
-      # Input: Select separator ----
-      radioButtons("sep", "Separator",
-                   choices = c(Comma = ",",
-                               Semicolon = ";",
-                               Tab = "\t"),
-                   selected = ","),
+        # Input: Select separator ----
+        radioButtons("sep", "Separator",
+                    choices = c(Comma = ",",
+                                Semicolon = ";",
+                                Tab = "\t"),
+                    selected = ","),
 
-      # Input: Select quotes ----
-      radioButtons("quote", "Quote",
-                   choices = c(None = "",
-                               "Double Quote" = '"',
-                               "Single Quote" = "'"),
-                   selected = '"')
+        # Input: Select quotes ----
+        radioButtons("quote", "Quote",
+                    choices = c(None = "",
+                                "Double Quote" = '"',
+                                "Single Quote" = "'"),
+                    selected = '"')
       ),
 
       # Main panel for displaying outputs ----
