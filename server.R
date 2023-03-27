@@ -506,6 +506,14 @@ shinyServer(function(input, output, session) {
     }
     })
     
+       output$bulkTable <- renderDT({
+                     req(input$file1)
+                     load_and_render(input$file1, input$header,input$sep , input$quote)
+                     }, 
+                  editable = 'all')
+
+
+    
 
    
 }) # close shinyServer
