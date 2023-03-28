@@ -38,7 +38,10 @@ tableTab <- tabPanel(
                     choices = c(None = "",
                                 "Double Quote" = '"',
                                 "Single Quote" = "'"),
-                    selected = '"')
+                    selected = '"'),
+        
+        actionButton('runBulk', "Calculate NPM scores", icon = icon("nutritionix"),
+              style = "color: white; background-color: teal", width = '100%')
       ),
 
       # Main panel for displaying outputs ----
@@ -48,8 +51,7 @@ tableTab <- tabPanel(
       )
     ),
 
-  actionButton('runBulk', "Calculate NPM scores", icon = icon("nutritionix"),
-                style = "color: white; background-color: teal", width = '100%')
+
 )
 
 
