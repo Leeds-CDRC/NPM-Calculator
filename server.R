@@ -506,16 +506,18 @@ shinyServer(function(input, output, session) {
     }
     })
     
-       output$bulkTable <- renderDT({
-                     req(input$file1)
-                     load_and_render(input$file1, input$header,input$sep , input$quote)
-                     }, 
-                  editable = 'all', fillContainer=TRUE)
+  output$bulkTable <- renderDT({
+                req(input$file1)
+                load_and_render(input$file1, input$header,input$sep , input$quote)
+                }, 
+            editable = 'all', fillContainer=TRUE)
 
 
-       observeEvent(input$runBulk, {
-              updateTabsetPanel(session = session, inputId = "calc2", selected = "bulkResult")
-       })
+  observeEvent(input$runBulk, {
+
+
+        updateTabsetPanel(session = session, inputId = "calc2", selected = "bulkResult")
+  })
     
 
    
