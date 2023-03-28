@@ -43,7 +43,7 @@ tableTab <- tabPanel(
       # Main panel for displaying outputs ----
       mainPanel(
         # Output: Data file ----
-        DTOutput("bulkTable")
+        DTOutput("bulkTable", height = "500px")
       )
     ),
 
