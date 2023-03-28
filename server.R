@@ -523,7 +523,7 @@ shinyServer(function(input, output, session) {
       bulk_output
     }, fillContainer=TRUE
     )
-
+    
     output$downloadData <- downloadHandler(
       filename = function() {
         paste(extract_ext(input$file1$name, 1), "-npm-scored.csv", sep = "")
@@ -532,6 +532,10 @@ shinyServer(function(input, output, session) {
         write.csv(bulk_output, file, row.names = FALSE)
       }
     )
+    output$bulkResultPlot <- renderPlot({
+        plot(as.factor(bulk_output$NPM_assessment))
+      })
+
     updateTabsetPanel(session = session, inputId = "calc2", selected = "bulkResult")
   })
     
