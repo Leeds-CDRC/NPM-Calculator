@@ -10,7 +10,11 @@ tableTab <- tabPanel(
   sidebarLayout(
     # Sidebar panel for inputs ----
       sidebarPanel(
-        width = 2,
+        width = 3,
+        h3("NPM Table Calculator"),
+        p("Use the below options to upload a local file.
+        If the file is a .csv please specify the additional options below otherwise if using
+        and Excel file just proceed to the Calculate button."),
 
             # Input: Select a file ----
         fileInput("file1", "Choose CSV/Excel File",
@@ -58,6 +62,8 @@ tableTab <- tabPanel(
 
 resultTab <- tabPanel(tags$b("Results"), value = "bulkResult",
                       h3("Results"),
+                      p("See below for the NPM calculator results on your dataset. 
+                      You can also download this updated dataframe via the Download button."),
                       fluidRow(column(8, 
                                downloadButton("downloadData", "Download"),
                                plotOutput("bulkResultPlot", height = 200) )
