@@ -524,6 +524,14 @@ shinyServer(function(input, output, session) {
     }, fillContainer=TRUE
     )
 
+    output$downloadData <- downloadHandler(
+      filename = function() {
+        paste(extract_ext(input$file1$name, 1), "-npm-scored.csv", sep = "")
+      },
+      content = function(file) {
+        write.csv(bulk_output, file, row.names = FALSE)
+      }
+    )
     updateTabsetPanel(session = session, inputId = "calc2", selected = "bulkResult")
   })
     

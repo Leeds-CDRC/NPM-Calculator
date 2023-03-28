@@ -55,6 +55,10 @@ tableTab <- tabPanel(
 
 
 resultTab <- tabPanel(tags$b("Results"), value = "bulkResult",
+                      h3("Results"),
+                      fluidRow(column(8, 
+                               downloadButton("downloadData", "Download"),
+                      ),
                       DTOutput("bulkResultTable", 
                       height = "500px"),
                       )
