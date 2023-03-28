@@ -8,9 +8,9 @@
 #' 
 #' @return a character string of the file extension
 #' 
-extract_ext <- function(filename) {
+extract_ext <- function(filename, index = -1) {
 
-    file_ext <- strsplit(basename(filename), split = "\\.")[[1]][-1]
+    file_ext <- strsplit(basename(filename), split = "\\.")[[1]][index]
 
     return(file_ext)
 }

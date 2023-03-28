@@ -4,7 +4,7 @@ library(readxl)
 load_and_render <- function(file, header, sep, quote) {
 
             # retrieve file extension
-            file_ext <- extract_ext(file$datapath)
+            file_ext <- extract_ext(file$datapath, -1)
 
             # when reading semicolon separated files,
             # having a comma separator causes `read.csv` to error
