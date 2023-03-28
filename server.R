@@ -514,9 +514,17 @@ shinyServer(function(input, output, session) {
 
 
   observeEvent(input$runBulk, {
+    bulk_data <- load_and_render(input$file1, input$header,input$sep , input$quote)
 
+    bulk_output <- runNP(bulk_data)
 
-        updateTabsetPanel(session = session, inputId = "calc2", selected = "bulkResult")
+    output$bulkResultTable <- renderDT({
+      req(bulk_output)
+      bulk_output
+    }, fillContainer=TRUE
+    )
+
+    updateTabsetPanel(session = session, inputId = "calc2", selected = "bulkResult")
   })
     
 

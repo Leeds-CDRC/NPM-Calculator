@@ -54,7 +54,10 @@ tableTab <- tabPanel(
 
 
 
-resultTab <- tabPanel(tags$b("Results"), value = "bulkResult")
+resultTab <- tabPanel(tags$b("Results"), value = "bulkResult",
+                      DTOutput("bulkResultTable", 
+                      height = "500px"),
+                      )
 
 # the main tab constructor
 
