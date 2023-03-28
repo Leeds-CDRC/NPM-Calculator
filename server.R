@@ -513,6 +513,9 @@ shinyServer(function(input, output, session) {
                   editable = 'all', fillContainer=TRUE)
 
 
+       observeEvent(input$runBulk, {
+              updateTabsetPanel(session = session, inputId = "calc2", selected = "bulkResult")
+       })
     
 
    

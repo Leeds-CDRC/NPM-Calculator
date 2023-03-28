@@ -5,6 +5,7 @@ library(DT)
 
 tableTab <- tabPanel(
     title = tags$b("Upload data"),
+    value = "bulkDataUpload",
       # Sidebar layout with input and output definitions ----
   sidebarLayout(
     # Sidebar panel for inputs ----
@@ -53,9 +54,7 @@ tableTab <- tabPanel(
 
 
 
-resultTab <- tabPanel(tags$b("Results")
-
-)
+resultTab <- tabPanel(tags$b("Results"), value = "bulkResult")
 
 # the main tab constructor
 
@@ -63,7 +62,8 @@ bulkTab <- tabPanel("Table Calculator",
                     value = "bulkCalc",
                     tabsetPanel(type = "tabs", 
                                 shinyjs::useShinyjs(), 
-                                id ="calc2"),
-                    tableTab,
-                    resultTab
+                                id ="calc2",
+                                tableTab,
+                                resultTab
+                    )
 )
