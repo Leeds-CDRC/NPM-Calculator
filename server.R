@@ -522,6 +522,8 @@ shinyServer(function(input, output, session) {
         easyClose = TRUE
         ))
         req(FALSE)
+    } else {
+       bulk_data <- load_and_render(input$file1)
     }
     
     bulk_output <- tryCatch({
