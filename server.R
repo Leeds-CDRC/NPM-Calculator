@@ -508,13 +508,13 @@ shinyServer(function(input, output, session) {
     
   output$bulkTable <- renderDT({
                 req(input$file1)
-                load_and_render(input$file1, input$header,input$sep , input$quote)
+                load_and_render(input$file1)
                 }, 
             editable = 'all', fillContainer=TRUE)
 
 
   observeEvent(input$runBulk, {
-    bulk_data <- load_and_render(input$file1, input$header,input$sep , input$quote)
+    bulk_data <- load_and_render(input$file1)
     
     bulk_output <- tryCatch({
       runNP(bulk_data)
