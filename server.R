@@ -540,7 +540,7 @@ shinyServer(function(input, output, session) {
 
     output$bulkResultTable <- renderDT({
       req(bulk_output)
-      bulk_output
+      bulk_output[,c("name","brand", "NPM_score","NPM_assessment")]
     }, fillContainer=TRUE
     )
     
