@@ -1,21 +1,16 @@
 library(shiny)
 library(readxl)
 
-load_and_render <- function(file, header, sep, quote) {
+load_and_render <- function(file) {
 
             # retrieve file extension
             file_ext <- extract_ext(file$datapath, -1)
 
-            # when reading semicolon separated files,
-            # having a comma separator causes `read.csv` to error
             tryCatch(
             {
                 if (file_ext == "csv") {
 
-                    df <- read.csv(file$datapath,
-                            header = header,
-                            sep = sep,
-                            quote = quote)
+                    df <- read.csv(file$datapath)
 
                 } else if (file_ext == "xlsx") {
 
