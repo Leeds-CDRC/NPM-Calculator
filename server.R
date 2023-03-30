@@ -514,7 +514,15 @@ shinyServer(function(input, output, session) {
 
 
   observeEvent(input$runBulk, {
-    bulk_data <- load_and_render(input$file1)
+
+    if(length(input$file1) == 0) {
+        showModal(modalDialog(
+        title = "Warning",
+        HTML("No input file found. Did you select a file to upload?"),
+        easyClose = TRUE
+        ))
+        req(FALSE)
+    }
     
     bulk_output <- tryCatch({
       runNP(bulk_data)
