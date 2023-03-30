@@ -23,26 +23,6 @@ tableTab <- tabPanel(
                           "text/comma-separated-values,text/plain",
                           ".csv",
                           ".xlsx")),
-
-        # Horizontal line ----
-        tags$hr(),
-
-        # Input: Checkbox if file has header ----
-        checkboxInput("header", "Header", TRUE),
-
-        # Input: Select separator ----
-        radioButtons("sep", "Separator",
-                    choices = c(Comma = ",",
-                                Semicolon = ";",
-                                Tab = "\t"),
-                    selected = ","),
-
-        # Input: Select quotes ----
-        radioButtons("quote", "Quote",
-                    choices = c(None = "",
-                                "Double Quote" = '"',
-                                "Single Quote" = "'"),
-                    selected = '"'),
         
         actionButton('runBulk', "Calculate NPM scores", icon = icon("nutritionix"),
               style = "color: white; background-color: teal", width = '100%')
@@ -65,7 +45,7 @@ resultTab <- tabPanel(tags$b("Results"), value = "bulkResult",
                       p("See below for the NPM calculator results on your dataset. 
                       You can also download this updated dataframe via the Download button."),
                       fluidRow(column(8, 
-                               downloadButton("downloadData", "Download"),
+                               downloadButton("downloadData", "Download Data with NPM Assessment"),
                                plotOutput("bulkResultPlot", height = 200) )
                       ),
                       DTOutput("bulkResultTable", 

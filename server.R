@@ -508,13 +508,23 @@ shinyServer(function(input, output, session) {
     
   output$bulkTable <- renderDT({
                 req(input$file1)
-                load_and_render(input$file1, input$header,input$sep , input$quote)
+                load_and_render(input$file1)
                 }, 
             editable = 'all', fillContainer=TRUE)
 
 
   observeEvent(input$runBulk, {
-    bulk_data <- load_and_render(input$file1, input$header,input$sep , input$quote)
+
+    if(length(input$file1) == 0) {
+        showModal(modalDialog(
+        title = "Warning",
+        HTML("No input file found. Did you select a file to upload?"),
+        easyClose = TRUE
+        ))
+        req(FALSE)
+    } else {
+       bulk_data <- load_and_render(input$file1)
+    }
     
     bulk_output <- tryCatch({
       runNP(bulk_data)
@@ -532,7 +542,7 @@ shinyServer(function(input, output, session) {
 
     output$bulkResultTable <- renderDT({
       req(bulk_output)
-      bulk_output
+      bulk_output[,c("name","brand", "NPM_score","NPM_assessment")]
     }, fillContainer=TRUE
     )
     
