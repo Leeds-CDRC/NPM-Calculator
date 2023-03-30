@@ -515,8 +515,20 @@ shinyServer(function(input, output, session) {
 
   observeEvent(input$runBulk, {
     bulk_data <- load_and_render(input$file1, input$header,input$sep , input$quote)
-
-    bulk_output <- runNP(bulk_data)
+    
+    bulk_output <- tryCatch({
+      runNP(bulk_data)
+      }, 
+      error = function(e) {
+        showModal(modalDialog(
+        title = "Error",
+        HTML("<strong>An error occured whilst running the calculator.</strong><br/>
+        The full error message is:<br /><br /> <pre>",unlist(e['message']),"</pre>"),
+        easyClose = TRUE
+        ))
+        req(FALSE)
+      })
+    
 
     output$bulkResultTable <- renderDT({
       req(bulk_output)
