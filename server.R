@@ -519,7 +519,7 @@ shinyServer(function(input, output, session) {
                 req(input$file1)
                 load_and_render(input$file1)
                 }, 
-            editable = 'all', fillContainer=TRUE)
+              fillContainer=TRUE)
 
 
   observeEvent(input$runBulk, {
