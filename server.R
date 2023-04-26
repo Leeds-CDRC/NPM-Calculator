@@ -505,6 +505,15 @@ shinyServer(function(input, output, session) {
       })
     }
     })
+
+
+  # trigger move tab from Intro to bulkDataUpload
+  observeEvent(input$moveBulkTab, {
+      updateTabsetPanel(session, 
+                        inputId = "calc2", 
+                        selected = "bulkDataUpload")
+      }
+    )
     
   output$bulkTable <- renderDT({
                 req(input$file1)
