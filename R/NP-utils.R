@@ -1,6 +1,14 @@
 # series of utility functions for calling nutrientprofiler functions
 library(nutrientprofiler)
 
+#' Run Nutrient Profiler
+#'
+#' This function runs the nutrientprofiler pipeline
+#' on all values in the passed data.frame.
+#'
+#' @param dataframe, R data.frame for nutrientprofiler functions
+#' @returns an R data.frame with input columns and
+#' nutrientprofiler columns added
 runNP <- function(dataframe) {
     stopifnot("Expected a data.frame type to be passed" = 
     is.data.frame(dataframe))
