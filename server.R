@@ -506,6 +506,7 @@ shinyServer(function(input, output, session) {
     }
     })
 
+  ####### NPM Table Converter server section #######
 
   # trigger move tab from Intro to bulkDataUpload
   observeEvent(input$moveBulkTab, {
@@ -514,16 +515,26 @@ shinyServer(function(input, output, session) {
                         selected = "bulkDataUpload")
       }
     )
-    
+  
+  # this function handles the loading of data
+  # in the Upload Data tab
+  # and renders the data as a DT
+  # this will allow the loading of any csv or xlsx file
   output$bulkTable <- renderDT({
                 req(input$file1)
+                # function from R/bulk-upload-server.R
                 load_and_render(input$file1)
                 }, 
               fillContainer=TRUE)
 
-
+  
+  # this block defines the logic for when "Calculate NPM scores" button
+  # is pressed
   observeEvent(input$runBulk, {
 
+    # here we check if the uploaded file has a length
+    # this logic prevents a crash if you click the button
+    # before uploading a file
     if(length(input$file1) == 0) {
         showModal(modalDialog(
         title = "Warning",
@@ -532,10 +543,16 @@ shinyServer(function(input, output, session) {
         ))
         req(FALSE)
     } else {
+       # function from R/bulk-upload-server.R
        bulk_data <- load_and_render(input$file1)
     }
     
+    # in this block we try to run the runNP function
+    # on the uploaded data
+    # if an error occurs a modal popup is created with a message
+    # and include the error from nutrientprofiler
     bulk_output <- tryCatch({
+      # function from R/NP-utils.R
       runNP(bulk_data)
       }, 
       error = function(e) {
@@ -545,28 +562,42 @@ shinyServer(function(input, output, session) {
         The full error message is:<br /><br /> <pre>",unlist(e['message']),"</pre>"),
         easyClose = TRUE
         ))
+        # this call here is what prevents the app from crashing
+        # it stops the run logic allowing the user to retry
         req(FALSE)
       })
     
-
+    
+    # if the above tryCatch block is OK
+    # we render a DT table in Results tab
+    # using a subset of total columns
     output$bulkResultTable <- renderDT({
       req(bulk_output)
+      # the columns specified here determine what is shown in the app
       bulk_output[,c("name","brand", "NPM_score","NPM_assessment")]
     }, fillContainer=TRUE
     )
     
+    # this function determines the logic for downloading the
+    # newly computed NPM scores ontop of the original data
     output$downloadData <- downloadHandler(
       filename = function() {
+        # we write the output file as CSV and add -npm-scored to the 
+        # original file name
         paste(extract_ext(input$file1$name, 1), "-npm-scored.csv", sep = "")
       },
       content = function(file) {
         write.csv(bulk_output, file, row.names = FALSE)
       }
     )
+
+    # logic here for rendering a plot summarising the 
+    # NPM_assessment column
     output$bulkResultPlot <- renderPlot({
         plot(as.factor(bulk_output$NPM_assessment))
       })
 
+    # automatically move to the Result tab after the computation has run
     updateTabsetPanel(session = session, inputId = "calc2", selected = "bulkResult")
   })
     
