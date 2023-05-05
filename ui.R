@@ -13,6 +13,7 @@ library(vroom)
 library(shinyBS)
 library(ggplot2)
 library(shinythemes)
+library(DT)
 
 
 
@@ -775,6 +776,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                       
                ), # close tabset panel
                
+               bulkTab,
                            
                # User guide page -----
                tabPanel("User guide", value = "Guide",
