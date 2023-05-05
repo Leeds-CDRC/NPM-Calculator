@@ -1,6 +1,16 @@
 library(shiny)
 library(readxl)
 
+#' Load data function
+#' 
+#' This function accepts a shiny InputFile list
+#' it extracts the file extension using the `extract_ext`
+#' utility function from the $datapath value and 
+#' then tries to load the data using either read.csv or readxl
+#' it returns the dataframe otherwise catches an error.
+#' It does so safely to help pass this up to the Shiny app
+#' @param file, a Shiny InputFile list
+#' @returns a dataframe
 load_and_render <- function(file) {
 
             # retrieve file extension

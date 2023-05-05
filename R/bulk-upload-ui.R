@@ -2,6 +2,7 @@
 library(shiny)
 library(DT)
 
+# define a tabPanel for introducing the NPM Table calculator
 introTab <- tabPanel(
   title = tags$b("NPM Table Calculator"),
   value = "bulkDataDesc",
@@ -37,6 +38,8 @@ introTab <- tabPanel(
   small preview table of your data showing the result of the NPM 
   calculation. You will also be able to download your dataset as a CSV file
   with additional columns generated during the assessment step."),
+  # a centered row that contains anchors for downloading
+  # template data files
   fluidRow(style = "text-align:center;",
     column(12,
           a(href="example-NPM-data.xlsx", 
@@ -51,6 +54,7 @@ introTab <- tabPanel(
           class="btn btn-primary")
         ),
       ),
+      # row containing button to move to next tab
       fluidRow(style = "margin: 1.5%; text-align:center;",
         column(12,
               actionButton('moveBulkTab', "Next", icon = icon("nutritionix"),
@@ -61,6 +65,7 @@ introTab <- tabPanel(
       )
 
 
+# define a tabPanel for the uploading data tab
 tableTab <- tabPanel(
     title = tags$b("Upload data"),
     value = "bulkDataUpload",
@@ -97,7 +102,7 @@ tableTab <- tabPanel(
 )
 
 
-
+# define a tabPanel for the results of running the nutrient profiler pipeline
 resultTab <- tabPanel(tags$b("Results"), value = "bulkResult",
                       h3("Results"),
                       p("See below for the NPM calculator results on your dataset. 
@@ -111,7 +116,8 @@ resultTab <- tabPanel(tags$b("Results"), value = "bulkResult",
                       )
 
 # the main tab constructor
-
+# this variable contructs the full tab panel from
+# all other tabs defined above
 bulkTab <- tabPanel("Table Calculator",
                     value = "bulkCalc",
                     tabsetPanel(type = "tabs", 
