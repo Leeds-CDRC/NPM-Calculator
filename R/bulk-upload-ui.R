@@ -13,6 +13,8 @@ introTab <- tabPanel(
   the data contains correct column names and categories for steps used by the 
   Table Calculator.",
   class= "alert alert-warning"),
+  DTOutput("bulkExampleTable", 
+            height = "500px"),
   p("To help with larger datasets of product information
   you want testing against the Nutrient Profile Model we 
   have introduced a new, experimental Table Calculator mode.

@@ -527,7 +527,37 @@ shinyServer(function(input, output, session) {
                 }, 
               fillContainer=TRUE)
 
-  
+  output$bulkExampleTable <- renderDT({
+    data.frame(name = c("The product name (optional)"),
+    
+               brand = c("The product brand (optional)"),
+               product_category = c("The category of the product for grouping of results for downstream analysis (optional)"),
+               product_type = c("The type of the product, must either be 'food' or 'drink'."),
+               food_type = c("This column contains a string corresponding to a type of food that matches expected categories 
+                               for specific gravity conversions (validation categories available in Template Excel file)."),
+               drink_format = c("This column contains a string that can either be 'ready','cordial' or 'powdered' to help
+                                determine specific gravity conversions."),
+               drink_type = c("This column contains a string corresponding to a type of drink that matches expected categories 
+                               for specific gravity conversions (validation categories available in Template Excel file)."),
+               nutrition_info = c("This column is used to determine specific gravity adjustments for 'powdered' or 'cordial' drink_format 
+                                  products. The column should contain a string with either 'as consumed', 'preparation instructions given' 
+                                  or 'preparation instructions not given'."),
+               energy_measurement_kj = c("A numeric value corresponding to product energy measurements if in kilajoules."),
+               energy_measurement_kcal = c("A numeric value corresponding to product energy measurements if in kilocalories."),
+               sugar_measurement_g = c("A numeric value corresponding to product sugar measurements in grams."),
+               fat_measurement_g = c("A numeric value corresponding to product fat measurements in grams."),
+               salt_measurement_g = c("A numeric value corresponding to product salt measurements in grams if salt rather than sodium."),
+               sodium_measurement_mg = c("A numeric value corresponding to product sodium measurements in miligrams if sodium rather than salt."),
+               fibre_measurement_nsp = c("A numeric value corresponding to product fibre measurements for non-starch polysaccharides if provided."),
+               fibre_measurement_aoac = c("A numeric value corresponding to product fibre measurements using the Association of Analytical Chemists measurement method if provided."),
+               protein_measurement_g = c("A numeric value corresponding to product protein measurements in grams."),
+               fruit_nut_measurement_percent = c("A numeric value corresponding to the percentage of fruit, vegetables and nuts in the product."),
+               weight_g = c("A numeric value corresponding to the products weight in grams if provided or weight of powdered drink."),
+               volume_ml = c("A numeric value corresponding to the products volume in mililitres if provided."),
+               volume_water_ml = c("A numeric value corresponding to the volume in mililitres of water added to powdered or cordial drink if provided.")
+               )
+  })
+
   # this block defines the logic for when "Calculate NPM scores" button
   # is pressed
   observeEvent(input$runBulk, {
