@@ -60,8 +60,12 @@ introTab <- tabPanel(
               actionButton('moveBulkTab', "Next", icon = icon("nutritionix"),
               style = "color: white; background-color: teal;", width = '40%'),
         )
-      )
-
+      ),
+    h3("Input data reference table"),
+    p("Below is a reference table for the expected input data frame configuration
+    including a description of expected data. This reference table should be used alongside 
+    the downloadable template Excel and CSV files used above."),
+    tableOutput("bulkExampleTable")
       )
 
 
