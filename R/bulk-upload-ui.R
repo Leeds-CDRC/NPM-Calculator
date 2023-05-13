@@ -13,8 +13,6 @@ introTab <- tabPanel(
   the data contains correct column names and categories for steps used by the 
   Table Calculator.",
   class= "alert alert-warning"),
-  DTOutput("bulkExampleTable", 
-            height = "500px"),
   p("To help with larger datasets of product information
   you want testing against the Nutrient Profile Model we 
   have introduced a new, experimental Table Calculator mode.
@@ -62,8 +60,12 @@ introTab <- tabPanel(
               actionButton('moveBulkTab', "Next", icon = icon("nutritionix"),
               style = "color: white; background-color: teal;", width = '40%'),
         )
-      )
-
+      ),
+    h3("Input data reference table"),
+    p("Below is a reference table for the expected input data frame configuration
+    including a description of expected data. This reference table should be used alongside 
+    the downloadable template Excel and CSV files used above."),
+    tableOutput("bulkExampleTable")
       )
 
 

@@ -527,9 +527,8 @@ shinyServer(function(input, output, session) {
                 }, 
               fillContainer=TRUE)
 
-  output$bulkExampleTable <- renderDT({
-    data.frame(name = c("The product name (optional)"),
-    
+  output$bulkExampleTable <- renderTable({
+    data <- as.data.frame(t(data.frame(name = c("The product name (optional)"),
                brand = c("The product brand (optional)"),
                product_category = c("The category of the product for grouping of results for downstream analysis (optional)"),
                product_type = c("The type of the product, must either be 'food' or 'drink'."),
@@ -555,8 +554,13 @@ shinyServer(function(input, output, session) {
                weight_g = c("A numeric value corresponding to the products weight in grams if provided or weight of powdered drink."),
                volume_ml = c("A numeric value corresponding to the products volume in mililitres if provided."),
                volume_water_ml = c("A numeric value corresponding to the volume in mililitres of water added to powdered or cordial drink if provided.")
-               )
-  })
+               )))
+
+       data$colnames <- rownames(data)
+
+       names(data) <- c("Column description", "Column names")
+       return(data[,c("Column names","Column description")])
+  }, bordered = TRUE, spacing = "s")
 
   # this block defines the logic for when "Calculate NPM scores" button
   # is pressed
