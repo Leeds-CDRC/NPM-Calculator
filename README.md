@@ -35,9 +35,9 @@ section completely.
 ### Building the app locally
 
 Running an app locally is a useful way of testing changes and updates without affecting the live version of the webapp.
-In order to deploy this app locally in your web browser, you will need Docker and a version of git installed (you can use plain [git](https://git-scm.com/), [GitHub CLI](https://cli.github.com/), or [GitHUb Desktop](https://desktop.github.com/)).
+In order to deploy this app locally in your web browser, you will need Docker and a version of git installed (you can use plain [git](https://git-scm.com/), [GitHub CLI](https://cli.github.com/), or [GitHub Desktop](https://desktop.github.com/)).
 
-After cloning the repository with git and navigating into the folder, from your command line/terminal as a Docker-enabled user:
+After cloning the repository with git and navigating into the folder, from your command line/terminal as a Docker-enabled user (with Docker running):
 
 ```bash
 # Build a container using the file "local.dockerfile"
@@ -59,7 +59,9 @@ npm-calculator   latest    ID-code-here   About a minute ago   2.2GB
 You can then run the docker image and forward the specified port from the container to the host machine you are working on, so that you can view it in a web browser:
 
 ```bash
-sudo docker run -p 3838:3838 npm-calculator
+docker run -p 3838:3838 npm-calculator
 ```
 
 Now, visit http://localhost:3838/ to view the local application.
+
+> This local deployment has been tested on Windows, WSL2, and Linux (Ubuntu 22.04).
