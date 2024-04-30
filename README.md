@@ -31,3 +31,35 @@ RUN R -e 'remotes::install_github("leeds-cdrc/nutrientprofiler@v1.0.0")'
 If the change is not included in a version but rather is the most recent commit
 on the `main` branch, you can change `@v1.0.0` to `@main`, or remove the `@v1.0.0`
 section completely.
+
+### Building the app locally
+
+Running an app locally is a useful way of testing changes and updates without affecting the live version of the webapp.
+In order to deploy this app locally in your web browser, you will need Docker and a version of git installed (you can use plain [git](https://git-scm.com/), [GitHub CLI](https://cli.github.com/), or [GitHUb Desktop](https://desktop.github.com/)).
+
+After cloning the repository with git and navigating into the folder, from your command line/terminal as a Docker-enabled user:
+
+```bash
+# Build a container using the file "local.dockerfile"
+# -t provides a tag to reference the container later
+docker build -f local.dockerfile . -t npm-calculator
+```
+
+It will take a little while to build the docker image locally.
+
+You can check that this has built locally with the command `docker images`, which should have output similar to this:
+
+```bash
+docker images
+
+REPOSITORY       TAG       IMAGE ID       CREATED              SIZE
+npm-calculator   latest    ID-code-here   About a minute ago   2.2GB
+```
+
+You can then run the docker image and forward the specified port from the container to the host machine you are working on, so that you can view it in a web browser:
+
+```bash
+sudo docker run -p 3838:3838 npm-calculator
+```
+
+Now, visit http://localhost:3838/ to view the local application.
