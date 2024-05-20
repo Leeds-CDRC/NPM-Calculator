@@ -29,6 +29,11 @@ shinyServer(function(input, output, session) {
       updateTabsetPanel(session, "about", selected = "calculator")
       }
     )
+  # button to jump from home page to bulk calculator page
+    observeEvent(input$jumpToBulk, {
+      updateTabsetPanel(session, "about", selected = "bulkCalc")
+      }
+    )
   
   # button to jump from home page to calculator page
   observeEvent(input$jumpMulti, {
