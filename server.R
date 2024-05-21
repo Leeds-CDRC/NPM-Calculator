@@ -105,10 +105,19 @@ shinyServer(function(input, output, session) {
                 ncol=2, byrow=TRUE)
   colnames(SGtab) <-c('Product', 'Specific gravity')
   
-  
   # render table which will be displayed
   output$SGTable <- renderTable(SGtab)  
   
+
+  # Bulk assessment guide table ----
+
+  # create a table for the bulk calculation guide
+  # load the guide contents from csv
+  # BulkGuideTab <- read.csv("www/Bulk_calc_table.csv", header=TRUE)
+
+  # render table which will be displayed
+  # output$BulkGuideTable <- renderTable(BulkGuideTab)  
+
     # Single product assessment ----
     
     # clear form button using shinyjs package
