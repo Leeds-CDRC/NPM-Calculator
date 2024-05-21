@@ -55,12 +55,13 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                     selected = 1),
                         br(),
                         
-                        actionButton('jumpToCalc', "Start single calculation", icon = icon("nutritionix"),
+                        actionButton('jumpToCalc', "Start calculation for a single product", icon = icon("nutritionix"),
                                      style = "color: white; background-color: teal", width = '50%'),
                         
                         br(),
+                        br(),
 
-                        actionButton('jumpToBulk', "Start bulk calculation", icon = icon("nutritionix"),
+                        actionButton('jumpToBulk', "Asses several products at once", icon = icon("nutritionix"),
                                      style = "color: white; background-color: teal", width = '50%'),
                         
                         br(),
