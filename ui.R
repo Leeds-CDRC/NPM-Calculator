@@ -771,6 +771,10 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                                hr(),
                                                
                                               fluidRow(column(12, actionButton('jumpBack', "Assess again", icon = icon("nutritionix"),
+                                                                              style = "color: white; background-color: teal", width = '50%'),
+                                                                              br(),
+                                                                              br(),
+                                                                  actionButton('jumpToBulk', "Asses several products at once", icon = icon("nutritionix"),
                                                                               style = "color: white; background-color: teal", width = '50%'), align="center"),
                                                        ),
                                               
