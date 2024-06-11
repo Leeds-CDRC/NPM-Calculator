@@ -1,0 +1,4 @@
+Variable,Description,Valid data entry,Required field
+name,Product name for identity purposes,String format,Optional
+brand,Product brand for identity purposes,String format,Optional
+product_category,Enter one of the HFSS product placement legislation categories,"paste(""Soft drink"", ""another item"", ""another item"", sep = ""\n"") ",Optional
