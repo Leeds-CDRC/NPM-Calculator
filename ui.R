@@ -826,7 +826,40 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                     
                                     tabPanel(title = tags$b("Table Calculator Guide"),
                                              br(),
-                                             h2("Bulk Guide Tables"),
+                                             p("At present the Table Calculator is experimental and not guaranteed
+                                            to work against all data. Please use the available template spreadsheet files
+                                            to populate your data against and run with the Table Calculator. This ensures
+                                            the data contains correct column names and categories for steps used by the 
+                                            Table Calculator.",
+                                            class= "alert alert-warning"),
+                                            p("To help with larger datasets of product information
+                                            you want testing against the Nutrient Profile Model we 
+                                            have introduced a new, experimental Table Calculator mode.
+                                            This mode offers the ability to upload a dataset of product
+                                            information and run the entire table through the Nutrient Profile
+                                            Model. It visualises these results and makes it possible to 
+                                            download a copy of your data with the additional columns
+                                            corresponding to the Nutrient Profile Model assessment."),
+                                            p("The Table Calculator allows you to upload your data file 
+                                            which should be either CSV or Excel format. Once uploaded
+                                            your data will be previewed within the same tab where you can 
+                                            visually check that the data looks correct. When ready click Calculate
+                                            NPM scores to run the Table Calculator against your data. If an error
+                                            occurs during this step a popup will appear that includes some error
+                                            information. If it is unclear how to fix your error please raise an
+                                            issue on ",a(href="https://github.com/Leeds-CDRC/NPM-Calculator/issues/new",
+                                            "GitHub (sign in required) ")," sharing your error information or email the CDRC via ",
+                                            a(href="mailto:info@cdrc.ac.uk", "info@cdrc.ac.uk"),
+                                            " including all error information."),
+                                            p("If this step proceeds without error you will move to the Results
+                                            tab, where you will be able to view a summary of your results and a 
+                                            small preview table of your data showing the result of the NPM 
+                                            calculation. You will also be able to download your dataset as a CSV file
+                                            with additional columns generated during the assessment step."),
+                                             h3("Input Parameters"),
+                                             p("You can download the provided templates to ensure your data
+                                             uses the correct headings. Please see the parameter table below
+                                             which details the accepted input data types."),
                                              DTOutput('BulkGuideTable'),
                                              br(),
                                              hr(),
