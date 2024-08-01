@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/525283616.svg)](https://zenodo.org/badge/latestdoi/525283616)
 
-First release of the NPM Calculator tool. This version is designed to assess user-entered single product information against the [UK NPM (2004/5)](https://www.gov.uk/government/publications/the-nutrient-profiling-model) and scope for [HFSS legislation](https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance) around product placement.
+Second release of the NPM Calculator tool. This version is designed to assess user-entered single product information against the [UK NPM (2004/5)](https://www.gov.uk/government/publications/the-nutrient-profiling-model) and scope for [HFSS legislation](https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance) around product placement.
 
 ## NPM Table Calculator
 
@@ -32,10 +32,11 @@ If the change is not included in a version but rather is the most recent commit
 on the `main` branch, you can change `@v1.0.0` to `@main`, or remove the `@v1.0.0`
 section completely.
 
-### Building the app locally
+## Building the app locally
 
-Running an app locally is a useful way of testing changes and updates without affecting the live version of the webapp.
-In order to deploy this app locally in your web browser, you will need Docker and a version of git installed (you can use plain [git](https://git-scm.com/), [GitHub CLI](https://cli.github.com/), or [GitHub Desktop](https://desktop.github.com/)).
+Running an app locally is a useful way of testing changes and updates without affecting the live version of the webapp. In order to deploy this app locally in your web browser, you will need Docker and a version of git installed (you can use plain [git](https://git-scm.com/), [GitHub CLI](https://cli.github.com/), or [GitHub Desktop](https://desktop.github.com/)).
+
+### Deployment using a Docker container
 
 After cloning the repository with git and navigating into the folder, from your command line/terminal as a Docker-enabled user (with Docker running):
 
@@ -65,3 +66,15 @@ docker run -p 3838:3838 npm-calculator
 Now, visit http://localhost:3838/ to view the local application.
 
 > This local deployment has been tested on Windows, WSL2, and Linux (Ubuntu 22.04).
+
+### Deployment using a devcontainer
+
+Alternatively, you can launch a [devcontainer](https://code.visualstudio.com/docs/devcontainers/containers) from VSCode by opening the folder in VSCode, launching the command pallette (`F1`) and selecting "Dev Container: Open folder in a container...".
+
+It will take a few minutes for the container to build; once it has, you will be able to open a new terminal in VSCode within this contained environment.
+
+The devcontainer allows you to work on the app locally and update your preview in the browser without rebuilding a container each time. You can view your app by running the following from the terminal (within the devcontainer):
+
+```bash
+R -e "shiny::runApp('/srv/shiny-server/', host='0.0.0.0', port=3838)"
+```
