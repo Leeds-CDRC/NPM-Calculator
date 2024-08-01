@@ -13,7 +13,7 @@ nutrition_info,Enter for drinks only How nutrition info is presented used for sp
 energy_measurement_kj,Energy content of the product (kj) expressed per given weight/volume (e.g. /100g or per portion),"Numeric",Required if energy_measurement_kcalnot given
 energy_measurement_kcal,Energy content of the product (kcal) expressed per given weight/volume (e.g. /100g or per portion),"Numeric",Required if energy_measurement.kj not given
 sugar_measurement_g,Sugar content of the product (g) expressed per given weight/volume (e.g. /100g or per portion),"Numeric",Required
-fat_measurement_g,Fat content of the product (g) expressed per given weight/volume (e.g. /100g or per portion),"Numeric",Required
+satfat_measurement_g,Fat content of the product (g) expressed per given weight/volume (e.g. /100g or per portion),"Numeric",Required
 salt_measurement_g,Salt content of the product (g) expressed per given weight/volume (e.g. /100g or per portion),"Numeric",Required if sodium_measurement_mg not given
 sodium_measurement_mg,Sodium content of the product (mg) expressed per given weight/volume (e.g. /100g or per portion),"Numeric",Required if salt_measurement_g not given
 fibre_measurement_nsp,"Fibre content of the product (g) measured by the NSP method, expressed per given weight/volume (e.g. /100g or per portion). If unsure whether fibre is NSP or AOAC assume AOAC and leave NSP blank,","Numeric",Required if fibre_measurement_aoac not given
