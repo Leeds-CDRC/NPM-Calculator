@@ -826,25 +826,9 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                     
                                     tabPanel(title = tags$b("Table Calculator Guide"),
                                              br(),
-                                             h2("This is placeholder material"),
-                                             p(tags$a(href="https://www.gov.uk/government/publications/the-nutrient-profiling-model","The UK Nutrient Profile Model"), "assesses the 'healthiness' of products by assigning a score"),
-                                             p("The NPM score underpins:"),
-                                             tags$ul(tags$span(style ="color:teal","Product advertising (on TV, online, on the Transport For London network and more)")),
-                                             tags$ul(tags$span(style ="color:teal","Product promotions in stores and online shopping platforms")),
-                                             hr(),
-                                             h3("How is the NPM score calculated?"),
-                                             p("A score is assigned to 7 components, according to their amounts per 100g of product"),
-                                             h4("Bulk Guide Tables"),
-                                             tableOutput('BulkGuideTable'),
+                                             h2("Bulk Guide Tables"),
+                                             DTOutput('BulkGuideTable'),
                                              br(),
-                                             hr(),
-                                            
-                                             
-                                             p("The scores for C-points are then deducted from the scores for A-points, to give the overall score"),
-                                             p("If a product scores 11 or more for A-points then it cannot score points for protein, unless it also scores 5 points for fruit, vegetables and nuts."),
-                                             p("For drinks, if a product scores 1 or higher, the product is classed as 'less healthy' and is said to FAIL the NPM"),
-                                             p("For foods, if a product scores 4 or higher, the product is classed as 'less healthy' and is said to FAIL the NPM"),
-                                             p("Products which fail the NPM may be subject to certain restrictions on advertising and promotions, depending on the type of product and the specifics of the legislation."),
                                              hr(),
                                              p("Visit",tags$a(href="https://www.gov.uk/government/publications/the-nutrient-profiling-model","the NPM guidance"),"for full details."),
                                              ),
@@ -943,7 +927,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                
 tags$footer("",img(src="UoL_logo.png", height = 60, align ='right'), br(), style = "background-color:teal; color: white; height:50px; position:bottom"), 
 tags$footer(HTML("<small>Designed by researchers at the University of Leeds</small>"), style = "background-color: teal; color: white; height:60px; position:bottom",
-            br(), HTML("<small>Published under MIT License, Copyright (c) 2022 Leeds-CDRC</small>"), 
+            br(), HTML("<small>Published under Apache 2.0 License, Copyright (c) 2024 Leeds-CDRC</small>"), 
             br(), HTML('<div style="color:white";><small><a href="https://www.cdrc.ac.uk/privacy/">Privacy and Cookies</a></small></div>'))
 
 )) # close fluidLayout and ShinyUI

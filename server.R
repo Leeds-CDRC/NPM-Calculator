@@ -116,7 +116,17 @@ shinyServer(function(input, output, session) {
   BulkGuideTab <- read.csv("www/Bulk_calc_table.csv", header=TRUE)
 
   # render table which will be displayed
-  output$BulkGuideTable <- renderTable(BulkGuideTab)  
+#   output$BulkGuideTable <- renderTable(BulkGuideTab)
+  output$BulkGuideTable <- renderDT({
+       datatable(BulkGuideTab, options = list(
+       deferRender = TRUE,
+       scrollY = 400,
+       scrollX = TRUE,
+       scroller = TRUE,
+       autoWidth = TRUE,
+       columnDefs = list(list(width = '20%', targets = c(1,3,4)))
+       ))
+  }) 
 
     # Single product assessment ----
     
