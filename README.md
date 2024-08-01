@@ -34,7 +34,7 @@ section completely.
 
 ## Building the app locally
 
-Running an app locally is a useful way of testing changes and updates without affecting the live version of the webapp. In order to deploy this app locally in your web browser, you will need Docker and a version of git installed (you can use plain [git](https://git-scm.com/), [GitHub CLI](https://cli.github.com/), or [GitHub Desktop](https://desktop.github.com/)).
+Running an app locally is a useful way of testing changes and updates without affecting the live version of the webapp. In order to deploy this app locally in your web browser, you will need Docker (or a Linux macine) and a version of git installed (you can use plain [git](https://git-scm.com/), [GitHub CLI](https://cli.github.com/), or [GitHub Desktop](https://desktop.github.com/)).
 
 ### Deployment using a Docker container
 
@@ -71,10 +71,39 @@ Now, visit http://localhost:3838/ to view the local application.
 
 Alternatively, you can launch a [devcontainer](https://code.visualstudio.com/docs/devcontainers/containers) from VSCode by opening the folder in VSCode, launching the command pallette (`F1`) and selecting "Dev Container: Open folder in a container...".
 
-It will take a few minutes for the container to build; once it has, you will be able to open a new terminal in VSCode within this contained environment.
-
-The devcontainer allows you to work on the app locally and update your preview in the browser without rebuilding a container each time. You can view your app by running the following from the terminal (within the devcontainer):
+It will take a few minutes for the container to build; once it has, you will be able to open a new terminal in VSCode within this contained environment. You can view your app by running the following from the terminal (within the devcontainer):
 
 ```bash
-R -e "shiny::runApp('/srv/shiny-server/', host='0.0.0.0', port=3838)"
+R -e "shiny::runApp(host='0.0.0.0', port=3838)"
+```
+Note that unlike the Docker container for deployment, the app files are not copied across to `/srv/shiny-server/` and the shiny app is launched from the main repository directory.
+
+Alternatively, you can launch an interactive R session, and then run:
+
+```R
+shiny::runApp(host='0.0.0.0', port=3838)
+```
+
+### Deployment on Linux in an environment
+
+You can also deploy locally from a Linux machine (or WSL2 in Windows) where R and git are installed.
+
+You can create an R env using the `renv` package, or you can build a virtual environment using conda or an alternative package manager.
+
+If using conda/mamba, create your environment using the `conda-env.yml` file:
+
+```bash
+conda env create --file conda-env.yml
+```
+
+Then, you can activate this env and use the `remotes` package to install the `nutrientprofiler` package:
+
+```bash
+R -e 'remotes::install_github("leeds-cdrc/nutrientprofiler@v1.0.0")'
+```
+
+And then run the app:
+
+```bash
+R -e "shiny::runApp(host='0.0.0.0', port=3838)"
 ```
