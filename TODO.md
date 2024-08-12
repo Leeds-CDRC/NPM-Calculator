@@ -4,7 +4,7 @@
 
 #### Documentation Tasks
 - [] Add Table Guide docs
-    - [] Build input data table
+    - [x] Build input data table
     - [] Add short description
 - [] Replace current tables with formatted tables
 

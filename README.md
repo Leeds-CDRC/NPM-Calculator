@@ -83,6 +83,9 @@ Alternatively, you can launch an interactive R session, and then run:
 ```R
 shiny::runApp(host='0.0.0.0', port=3838)
 ```
+### Deployment using a devcontainer on GitHub codespaces
+
+You can launch the devcontainer using the cloud platform GitHub codespaces. Launching the project is possible from the repository main page on GitHub, from the "Code" tab (where you can copy the link to clone the repository). A sub-tab in the pop-up dialogue will prompt you to create a new codespace on main.
 
 ### Deployment on Linux in an environment
 

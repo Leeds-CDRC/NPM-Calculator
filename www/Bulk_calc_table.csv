@@ -1,8 +1,8 @@
 Variable,Description,"Valid data entry",Required field
-name,Product name for identity purposes,"String format",Optional
-brand,Product brand for identity purposes,"String format",Optional
+name,Product name for identity purposes,"String or character format",Optional
+brand,Product brand for identity purposes,"String or character format",Optional
 product_category,Enter one of the HFSS product placement legislation categories,"'Soft drink', 'Savory snack', 'Breakfast cereals', 'Confectionary', 'Ices', 'Cakes', 'Sweet biscuits and bars', 'Morning goods', 'Desserts and puddings', 'Yoghurts', 'Pizza', 'Potato products', 'Ready meals and meal centres', 'Other'",Optional
-product_type,"Used to determine NPM score threshold (1 for drinks, 4 for foods)","Food Drink",Required
+product_type,"Used to determine NPM score threshold (1 for drinks, 4 for foods)","'Food', 'Drink'",Required
 food type,Used to assign specific gravity conversion calculation for food products sold by volume (rather than weight),"'Ice cream', 'Ice lolly', 'Mayonnaise', 'Maple syrup', 'Single cream', 'Double cream', 'Whipping cream'","Optional If food type is not entered, a 1:1 mkg specific gravity ratio will be assumed"
 drink_format,Used to determine if dilution calculation is required and for specific gravity conversion,"'Ready', 'Cordial', 'Powdered'","Optional If drink_format is not entered, drink will be assumed ready to drink and no dilution calculation will be carried out"
 drink_type,Used to assign specific gravity conversion calculation for drinks,"'Semi-skimmed milk', 'Carbonated/juice drink', 'Diet carbonated drink', 'Energy drink', 'Cordial/squash ready to drink', 'Cordial/squash undiluted'","Optional If drink type is not entered, a 1:1 mlg specific gravity ratio will be assumed"
