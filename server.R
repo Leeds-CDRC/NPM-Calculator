@@ -120,12 +120,16 @@ shinyServer(function(input, output, session) {
   output$BulkGuideTable <- renderDT({
        datatable(BulkGuideTab, options = list(
        deferRender = TRUE,
+       pageLength = 21,
        scrollY = 400,
        scrollX = TRUE,
        scroller = TRUE,
        autoWidth = TRUE,
-       columnDefs = list(list(width = '20%', targets = c(1,3,4)))
-       ))
+       columnDefs = list(list(width = '23%', targets = c(1,3,4)))
+       ),
+       class = "cell-border stripe",
+       colnames = c("Valid data entry" = "Valid.data.entry", "Required field" = "Required.field"),
+       escape = FALSE)
   }) 
 
     # Single product assessment ----
