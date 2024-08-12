@@ -856,13 +856,37 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                             small preview table of your data showing the result of the NPM 
                                             calculation. You will also be able to download your dataset as a CSV file
                                             with additional columns generated during the assessment step."),
+                                            hr(),
+                                            p("If you are ready to assess products using the Table Calculator mode,
+                                            click the button below. If you want more information on the data file required,
+                                            see the Input Parameters table below, or download the template data files
+                                            at the bottom of the page."),
+                                            br(),
+                                             actionButton('jumpToBulk', "Asses several products at once", icon = icon("nutritionix"),
+                                                        style = "color: white; background-color: teal", width = '50%'),
+                                             br(),
                                              h3("Input Parameters"),
-                                             p("You can download the provided templates to ensure your data
+                                             p("You can download the provided templates at the bottom
+                                             of this page to ensure your data
                                              uses the correct headings. Please see the parameter table below
                                              which details the accepted input data types."),
                                              DTOutput('BulkGuideTable'),
                                              br(),
                                              hr(),
+                                            fluidRow(style = "text-align:center;",
+                                              column(12,
+                                                    a(href="example-NPM-data.xlsx", 
+                                                    "Download template Excel file", 
+                                                    download=NA, 
+                                                    target="_blank",
+                                                    class="btn btn-primary"),
+                                                  a(href="example-NPM-data.csv", 
+                                                    "Download template CSV file", 
+                                                    download=NA, 
+                                                    target="_blank",
+                                                    class="btn btn-primary")
+                                                  ),
+                                                ),
                                              p("Visit",tags$a(href="https://www.gov.uk/government/publications/the-nutrient-profiling-model","the NPM guidance"),"for full details."),
                                              ),
 

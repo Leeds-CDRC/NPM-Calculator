@@ -2,7 +2,7 @@ Variable,Description,Valid data entry,Required field
 name,Product name for identity purposes,String or character format,Optional
 brand,Product brand for identity purposes,String or character format,Optional
 product_category,Enter one of the HFSS product placement legislation categories,Soft drink <br> Savory snack <br>Breakfast cereals <br>Confectionary<br>Ices<br>Cakes<br>Sweet biscuits and bars<br>Morning goods<br>Desserts and puddings<br>Yoghurts<br>Pizza<br>Potato products<br>Ready meals and meal centres<br>Other,Optional
-product_type,"Used to determine NPM score threshold (1 for drinks, 4 for foods)","Food,  <br> Drink",Required
+product_type,"Used to determine NPM score threshold (1 for drinks, 4 for foods)","Food <br> Drink",Required
 food type,Used to assign specific gravity conversion calculation for food products sold by volume (rather than weight),Ice cream<br>Ice lolly<br>Mayonnaise<br>Maple syrup<br>Single cream<br>Double cream<br>Whipping cream,"Optional<br><br>If food type is not entered, a 1:1 mkg specific gravity ratio will be assumed"
 drink_format,Used to determine if dilution calculation is required and for specific gravity conversion,Ready<br>Cordial<br>Powdered,"Optional<br><br>If drink_format is not entered, drink will be assumed ready to drink and no dilution calculation will be carried out"
 drink_type,Used to assign specific gravity conversion calculation for drinks,Semi-skimmed milk<br>Carbonated/juice drink<br>Diet carbonated drink<br>Energy drink<br>Cordial/squash ready to drink<br>Cordial/squash undiluted,"Optional<br><br>If drink type is not entered, a 1:1 mlg specific gravity ratio will be assumed"
