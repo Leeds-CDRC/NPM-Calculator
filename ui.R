@@ -553,6 +553,8 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                       # SPA results ----
                                       tabPanel(title = tags$b("View results"), value = "result", 
                                                h3("Results"),
+                                               p("Please note that if a product scores 11 or more for A-points then it cannot score points for protein, unless it also scores 5 points for fruit, vegetables and nuts. This penalty occurs before the 'A-points - C-points' score calculation.",
+                                               class= "alert alert-warning"),
                                                htmlOutput("result"),
                                                plotOutput("resultplot", height = 200),
                                                # create conditional panels to display summary text dependent on type of food and score

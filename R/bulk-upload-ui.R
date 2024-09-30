@@ -105,6 +105,9 @@ tableTab <- tabPanel(
 # define a tabPanel for the results of running the nutrient profiler pipeline
 resultTab <- tabPanel(tags$b("Results"), value = "bulkResult",
                       h3("Results"),
+                      br(),
+                      p("Please note that if a product scores 11 or more for A-points then it cannot score points for protein, unless it also scores 5 points for fruit, vegetables and nuts. This penalty occurs before the 'A-points - C-points' score calculation.", 
+                      class= "alert alert-warning"),
                       p("See below for the NPM calculator results on your dataset. 
                       You can also download this updated dataframe via the Download button."),
                       fluidRow(column(8, 
