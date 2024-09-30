@@ -104,8 +104,9 @@ Then, you can activate this env (`conda activate npm-env`) and use the `remotes`
 ```bash
 R -e 'remotes::install_github("leeds-cdrc/nutrientprofiler@v1.0.0")'
 ```
+Note this only needs to be done the first time the environment is activated.
 
-And then run the app:
+And then run the app from the project directory:
 
 ```bash
 R -e "shiny::runApp(host='0.0.0.0', port=3838)"
