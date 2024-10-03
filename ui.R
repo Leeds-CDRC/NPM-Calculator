@@ -889,6 +889,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                                     class="btn btn-primary")
                                                   ),
                                                 ),
+                                                br(),
                                              p("Visit",tags$a(href="https://www.gov.uk/government/publications/the-nutrient-profiling-model","the NPM guidance"),"for full details."),
                                              ),
 
@@ -904,21 +905,23 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                              p("A score is assigned to 7 components, according to their amounts per 100g of product"),
                                              h4("A-points"),
                                              p("These are the 'less healthy' components which the model discourages"),
-                                             (img(src="A-points_thresholds.png", height =250)
-                                             ),
+                                             DTOutput('APointsTable'),
+                                            #  (img(src="A-points_thresholds.png", height =250)
+                                            #  ),
                                              br(),
                                              h4("C-points"),
-                                             p("These are the 'healthier' components which the model encourages"),
-                                             (img(src="C-points_thresholds.png", height =150)
-                                             ),
+                                             p("These are the 'healthier' components which the model encourages."),
+                                             DTOutput('CPointsTable'),
+                                            #  (img(src="C-points_thresholds.png", height =150)
+                                            #  ),
                                              br(),
                                              hr(),
                                             
                                              
-                                             p("The scores for C-points are then deducted from the scores for A-points, to give the overall score"),
+                                             p("The scores for C-points are then deducted from the scores for A-points, to give the overall score."),
                                              p("If a product scores 11 or more for A-points then it cannot score points for protein, unless it also scores 5 points for fruit, vegetables and nuts."),
-                                             p("For drinks, if a product scores 1 or higher, the product is classed as 'less healthy' and is said to FAIL the NPM"),
-                                             p("For foods, if a product scores 4 or higher, the product is classed as 'less healthy' and is said to FAIL the NPM"),
+                                             p("For drinks, if a product scores 1 or higher, the product is classed as 'less healthy' and is said to FAIL the NPM."),
+                                             p("For foods, if a product scores 4 or higher, the product is classed as 'less healthy' and is said to FAIL the NPM."),
                                              p("Products which fail the NPM may be subject to certain restrictions on advertising and promotions, depending on the type of product and the specifics of the legislation."),
                                              hr(),
                                              p("Visit",tags$a(href="https://www.gov.uk/government/publications/the-nutrient-profiling-model","the NPM guidance"),"for full details."),
