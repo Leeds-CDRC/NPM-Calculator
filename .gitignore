@@ -3,3 +3,7 @@
 .RData
 .RDataTmp
 .Rhistory
+!www/example-NPM-data.csv
+!www/Bulk_calc_table.csv
+!www/A-points_thresholds.csv
+!www/C-points_thresholds.csv
