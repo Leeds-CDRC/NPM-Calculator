@@ -116,7 +116,7 @@ shinyServer(function(input, output, session) {
   BulkGuideTab <- read.csv("www/Bulk_calc_table.csv", header=TRUE)
 
   # render table which will be displayed
-#   output$BulkGuideTable <- renderTable(BulkGuideTab)
+
   output$BulkGuideTable <- renderDT({
        datatable(BulkGuideTab, options = list(
        deferRender = TRUE,
@@ -131,6 +131,42 @@ shinyServer(function(input, output, session) {
        colnames = c("Valid data entry" = "Valid.data.entry", "Required field" = "Required.field"),
        escape = FALSE)
   }) 
+    # A - points thresholds table
+    # Load from csv file
+    APointsThreshTab <- read.csv("www/A-points_thresholds.csv", header=TRUE)
+    # Render display table
+    output$APointsTable <- renderDT({
+       datatable(APointsThreshTab, options = list(
+              deferRender = TRUE,
+              dom = 't',
+              pageLength = 11),
+       class = "cell-border stripe",
+       rownames = FALSE,
+       colnames = c(
+              "Energy (kJ)" = "Energy..kJ.",
+              "Sat. Fat (g)" = "Sat.Fat..g.",
+              "Total Sugar (g)" = "Total.Sugar..g.",
+              "Sodium (mg)" = "Sodium..mg."),
+       escape = FALSE)
+       })
+    # C - points thresholds table
+    # Load from csv file
+    CPointsThreshTab <- read.csv("www/C-points_thresholds.csv", header=TRUE)
+    # Render display table
+    output$CPointsTable <- renderDT({
+       datatable(CPointsThreshTab, options = list(
+              deferRender = TRUE,
+              dom = 't',
+              pageLength = 11),
+       class = "cell-border stripe",
+       rownames = FALSE,
+       colnames = c(
+              "Fruit, Veg. and Nuts (%)" = "Fruit..Veg...Nuts....",
+              "NSP Fibre (g)" = "NSP.Fibre....g.",
+              "Or AOAC Fibre (g)" = "Or.AOAC.Fibre....g.",
+              "Protein (g)" = "Protein..g."),
+       escape = FALSE)
+       })
 
     # Single product assessment ----
     
