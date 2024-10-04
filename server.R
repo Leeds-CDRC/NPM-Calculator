@@ -2,6 +2,30 @@
 # Adapted from https://github.com/VickiJenneson/NPM_Promotional_Restrictions
 # 2021, Rosalind Martin, Data Scientist Intern, Leeds Institute for Data Analytics
 # Supervisors: Michelle Morris and Vicki Jenneson, Univeristy of Leeds
+# Modifications by Maeve Murphy Quinlan, 2024
+
+# # License
+
+# The NPM calculator and underlying nutrientprofiler R package provide functions to help assess product information against the UK Nutrient Profiling Model (2004/5) and scope for HFSS legislation around product placement. It is designed to provide low level functions that implement UK Nutrient Profiling Model scoring that can be applied across product datasets.
+
+# Copyright (C) 2024 University of Leeds
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# A copy of the GNU Affero General Public License is supplied
+# along with this program in the `LICENSE` file in the repository.
+# You can also find the full text at https://www.gnu.org/licenses.
+
+# You can contact us by raising an issue on our GitHub repository (https://github.com/Leeds-CDRC/NPM-Calculator/issues/new - login required) or by emailing
+# us at info@cdrc.ac.uk.
 
 # load libraries ----
 library(shiny)
