@@ -990,7 +990,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                
 tags$footer("",img(src="UoL_logo.png", height = 60, align ='right'), br(), style = "background-color:teal; color: white; height:50px; position:bottom"), 
 tags$footer(HTML("<small>Designed by researchers at the University of Leeds</small>"), style = "background-color: teal; color: white; height:60px; position:bottom",
-            br(), HTML("<small>Published under Apache 2.0 License, Copyright (c) 2024 Leeds-CDRC</small>"), 
+            br(), HTML("<small>Published under the AGPL-3.0 License, Copyright © 2024 Leeds-CDRC</small>"), 
             br(), HTML('<div style="color:white";><small><a href="https://www.cdrc.ac.uk/privacy/">Privacy and Cookies</a></small></div>'))
 
 )) # close fluidLayout and ShinyUI
