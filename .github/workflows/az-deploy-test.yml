@@ -10,6 +10,7 @@ on:
   push:
     branches:
       - TEST-APP
+      - rse-proj-update
   workflow_dispatch:
 
 jobs:
