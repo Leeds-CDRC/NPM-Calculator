@@ -14,3 +14,11 @@ extract_ext <- function(filename, index = -1) {
 
     return(file_ext)
 }
+
+add_url <- function(url, label){
+
+  shiny::tags$a(href = url,
+                label,
+                class = "externallink")
+  
+}
