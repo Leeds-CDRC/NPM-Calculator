@@ -32,6 +32,14 @@ If the change is not included in a version but rather is the most recent commit
 on the `main` branch, you can change `@v1.0.0` to `@main`, or remove the `@v1.0.0`
 section completely.
 
+You can also specify a commit hash on a fork of the repository:
+
+```docker
+RUN R -e 'remotes::install_github("murphyqm/edits-nutrientprofiler", ref="ab1144a")'
+```
+
+where `ab1144a` is the commit hash.
+
 ## Building the app locally
 
 Running an app locally is a useful way of testing changes and updates without affecting the live version of the webapp. In order to deploy this app locally in your web browser, you will need Docker (or a Linux macine) and a version of git installed (you can use plain [git](https://git-scm.com/), [GitHub CLI](https://cli.github.com/), or [GitHub Desktop](https://desktop.github.com/)).
