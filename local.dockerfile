@@ -5,7 +5,7 @@ FROM rocker/shiny-verse
 RUN install2.r --error --deps TRUE shinyBS shinythemes shinyjs shinydashboard shinydashboardPlus shinyWidgets remotes
 
 # Install the  nutrientprofiler R package
-RUN R -e 'remotes::install_github("leeds-cdrc/nutrientprofiler@v1.0.0")'
+RUN R -e 'remotes::install_github("murphyqm/edits-nutrientprofiler", ref="ab1144a")'
 
 # Copy the Shiny app code to the srv directory
 COPY server.R /srv/shiny-server/server.R
