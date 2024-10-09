@@ -122,6 +122,10 @@ tableTab <- tabPanel(
 
       # Main panel for displaying outputs ----
       mainPanel(
+        h4("Your uploaded data"),
+        p("Please note that the most common cause of error is incorrect data column names.
+        Please check your data column names shown below against our example files.", 
+                      class= "alert alert-warning"),
         # Output: Data file ----
         DTOutput("bulkTable", height = "500px")
       )
