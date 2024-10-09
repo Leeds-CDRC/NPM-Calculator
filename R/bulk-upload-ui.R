@@ -37,7 +37,7 @@ introTab <- tabPanel(
   class= "alert alert-warning"),
   p("The Table Calculator uses the nutrientprofiler R package to calculate
   NPM scores. Find out more about this package here:",a("nutrient profiler documentation",
-  href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "color:white;font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 1.0.0.",
+  href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "color:white;font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 2.0.0.",
   href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v1.0.0", style = "color:white;font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ",
   class= "alert alert-success"),
   p("To help with larger datasets of product information
