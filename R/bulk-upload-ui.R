@@ -37,7 +37,7 @@ introTab <- tabPanel(
   class= "alert alert-warning"),
   p("The Table Calculator uses the nutrientprofiler R package to calculate
   NPM scores. Find out more about this package here:",a("nutrient profiler documentation",
-  href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "color:white;font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 1.0.0.",
+  href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "color:white;font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 2.0.0.",
   href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v1.0.0", style = "color:white;font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ",
   class= "alert alert-success"),
   p("To help with larger datasets of product information
@@ -65,6 +65,8 @@ introTab <- tabPanel(
   small preview table of your data showing the result of the NPM 
   calculation. You will also be able to download your dataset as a CSV file
   with additional columns generated during the assessment step."),
+  p("The template Excel file below contains drop down options for categorical variables to assist you in correctly filling in your dataset.",
+                                            class= "alert alert-success"),
   # a centered row that contains anchors for downloading
   # template data files
   fluidRow(style = "text-align:center;",
@@ -120,6 +122,10 @@ tableTab <- tabPanel(
 
       # Main panel for displaying outputs ----
       mainPanel(
+        h4("Your uploaded data"),
+        p("Please note that the most common cause of error is incorrect data column names.
+        Please check your data column names shown below against our example files.", 
+                      class= "alert alert-warning"),
         # Output: Data file ----
         DTOutput("bulkTable", height = "500px")
       )

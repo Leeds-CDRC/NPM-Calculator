@@ -42,3 +42,31 @@ row_lapply <- function(data, f, ...) {
         lapply(seq_len(nrow(data)), function(i) f(data[i,], ...))
     )
 }
+
+#' Check Column Names function
+#'
+#' This function checks that all required parameter names or
+#' spreadsheet "column" names are present, and provides a
+#' warning message to the app user if not
+#'
+#' @param data_frame a data.frame object, loaded from a csv or Excel
+#' @return Prints code snippets to help you rename variables if needed
+#' @export
+checkColumnNames <- function(data_frame){
+    expected_column_names <- c("name", "brand", "product_category",
+    "product_type", "food_type", "drink_format","drink_type",
+    "nutrition_info", "energy_measurement_kj", "energy_measurement_kcal",
+    "sugar_measurement_g", "satfat_measurement_g", "salt_measurement_g",
+    "sodium_measurement_mg", "fibre_measurement_nsp", "fibre_measurement_aoac",
+    "protein_measurement_g", "fvn_measurement_percent", "weight_g",
+    "volume_ml", "volume_water_ml")
+    data_names <- names(data_frame)
+    missing_column_names <- setdiff(expected_column_names, data_names)
+    extra_data_names <- setdiff(data_names, expected_column_names)
+    df_title <- deparse(substitute(data_frame))
+    warning1 <- "The provided dataframe is missing the following required column names:\n"
+    warning2 <- "\n The provided dataframe contains these unmatched columns names:\n"
+    if (length(missing_column_names) >=1) {
+        stop(paste0(warning1, paste(missing_column_names, collapse=";\n"), warning2, paste(extra_data_names, collapse=";\n")))
+    } 
+}
