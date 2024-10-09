@@ -634,7 +634,18 @@ shinyServer(function(input, output, session) {
        # function from R/bulk-upload-server.R
        bulk_data <- load_and_render(input$file1)
     }
-    
+    tryCatch({
+       checkColumnNames(bulk_data)
+    },
+    error = function(e) {
+        showModal(modalDialog(
+        title = "Error",
+        HTML("<strong>The data provided does not contain the correct column headers.</strong><br/>
+        The full error message is:<br /><br /> <pre>",unlist(e['message']),"</pre>"),
+        easyClose = TRUE
+        ))
+       req(FALSE)
+    })
     # in this block we try to run the runNP function
     # on the uploaded data
     # if an error occurs a modal popup is created with a message
