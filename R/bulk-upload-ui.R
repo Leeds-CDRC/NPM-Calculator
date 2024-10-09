@@ -65,6 +65,8 @@ introTab <- tabPanel(
   small preview table of your data showing the result of the NPM 
   calculation. You will also be able to download your dataset as a CSV file
   with additional columns generated during the assessment step."),
+  p("The template Excel file below contains drop down options for categorical variables to assist you in correctly filling in your dataset.",
+                                            class= "alert alert-success"),
   # a centered row that contains anchors for downloading
   # template data files
   fluidRow(style = "text-align:center;",
