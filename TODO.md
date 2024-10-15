@@ -4,15 +4,12 @@
 
 
 ### Web App Functionality Tasks
-- [] Update version of nutrientprofiler being used
-- [] Update single-use to use nutrientprofiler
+- [x] Update version of nutrientprofiler being used
+- [] Update single-use to use nutrientprofiler - low priority
 
 ### Logistic Tasks
-- [] Update License
-    - [x] Update License in Repository
-    - [] Get sign off before merge
-    - [x] Update License text in footer of website
-    - [x] Update copyright date
+- [] Get sign off before merge
+- [] Update URL pointing to nutrientprofiler version
 
 ### Completed tasks ✓
 - [x] Update ReadMe to include local dev instructions
@@ -24,3 +21,11 @@
     - [x] Build input data table
     - [x] Add short description
 - [x] Replace current tables with formatted tables
+### Logistic Tasks
+- [x] Update License
+    - [x] Update License in Repository
+
+    - [x] Update License text in footer of website
+    - [x] Update copyright date
+### Web App Functionality Tasks
+- [x] Update version of nutrientprofiler being used
