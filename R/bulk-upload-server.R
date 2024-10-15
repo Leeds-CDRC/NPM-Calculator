@@ -46,7 +46,9 @@ load_and_render <- function(file) {
 
                 } else if (file_ext == "xlsx") {
 
-                    df <- read_excel(file$datapath)
+                    df <- as.data.frame(read_excel(file$datapath))
+                    df$food_type[is.na(df$food_type)] <- ""
+
                 } else {
                     stop(safeError(paste0("Invalid file type uploaded: {",file_ext,"} only `csv` and `xlsx` supported.")))
                 }
