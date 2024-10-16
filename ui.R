@@ -57,51 +57,94 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                tabPanel("Home", 
                         # Welcome statement
                         h1("Nutrient Profile Model Online Calculator"),
-                        h3("Making NPM score calculation simple, consistent and transparent"),
-                        hr(),
-                        br(),
-                        fluidRow(column(12, tags$h4(tags$span(style ="color:teal","Quickly calculate a product's UK Nutrient Profile Model (NPM) score"),sep ="",align = "center"))
-                                ), #close fluid row
-                        fluidRow(column(12, tags$h4(tags$span(style ="color:teal","Supports decision-making and compliance with legislation"),sep ="",align = "center"))
-                                ), #close fluid row
-                        fluidRow(column(12, tags$h4(tags$span(style ="color:teal","Easy to use at your desk or on the go"),sep ="", align = "center"))
-                                 ), #close fluid row
-                        fluidRow(column(12, tags$h4(tags$span(style ="color:teal","Transparent approach, promoting consistency and confidence in results"),sep ="", align = "center"))
-                                 ), #close fluid row
-                        
-                        br(),
-                        hr(),
-                        h2("Ready to get started?"),
+                        h4("Making NPM score calculation simple, consistent and transparent", style ="color:teal"),
+                        # tags$ul(
+                        #     tags$li("Quickly calculate a product's UK Nutrient Profile Model (NPM) score"),
+                        #     tags$li("Supports decision-making and compliance with legislation"),
+                        #     tags$li("Easy to use at your desk or on the go"),
+                        #     tags$li("Transparent approach, promoting consistency and confidence in results"),
+                        #   ),
+                        fluidRow(
+                          column(6,
+                          h2("Ready to get started?"),
                         p("Before you begin, please tell us how you'll be using the tool."),
                         includeHTML("www/responses.html"),
-                        # selectInput("purpose", label =h3("Select purpose"),
-                        #             choices = list("Enforcement" = 1, "Check compliance" = 2, "Research" = 3,"Policy development"= 4, "Other"= 5),
-                        #             selected = 1),
-                        br(),
-                        
-                        actionButton('jumpToCalc', "Start calculation for a single product", icon = icon("nutritionix"),
-                                     style = "color: white; background-color: teal", width = '50%'),
-                        
-                        br(),
-                        br(),
+                          ),
+                          column(6,
+                          h2("The NPM Calculator..."),
+                          br(),
+                          tags$h4(tags$span(style ="color:teal","✓   Quickly calculates a product's UK Nutrient Profile Model (NPM) score"),sep ="",align = "left"),
+                          tags$h4(tags$span(style ="color:teal","✓   Supports decision-making and compliance with legislation"),sep ="",align = "left"),
+                          tags$h4(tags$span(style ="color:teal","✓   Is easy to use at your desk or on the go"),sep ="", align = "left"),
+                          tags$h4(tags$span(style ="color:teal","✓   Takes a transparent approach, promoting consistency and confidence in results"),sep ="", align = "left"),
+                          # tags$ul(
+                          #   tags$li("Quickly calculates a product's UK Nutrient Profile Model (NPM) score"),
+                          #   tags$li("Supports decision-making and compliance with legislation"),
+                          #   tags$li("Easy to use at your desk or on the go"),
+                          #   tags$li("Transparent approach, promoting consistency and confidence in results"),
+                          # ),
+                          hr(),
+                          p("The NPM Calculator can be used to assess a single product or can be used with a file of multiple items. Please choose an option to proceed, after submitting the form to the left."),
+                              actionButton('jumpToCalc', "Start calculation for a single product", icon = icon("nutritionix"),
+                                        style = "color: white; background-color: teal", width = '100%'),
+                            
+                            br(),
+                            br(),
 
-                        actionButton('jumpToBulk', "Asses several products at once", icon = icon("nutritionix"),
-                                     style = "color: white; background-color: teal", width = '50%'),
-                        
-                        br(),
-               hr(),
-               h2("Who is it for?"),
+                            actionButton('jumpToBulk', "Asses several products at once", icon = icon("nutritionix"),
+                                        style = "color: white; background-color: teal", width = '100%'),
+                                        br(),
+                                        hr(),
+                                        h2("Who is it for?"),
                p("The NPM Online Calculator is a quick, easy and transparent way to generate a product's NPM score, and check if it may be captured by The Food (Promotion and Placement) (England) Regulations 2021 ('HFSS legislation'), supporting consistency among:"),
                tags$ul(p(tags$span(style ="color:teal","Retailers"))),
                tags$ul(p(tags$span(style ="color:teal","Manufacturers"))),
                tags$ul(p(tags$span(style ="color:teal","Policymakers"))),
                tags$ul(p(tags$span(style ="color:teal","Academics"))),
                tags$ul(p(tags$span(style ="color:teal","NGOs"))),
+                          )
+                        ),
+                        br(),
+                        # fluidRow(column(12, tags$h4(tags$span(style ="color:teal","Quickly calculate a product's UK Nutrient Profile Model (NPM) score"),sep ="",align = "center"))
+                        #         ), #close fluid row
+                        # fluidRow(column(12, tags$h4(tags$span(style ="color:teal","Supports decision-making and compliance with legislation"),sep ="",align = "center"))
+                        #         ), #close fluid row
+                        # fluidRow(column(12, tags$h4(tags$span(style ="color:teal","Easy to use at your desk or on the go"),sep ="", align = "center"))
+                        #          ), #close fluid row
+                        # fluidRow(column(12, tags$h4(tags$span(style ="color:teal","Transparent approach, promoting consistency and confidence in results"),sep ="", align = "center"))
+                        #          ), #close fluid row
+                        
+                        # br(),
+                        # hr(),
+                        # h2("Ready to get started?"),
+                        # p("Before you begin, please tell us how you'll be using the tool."),
+                        # includeHTML("www/responses.html"),
+                        # # selectInput("purpose", label =h3("Select purpose"),
+                        # #             choices = list("Enforcement" = 1, "Check compliance" = 2, "Research" = 3,"Policy development"= 4, "Other"= 5),
+                        # #             selected = 1),
+                        # br(),
+                        
+                        # actionButton('jumpToCalc', "Start calculation for a single product", icon = icon("nutritionix"),
+                        #              style = "color: white; background-color: teal", width = '50%'),
+                        
+                        # br(),
+                        # br(),
+
+                        # actionButton('jumpToBulk', "Asses several products at once", icon = icon("nutritionix"),
+                        #              style = "color: white; background-color: teal", width = '50%'),
+                        
+                        # br(),
+              #  h2("Who is it for?"),
+              #  p("The NPM Online Calculator is a quick, easy and transparent way to generate a product's NPM score, and check if it may be captured by The Food (Promotion and Placement) (England) Regulations 2021 ('HFSS legislation'), supporting consistency among:"),
+              #  tags$ul(p(tags$span(style ="color:teal","Retailers"))),
+              #  tags$ul(p(tags$span(style ="color:teal","Manufacturers"))),
+              #  tags$ul(p(tags$span(style ="color:teal","Policymakers"))),
+              #  tags$ul(p(tags$span(style ="color:teal","Academics"))),
+              #  tags$ul(p(tags$span(style ="color:teal","NGOs"))),
                
                
-               fluidRow(hr(),
-                        column(12,actionButton('jumpToGuide', "Learn more",
-                                               style = "color: white; background-color: grey", width = '100%'), align = "center")),
+               fluidRow(column(12,actionButton('jumpToGuide', "Learn more in our User Guide",
+                                               style = "color: white; background-color: teal", width = '100%'), align = "center")),
                
                ),# close tabpanel  
               
