@@ -852,54 +852,74 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                     
                                     tabPanel(title = tags$b("Table Calculator Guide"),
                                              br(),
-                                             p("At present the Table Calculator is experimental and not guaranteed
-                                            to work against all data. Please use the available template spreadsheet files
-                                            to populate your data against and run with the Table Calculator. This ensures
-                                            the data contains correct column names and categories for steps used by the 
-                                            Table Calculator.",
-                                            class= "alert alert-warning"),
-                                            p("The Table Calculator uses the nutrientprofiler R package to calculate
-                                            NPM scores. Find out more about this package here:",a("nutrient profiler documentation",
-                                            href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "color:white;font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 2.0.0.",
-                                            href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v1.0.0", style = "color:white;font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ",class= "alert alert-success"),
-                                            p("To help with larger datasets of product information
-                                            you want testing against the Nutrient Profile Model we 
-                                            have introduced a new, experimental Table Calculator mode.
-                                            This mode offers the ability to upload a dataset of product
-                                            information and run the entire table through the Nutrient Profile
-                                            Model. It visualises these results and makes it possible to 
-                                            download a copy of your data with the additional columns
-                                            corresponding to the Nutrient Profile Model assessment."),
-                                            p("The Table Calculator allows you to upload your data file 
-                                            which should be either CSV or Excel format. Once uploaded
-                                            your data will be previewed within the same tab where you can 
-                                            visually check that the data looks correct. When ready click Calculate
-                                            NPM scores to run the Table Calculator against your data. If an error
-                                            occurs during this step a popup will appear that includes some error
-                                            information. If it is unclear how to fix your error please raise an
-                                            issue on ",a(href="https://github.com/Leeds-CDRC/NPM-Calculator/issues/new",
-                                            "GitHub (sign in required) ")," sharing your error information or email the CDRC via ",
-                                            a(href="mailto:info@cdrc.ac.uk", "info@cdrc.ac.uk"),
-                                            " including all error information."),
-                                            p("If this step proceeds without error you will move to the Results
-                                            tab, where you will be able to view a summary of your results and a 
-                                            small preview table of your data showing the result of the NPM 
-                                            calculation. You will also be able to download your dataset as a CSV file
-                                            with additional columns generated during the assessment step."),
-                                            hr(),
-                                            p("If you are ready to assess products using the Table Calculator mode,
-                                            click the button below. If you want more information on the data file required,
-                                            see the Input Parameters table below, or download the template data files
-                                            at the bottom of the page."),
+                                             p("The Table Calculator mode enables you to upload information for multiple products and run the entire table through the Nutrient Profile Model.",
+                                              br(),
+                                              br(),
+                                              "How to use the Table Calculator mode:"),
+                                              tags$ol(
+                                                tags$li("Download the template Excel or CSV file at bottom of this page."),
+                                                tags$li("Prepare your data, ensuring you are using the correct column names and categories (the template Excel file contains drop down options for categorical variables)."),
+                                                tags$li("Select the ‘Asses several products at once’ button below, and then click the ‘upload data’ tab."),
+                                                tags$li("Upload your Excel or CSV file – once uploaded you can preview to check the data looks correct."),
+                                                tags$li("Click ‘Calculate NPM scores’."),
+                                                tags$li("The calculator will provide a summary and small preview of the results. Any errors will be flagged at this stage."),
+                                                tags$li("Download your full results (CSV file)."),
+                                              ),
+                                              p("If you are ready to assess products using the Table Calculator mode,
+                                            click the button below. If you want more information on using the tool, see the video
+                                            below."),
                                             br(),
                                              actionButton('jumpToBulk', "Asses several products at once", icon = icon("nutritionix"),
                                                         style = "color: white; background-color: teal", width = '50%'),
+                                              br(),
+                                              br(),
+                                              h4("Help using the tool"),
+                                              p("Link will go here to guide video."),
+                                              br(),
+                                            #  p("At present the Table Calculator is experimental and not guaranteed
+                                            # to work against all data. Please use the available template spreadsheet files
+                                            # to populate your data against and run with the Table Calculator. This ensures
+                                            # the data contains correct column names and categories for steps used by the 
+                                            # Table Calculator.",
+                                            # class= "alert alert-warning"),
+                                            # p("The Table Calculator uses the nutrientprofiler R package to calculate
+                                            # NPM scores. Find out more about this package here:",a("nutrient profiler documentation",
+                                            # href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "color:white;font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 2.0.0.",
+                                            # href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v1.0.0", style = "color:white;font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ",class= "alert alert-success"),
+                                            # p("To help with larger datasets of product information
+                                            # you want testing against the Nutrient Profile Model we 
+                                            # have introduced a new, experimental Table Calculator mode.
+                                            # This mode offers the ability to upload a dataset of product
+                                            # information and run the entire table through the Nutrient Profile
+                                            # Model. It visualises these results and makes it possible to 
+                                            # download a copy of your data with the additional columns
+                                            # corresponding to the Nutrient Profile Model assessment."),
+                                            # p("The Table Calculator allows you to upload your data file 
+                                            # which should be either CSV or Excel format. Once uploaded
+                                            # your data will be previewed within the same tab where you can 
+                                            # visually check that the data looks correct. When ready click Calculate
+                                            # NPM scores to run the Table Calculator against your data. If an error
+                                            # occurs during this step a popup will appear that includes some error
+                                            # information. If it is unclear how to fix your error please raise an
+                                            # issue on ",a(href="https://github.com/Leeds-CDRC/NPM-Calculator/issues/new",
+                                            # "GitHub (sign in required) ")," sharing your error information or email the CDRC via ",
+                                            # a(href="mailto:info@cdrc.ac.uk", "info@cdrc.ac.uk"),
+                                            # " including all error information."),
+                                            # p("If this step proceeds without error you will move to the Results
+                                            # tab, where you will be able to view a summary of your results and a 
+                                            # small preview table of your data showing the result of the NPM 
+                                            # calculation. You will also be able to download your dataset as a CSV file
+                                            # with additional columns generated during the assessment step."),
+                                            # hr(),
+                                            # p("If you are ready to assess products using the Table Calculator mode,
+                                            # click the button below. If you want more information on the data file required,
+                                            # see the Input Parameters table below, or download the template data files
+                                            # at the bottom of the page."),
+                                            # br(),
+                                            #  actionButton('jumpToBulk', "Asses several products at once", icon = icon("nutritionix"),
+                                            #             style = "color: white; background-color: teal", width = '50%'),
                                              br(),
                                              h3("Input Parameters"),
-                                             p("You can download the provided templates at the bottom
-                                             of this page to ensure your data
-                                             uses the correct headings. Please see the parameter table below
-                                             which details the accepted input data types."),
                                              DTOutput('BulkGuideTable'),
                                              br(),
                                              hr(),
