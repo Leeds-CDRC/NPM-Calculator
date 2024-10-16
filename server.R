@@ -672,6 +672,11 @@ shinyServer(function(input, output, session) {
     # using a subset of total columns
     output$bulkResultTable <- renderDT({
       req(bulk_output)
+#       bulk_output$background.color = ifelse(is.na(bulk_output$NPM_score), "lightgreen", NA)
+      bulk_output$NPM_assessment = ifelse(is.na(bulk_output$NPM_score), "ERROR", bulk_output$NPM_assessment)
+#       bulk_output %>%
+#       formatStyle("NPM_score",
+#                   backgroundColor = styleEqual(bulk_output$NPM_score,bulk_output$background.color ))
       # the columns specified here determine what is shown in the app
       bulk_output[,c("name","brand", "NPM_score","NPM_assessment")]
     }, fillContainer=TRUE
@@ -693,6 +698,7 @@ shinyServer(function(input, output, session) {
     # logic here for rendering a plot summarising the 
     # NPM_assessment column
     output$bulkResultPlot <- renderPlot({
+       bulk_output$NPM_assessment = ifelse(is.na(bulk_output$NPM_score), "ERROR", bulk_output$NPM_assessment)
         plot(as.factor(bulk_output$NPM_assessment))
       })
 
