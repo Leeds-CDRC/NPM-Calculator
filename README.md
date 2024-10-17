@@ -24,12 +24,12 @@ versions of the package you should change the version specified within the `RUN`
 line that installs the package within the [Dockerfile](./Dockerfile#L5).
 
 ```docker
-# change @v1.0.0 to another version
-RUN R -e 'remotes::install_github("leeds-cdrc/nutrientprofiler@v1.0.0")'
+# change @v2.0.0 to another version
+RUN R -e 'remotes::install_github("Leeds-CDRC/nutrientprofiler@v2.0.0")'
 ```
 
 If the change is not included in a version but rather is the most recent commit
-on the `main` branch, you can change `@v1.0.0` to `@main`, or remove the `@v1.0.0`
+on the `main` branch, you can change `@v2.0.0` to `@main`, or remove the `@v2.0.0`
 section completely.
 
 You can also specify a commit hash on a fork of the repository:
