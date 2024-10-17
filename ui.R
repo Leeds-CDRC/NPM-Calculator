@@ -79,7 +79,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                           #   tags$li("Transparent approach, promoting consistency and confidence in results"),
                           # ),
                           hr(),
-                          p("The NPM Calculator can be used to assess a single product or can be used with a file of multiple items. Please choose an option to proceed, after submitting the form to the left."),
+                          p("The NPM Calculator can be used to assess a single product or can be used with a file of multiple items. Please choose an option to proceed, after submitting the form about your use-case."),
                               actionButton('jumpToCalc', "Start calculation for a single product", icon = icon("nutritionix"),
                                         style = "color: white; background-color: teal", width = '100%'),
                             
