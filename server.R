@@ -287,12 +287,15 @@ shinyServer(function(input, output, session) {
     output$Sugar_points <- reactive({Sug()})
     
     # Saturated fat
+
+    # Add tolerance to avoid floating point error
+    epsilon <- 0.00000001
       # stored value
     SatF <- reactive({ifelse(
       (input$in_satfat/Pweight())*100 >10, 10, 
       ifelse((input$in_satfat/Pweight())*100 >9, 9,
              ifelse((input$in_satfat/Pweight())*100 >8, 8,
-                    ifelse((input$in_satfat/Pweight())*100 >7, 7,
+                    ifelse((input$in_satfat/Pweight())*100 >7 + epsilon, 7,
                            ifelse((input$in_satfat/Pweight())*100 >6, 6,
                                   ifelse((input$in_satfat/Pweight())*100 >5, 5,
                                          ifelse((input$in_satfat/Pweight())*100 >4, 4,
