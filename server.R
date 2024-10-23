@@ -376,11 +376,12 @@ shinyServer(function(input, output, session) {
     
     # Saturated fat
       # stored value
+       epsilon <- 0.0000001
     SatF <- reactive({ifelse(
       (input$in_satfat/Pweight())*100 >10, 10, 
       ifelse((input$in_satfat/Pweight())*100 >9, 9,
              ifelse((input$in_satfat/Pweight())*100 >8, 8,
-                    ifelse((input$in_satfat/Pweight())*100 >7, 7,
+                    ifelse((input$in_satfat/Pweight())*100 >7 + epsilon, 7,
                            ifelse((input$in_satfat/Pweight())*100 >6, 6,
                                   ifelse((input$in_satfat/Pweight())*100 >5, 5,
                                          ifelse((input$in_satfat/Pweight())*100 >4, 4,
