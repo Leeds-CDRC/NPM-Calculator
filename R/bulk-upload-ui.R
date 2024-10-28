@@ -86,8 +86,7 @@ introTab <- tabPanel(
   # small preview table of your data showing the result of the NPM 
   # calculation. You will also be able to download your dataset as a CSV file
   # with additional columns generated during the assessment step."),
-  p("Troubleshooting: should you experience any difficulties using the NPM Calculator, please contact", a(href="mailto:info@cdrc.ac.uk", "info@cdrc.ac.uk", style = "color:white;font-weight: bold;"), "including a screenshot of any relevant error messages.",
-                                            class= "alert alert-success"),
+  
   # p("The template Excel file below contains drop down options for categorical variables to assist you in correctly filling in your dataset.",
   #                                           class= "alert alert-success"),
   # a centered row that contains anchors for downloading
@@ -112,9 +111,11 @@ introTab <- tabPanel(
               actionButton('moveBulkTab', "Next", icon = icon("nutritionix"),
               style = "color: white; background-color: teal;", width = '40%'),
         )
+      ),
+    p("Should you experience any difficulties using the NPM Calculator, please contact", a(href="mailto:info@cdrc.ac.uk", "info@cdrc.ac.uk", style = "color:white;font-weight: bold;"), "including a screenshot of any relevant error messages.",
+                                            class= "alert alert-success"),
       )
 
-      )
 
 
 # define a tabPanel for the uploading data tab
