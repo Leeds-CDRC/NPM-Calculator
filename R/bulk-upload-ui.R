@@ -147,11 +147,10 @@ tableTab <- tabPanel(
       # Main panel for displaying outputs ----
       mainPanel(
         h4("Your uploaded data"),
-        p("Please note that the most common cause of error is incorrect data column names.
-        Please check your data column names shown below against our example files.", 
-                      class= "alert alert-warning"),
         # Output: Data file ----
-        DTOutput("bulkTable", height = "500px")
+        DTOutput("bulkTable", height = "500px"),
+        p("Common sources of error include: incorrect or missing column names; missing required parameters; and empty or blank rows. If you receive an error message, please check your input data to ensure no required information is missing.", 
+                      class= "alert alert-warning"),
       )
     ),
 
