@@ -204,9 +204,13 @@ shinyUI(fluidPage(use_theme(custom_theme),
                             h2("Help using the tool"),
                             p("Our tools are designed to be intuitive and easy to use. Please read our detailed user guide
                             for step-by-step instructions."),
-                            actionButton('jumpToGuide', "Learn more in our User Guide", icon = icon("nutritionix"),
+                            actionButton('jumpToGuide', "Learn more in our User Guide", icon = icon("book-open"),
                                                style = "color: white; background-color: teal", width = '100%'),
                           ),
+                          h3("Motivation"),
+                          p(tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12486","Our research"), "revealed", tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12468","challenges"), 
+                        "and a need for consistency and transparency in NPM calculation.",
+                        "Our tool aims to bridge this gap: the tool and underlying code are provided under open-source licenses; the source code can be", tags$a(href="https://github.com/Leeds-CDRC/NPM-calculator","found here."),),
 
                ),
                           column(5,
@@ -265,7 +269,7 @@ shinyUI(fluidPage(use_theme(custom_theme),
                ),# close tabpanel  
               
                
-               navbarMenu(strong("Calculator", style = "font-size:20px;text-decoration:underline"),
+               navbarMenu(strong("Calculator", style = "font-size:20px;"), icon = icon("nutritionix"),
                # Single product assessment tab -----
                tabPanel("Single product", value = "calculator", 
                                             
@@ -1175,7 +1179,10 @@ shinyUI(fluidPage(use_theme(custom_theme),
               
                
                # Acknowledgements page -----                     
-               tabPanel(p("Acknowledgements", style = "font-size:20px;"),
+               tabPanel(p("Cite the tool", style = "font-size:20px;"),
+               fluidPage(
+                column(1),
+                column(10,
                         p("The Nutrient Profile Model online calculator tool was developed by the Consumer Data Research Centre, University of Leeds."),
                         h4("Cite the Nutrient Profile Model Calculator"),
                         p("Project team, Dr Vicki Jenneson , Rosalind Martin (Data Scientist Intern at the Leeds Institute for Data Analytics (LIDA)), and Dr Michelle Morris"),
@@ -1189,7 +1196,9 @@ shinyUI(fluidPage(use_theme(custom_theme),
                         p("An overview of the calculator's development is available in our blog,", 
                         a(href="https://lida.leeds.ac.uk/news/automating-a-nutrient-profiling-model/", "Automating a Nutrient Profiling
                         Model"), ".")
-                        
+                ), # close column
+                column(1)
+               ) # close fluid page
                         ),# close tabPanel"
                
               #  # open new tabpanel to store logo in
