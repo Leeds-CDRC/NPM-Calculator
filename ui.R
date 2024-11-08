@@ -37,12 +37,47 @@ library(shinyBS)
 library(ggplot2)
 library(shinythemes)
 library(DT)
+library(fresh)
 
-
+custom_theme <- create_theme(
+  theme = "default",
+  bs_vars_global(
+    body_bg = "#eaf4f4"
+  ),
+  bs_vars_navbar(
+    height = "100px",
+    padding_horizontal = "15px",
+    padding_vertical = "40px",
+    default_bg = "#FFFFFF",
+    default_color = "#1a8282",
+    default_link_color = "#1a8282",
+    default_link_active_color = "#000",
+    default_link_hover_color = "#115353"
+  ),
+  bs_vars_font(
+  size_base = "16px",
+  family_sans_serif = "'Nunito', cursive"
+)
+)
 
 # define UI for application
-shinyUI(fluidPage(theme = shinytheme("flatly"),
-    
+# shinyUI(fluidPage(theme = shinytheme("flatly"),
+# shinyUI(fluidPage(theme = "flatly.min.css",
+# shinyUI(fluidPage(use_theme(create_theme(
+#     theme = "default",
+#     bs_vars_navbar(
+#       padding_horizontal = "15px",
+#       default_bg = "#FFFFFF",
+#       default_color = "#2c3e50",
+#       default_link_color = "#2c3e50",
+#       default_link_active_color = "#3498db",
+#       default_link_hover_color = "#A4A4A4"
+#     )
+#     )),
+shinyUI(fluidPage(use_theme(custom_theme),
+  use_googlefont("Nunito"),
+
+  # theme = shinytheme("flatly"),
     tags$head(
         tags$style(HTML("
     .shiny-output-error-validation {
@@ -53,9 +88,9 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
     ), # close tags$head
     
     # Home page ----
-    navbarPage(title = "Nutrient Profile Model Calculator", id = "about", collapsible=TRUE,
+    navbarPage(title = p(strong("NPM", style = "font-size:50px;text-align: center;vertical-align: middle;"), "Nutrient Profile Model"), id = "about", collapsible=TRUE,
     fluid=TRUE, windowTitle="NPM Calculator",
-               tabPanel("Home", 
+               tabPanel(p("Home", style = "font-size:20px;"), 
                         # Welcome statement
                         # h2("Nutrient Profile Model Online Calculator"),
                         h4("The NPM Calculator: making NPM scoring simple, consistent, and transparent", align="center"),
@@ -148,7 +183,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                ),# close tabpanel  
               
                
-               
+               navbarMenu(strong("Assess", style = "font-size:20px;text-decoration:underline"),
                # Single product assessment tab -----
                tabPanel("Single product", value = "calculator", 
                                             
@@ -854,10 +889,10 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                                       
                ), # close tabset panel
                
-               bulkTab,
+               bulkTab,),
                            
                # User guide page -----
-               tabPanel("User guide", value = "Guide",
+               tabPanel(p("User guide", style = "font-size:20px;"), value = "Guide",
                         h1("User guide"),
                         p(tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12486","Our research"), "revealed", tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12468","challenges"), 
                         "and a need for consistency and transparency in NPM calculation."),
@@ -1058,7 +1093,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
               
                
                # Acknowledgements page -----                     
-               tabPanel("Acknowledgements",
+               tabPanel(p("Acknowledgements", style = "font-size:20px;"),
                         p("The Nutrient Profile Model online calculator tool was developed by the Consumer Data Research Centre, University of Leeds."),
                         h4("Cite the Nutrient Profile Model Calculator"),
                         p("Project team, Dr Vicki Jenneson , Rosalind Martin (Data Scientist Intern at the Leeds Institute for Data Analytics (LIDA)), and Dr Michelle Morris"),
