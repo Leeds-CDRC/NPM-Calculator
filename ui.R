@@ -39,10 +39,31 @@ library(shinythemes)
 library(DT)
 library(fresh)
 
+# custom_theme <- create_theme(
+#   theme = "default",
+#   bs_vars_global(
+#     body_bg = "#eaf4f4"
+#   ),
+#   bs_vars_navbar(
+#     height = "100px",
+#     padding_horizontal = "15px",
+#     padding_vertical = "40px",
+#     default_bg = "#FFFFFF",
+#     default_color = "#1a8282",
+#     default_link_color = "#1a8282",
+#     default_link_active_color = "#000",
+#     default_link_hover_color = "#115353"
+#   ),
+#   bs_vars_font(
+#   size_base = "16px",
+#   family_sans_serif = "'Nunito', cursive"
+# )
+# )
 custom_theme <- create_theme(
   theme = "default",
   bs_vars_global(
-    body_bg = "#eaf4f4"
+    body_bg = "#eaf4f4",
+    link_color="#1a8282",
   ),
   bs_vars_navbar(
     height = "100px",
@@ -51,12 +72,22 @@ custom_theme <- create_theme(
     default_bg = "#FFFFFF",
     default_color = "#1a8282",
     default_link_color = "#1a8282",
-    default_link_active_color = "#000",
-    default_link_hover_color = "#115353"
+    default_link_active_color = "#FFFFFF",
+    default_link_active_bg = "#1a8282",
+    default_link_hover_color = "#115353",
+    default_link_hover_bg = "#eaf4f4",
   ),
   bs_vars_font(
-  size_base = "16px",
+  size_base = "18px",
   family_sans_serif = "'Nunito', cursive"
+),
+  bs_vars_wells(
+    bg = "#abd3d3",
+    border = "#abd3d3"
+  ),
+  bs_vars_panel(
+  bg = "teal",
+  body_padding="15px",
 )
 )
 
@@ -88,12 +119,13 @@ shinyUI(fluidPage(use_theme(custom_theme),
     ), # close tags$head
     
     # Home page ----
-    navbarPage(title = p(strong("NPM", style = "font-size:50px;text-align: center;vertical-align: middle;"), "Nutrient Profile Model"), id = "about", collapsible=TRUE,
+    navbarPage(title = p(strong("NPM", style = "font-size:55px;text-align: center;vertical-align: middle;"), "Nutrient Profile Model"), collapsible=TRUE, 
     fluid=TRUE, windowTitle="NPM Calculator",
-               tabPanel(p("Home", style = "font-size:20px;"), 
+               tabPanel(p("Home", style = "font-size:20px;", id = "about"),
+              #  tabPanel(p("Home", style = "font-size:20px;"), 
                         # Welcome statement
                         # h2("Nutrient Profile Model Online Calculator"),
-                        h4("The NPM Calculator: making NPM scoring simple, consistent, and transparent", align="center"),
+                        # h4("The NPM Calculator: making NPM scoring simple, consistent, and transparent", align="center"),
                         # tags$ul(
                         #     tags$li("Quickly calculate a product's UK Nutrient Profile Model (NPM) score"),
                         #     tags$li("Supports decision-making and compliance with legislation"),
@@ -101,43 +133,93 @@ shinyUI(fluidPage(use_theme(custom_theme),
                         #     tags$li("Transparent approach, promoting consistency and confidence in results"),
                         #   ),
                         fluidRow(
-                          column(6,
-                          tags$h5(tags$span(style ="color:teal","✓   Quickly calculate a product's UK Nutrient Profile Model (NPM) score"),sep ="",align = "left"),
-                          tags$h5(tags$span(style ="color:teal","✓   Support decision-making and compliance with legislation"),sep ="",align = "left"),
-                          tags$h5(tags$span(style ="color:teal","✓   Easy to use at your desk or on the go"),sep ="", align = "left"),
-                          tags$h5(tags$span(style ="color:teal","✓   Transparent approach, promoting consistency and confidence in results"),sep ="", align = "left"),
-                          # tags$ul(
-                          #   tags$li("Quickly calculates a product's UK Nutrient Profile Model (NPM) score"),
-                          #   tags$li("Supports decision-making and compliance with legislation"),
-                          #   tags$li("Easy to use at your desk or on the go"),
-                          #   tags$li("Transparent approach, promoting consistency and confidence in results"),
-                          # ),
-                          hr(),
+                          column(1),
+                          column(10,
+                          h3("NPM Calculator: Simple, consistent and transparent NPM scoring"),
+                          br(),),
+                          column(1)
+                        ),
+                        fluidRow(
+                          column(1),
+                          column(5,
+                          p("Use the NPM Calculator to assess a product's UK Nutrient Profile Model (NPM) score and check its compliance with legislation."),
+                          br(),
                           # p("The NPM Calculator can be used to assess a single product or can be used with a file of multiple items."),
-                              actionButton('jumpToCalc', "Start calculation for a single product", icon = icon("nutritionix"),
+                              actionButton('jumpToCalc', strong("Calculate score for a single product", style = "font-size:20px;"), icon = icon("nutritionix"),
                                         style = "color: white; background-color: teal", width = '100%'),
                             
                             br(),
                             br(),
 
-                            actionButton('jumpToBulk', "Asses several products at once", icon = icon("nutritionix"),
+                            actionButton('jumpToBulk', strong("Calculate score for several products", style = "font-size:20px;"), icon = icon("nutritionix"),
                                         style = "color: white; background-color: teal", width = '100%'),
                                         br(),
-                                        hr(),
-                                        h2("Who is it for?"),
+                                        br(),
+                                        p("Please let us know why you are using this tool:"),
+                                        bsCollapsePanel(title=p(icon("up-right-and-down-left-from-center"), strong("Click to show/hide form"), style = "color: white; background-color: teal;font-size:20px;text-align: center;vertical-align: middle;", align="center"),
+                                        p("Please tell us the purpose of your assessment.", style = "color: white; background-color: teal"), style = "color: white; background-color: teal",
+                                        includeHTML("www/responses.html")
+                                        ),
+                                        # ui.accordion(
+                                        #   ui.accordion_panel(title="Testing",),
+                                        #   open=FALSE,
+                                        #   width = '100%',
+                                        # ),
+                                        
+
+                                        # br(),
+              #                           hr(),
+              #                           h2("Who is it for?"),
+              #  p("The NPM Online Calculator is a quick, easy and transparent way to generate a product's NPM score, and check if it may be captured by The Food (Promotion and Placement) (England) Regulations 2021 ('HFSS legislation'), supporting consistency among:"),
+              #  tags$ul(p(tags$span(style ="color:teal","✓   Retailers"))),
+              #  tags$ul(p(tags$span(style ="color:teal","✓   Manufacturers"))),
+              #  tags$ul(p(tags$span(style ="color:teal","✓   Policymakers"))),
+              #  tags$ul(p(tags$span(style ="color:teal","✓   Academics"))),
+              #  tags$ul(p(tags$span(style ="color:teal","✓   NGOs"))),
+                          ),
+                          column(5,
+                          wellPanel(
+                            strong("The NPM Calculator supports you to:"), br(), br(),
+                          "✓   Quickly calculate a product's UK Nutrient Profile Model (NPM) score", br(), br(),
+                          "✓   Make informed decisions and comply with legislation", br(), br(),
+                          "✓   Easily calculate scores at your desk or on the go, via your web browser", br(), br(),
+                          "✓   Take a transparent approach to NPM scoring, promoting consistency and confidence in results",
+                          ),
+                          # tags$h5(tags$span(style ="color:teal","✓   Quickly calculate a product's UK Nutrient Profile Model (NPM) score"),sep ="",align = "left"),
+                          # tags$h5(tags$span(style ="color:teal","✓   Support decision-making and compliance with legislation"),sep ="",align = "left"),
+                          # tags$h5(tags$span(style ="color:teal","✓   Easy to use at your desk or on the go"),sep ="", align = "left"),
+                          # tags$h5(tags$span(style ="color:teal","✓   Transparent approach, promoting consistency and confidence in results"),sep ="", align = "left"),
+                          ),
+                          column(1),
+                        #   column(6,
+                        # # p("Before you begin, please tell us how you'll be using the tool."),
+                        # # includeHTML("www/responses.html"),
+                        #   ),
+                        ),
+                        br(), br(),
+                        fluidRow(
+                          column(1),
+                          column(5,
+                          wellPanel(
+                            h2("Help using the tool"),
+                            p("Our tools are designed to be intuitive and easy to use. Please read our detailed user guide
+                            for step-by-step instructions."),
+                            actionButton('jumpToGuide', "Learn more in our User Guide", icon = icon("nutritionix"),
+                                               style = "color: white; background-color: teal", width = '100%'),
+                          ),
+
+               ),
+                          column(5,
+                h3("Who is it for?"),
                p("The NPM Online Calculator is a quick, easy and transparent way to generate a product's NPM score, and check if it may be captured by The Food (Promotion and Placement) (England) Regulations 2021 ('HFSS legislation'), supporting consistency among:"),
                tags$ul(p(tags$span(style ="color:teal","✓   Retailers"))),
                tags$ul(p(tags$span(style ="color:teal","✓   Manufacturers"))),
                tags$ul(p(tags$span(style ="color:teal","✓   Policymakers"))),
                tags$ul(p(tags$span(style ="color:teal","✓   Academics"))),
                tags$ul(p(tags$span(style ="color:teal","✓   NGOs"))),
-                          ),
-                          column(6,
-                        p("Before you begin, please tell us how you'll be using the tool."),
-                        includeHTML("www/responses.html"),
-                          ),
-                        ),
-                        br(),
+               br(),),
+               column(1)
+               ),
                         # fluidRow(column(12, tags$h4(tags$span(style ="color:teal","Quickly calculate a product's UK Nutrient Profile Model (NPM) score"),sep ="",align = "center"))
                         #         ), #close fluid row
                         # fluidRow(column(12, tags$h4(tags$span(style ="color:teal","Supports decision-making and compliance with legislation"),sep ="",align = "center"))
@@ -176,14 +258,14 @@ shinyUI(fluidPage(use_theme(custom_theme),
               #  tags$ul(p(tags$span(style ="color:teal","NGOs"))),
                
                
-               fluidRow(column(12,actionButton('jumpToGuide', "Learn more in our User Guide",
-                                               style = "color: white; background-color: teal", width = '100%'), align = "center")),
-                                               br(),
+              #  fluidRow(column(12,actionButton('jumpToGuide', "Learn more in our User Guide",
+              #                                  style = "color: white; background-color: teal", width = '100%'), align = "center")),
+              #                                  br(),
                
                ),# close tabpanel  
               
                
-               navbarMenu(strong("Assess", style = "font-size:20px;text-decoration:underline"),
+               navbarMenu(strong("Calculator", style = "font-size:20px;text-decoration:underline"),
                # Single product assessment tab -----
                tabPanel("Single product", value = "calculator", 
                                             
@@ -1110,14 +1192,36 @@ shinyUI(fluidPage(use_theme(custom_theme),
                         
                         ),# close tabPanel"
                
-               # open new tabpanel to store logo in
-               tabPanel(img(src="cropped-CDRC-Col-whitewriting.png", height = 50)
-                        ), # close tabPanel
+              #  # open new tabpanel to store logo in
+              #  tabPanel(img(src="cropped-CDRC-Col.jpg", height = 70)
+              #           ), # close tabPanel
                
-tags$footer("",img(src="UoL_logo.png", height = 50, align ='right'), br(), style = "background-color:teal; color: white; height:50px; position:bottom"), 
-tags$footer(HTML("<small>  Designed by researchers at the University of Leeds</small>"), style = "background-color: teal; color: white; height:60px; position:bottom",
-            br(), HTML("<small>  Published under the AGPL-3.0 License, Copyright © 2024 Leeds-CDRC</small>"), 
-            br(), HTML('<div style="color:white";><small><a href="https://www.cdrc.ac.uk/privacy/">  Privacy and Cookies</a></small></div>'), br(),)
+# tags$footer("",img(src="UoL_logo.png", height = 50, align ='right'), br(), style = "background-color:teal; color: white; height:50px; position:bottom"), 
+# tags$footer(HTML("<small>  Designed by researchers at the University of Leeds</small>"), style = "background-color: teal; color: white; height:60px; position:bottom",
+#             br(), HTML("<small>  Published under the AGPL-3.0 License, Copyright © 2024 Leeds-CDRC</small>"), 
+#             br(), HTML('<div style="color:white";><small><a href="https://www.cdrc.ac.uk/privacy/">  Privacy and Cookies</a></small></div>'), br(),)
+
+# tags$footer("",img(src="UoL_logo.png", height = 50, align ='right'), br(), style = "background-color:teal; color: white; height:50px; position:bottom"), 
+# tags$footer(HTML("<small>  Designed by researchers at the University of Leeds</small>"), style = "background-color: teal; color: white; height:60px; position:bottom",
+#             br(), HTML("<small>  Published under the AGPL-3.0 License, Copyright © 2024 Leeds-CDRC</small>"), 
+#             br(), HTML('<div style="color:white";><small><a href="https://www.cdrc.ac.uk/privacy/">  Privacy and Cookies</a></small></div>'), br(),)
+tags$footer(
+  wellPanel(fluidRow(
+                          column(6,
+                          HTML("<small>  Designed by researchers at the University of Leeds</small>"),
+                          br(),
+                          HTML("<small>  Published under the AGPL-3.0 License, Copyright © 2024 Leeds-CDRC</small>"),
+                          br(),
+                           HTML('<div><small><a href="https://www.cdrc.ac.uk/privacy/">  Privacy and Cookies</a></small></div>'),
+                          ),
+                          column(3,
+                          img(src="cropped-CDRC-Col.jpg", height = 70, align ='right'), br(),),
+                          column(3,
+                          img(src="UoL_logo.png", height = 70, align ='right'), br(),
+                          ),
+                        ),
+                          style = "color: teal; background-color: white; border-color: #eaf4f4; font-size: 12;"),
+)
 
 )) # close fluidLayout and ShinyUI
 
