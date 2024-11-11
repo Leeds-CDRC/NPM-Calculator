@@ -110,7 +110,7 @@ shinyUI(fluidPage(use_theme(custom_theme),
   use_googlefont("Nunito"),
 
   # theme = shinytheme("flatly"),
-    tags$head(HTML('<html lang="en">'),
+    tags$head(HTML("<html lang='en'>"),
         tags$style(HTML("
     .shiny-output-error-validation {
     color: red;
@@ -1260,9 +1260,11 @@ tags$footer(
                            HTML('<div><small><a href="https://www.cdrc.ac.uk/privacy/">  Privacy and Cookies</a></small></div>'),
                           ),
                           column(3,
-                          img(src="cropped-CDRC-Col.jpg", height = 70, align ='right'), br(),),
+                          img(src="cropped-CDRC-Col.jpg", height = 70, align ='right',
+                          alt="CDRC Logo: colourful stacked boxes next to the text 'Consumer Data Research Centre'. Smaller text next to the logo reads 'An ESRC Data Investment'."), br(),),
                           column(3,
-                          img(src="UoL_logo.png", height = 70, align ='right'), br(),
+                          img(src="UoL_logo.png", height = 70, align ='right',
+                          alt="University of Leeds logo: a cartoon graphic of the Parkinson Building clock tower over the text 'University of Leeds' in capital letters."), br(),
                           ),
                         ),
                           style = "color: #166e6e; background-color: white; border-color: #eaf4f4; font-size: 12;"),
