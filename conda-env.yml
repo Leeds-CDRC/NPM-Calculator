@@ -1,0 +1,13 @@
+name: npm-env
+channels:
+  - conda-forge
+dependencies:
+  - r-essentials
+  - r-shinyBS
+  - r-shinythemes
+  - r-shinyjs
+  - r-shinydashboard
+  - r-shinydashboardPlus
+  - r-shinyWidgets
+  - r-remotes
+  - r-DT

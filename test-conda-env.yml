@@ -1,0 +1,14 @@
+name: npm-test-env
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - r-essentials
+  - r-shinyBS
+  - r-shinythemes
+  - r-shinyjs
+  - r-shinydashboard
+  - r-shinydashboardPlus
+  - r-shinyWidgets
+  - r-remotes
+  - r-DT

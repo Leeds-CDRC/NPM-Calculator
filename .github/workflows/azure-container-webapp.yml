@@ -30,9 +30,6 @@ env:
   AZURE_WEBAPP_NAME: npmcalculator  # set this to the name of your Azure Web App
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:

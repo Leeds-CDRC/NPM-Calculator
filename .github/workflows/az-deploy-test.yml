@@ -1,7 +1,7 @@
 # this workflow is used for deploying a test instance of the Azure web app
 # it will not deploy to npmcalculator.cdrc.ac.uk/ but to another test url
 
-name: Build and deploy a container to an Azure Web App test
+name: TEST Build and deploy a container to an Azure Web App
 
 env:
   AZURE_WEBAPP_NAME: npmcalculator-test # set this to the name of your Azure Web App
@@ -9,7 +9,7 @@ env:
 on:
   push:
     branches:
-      - rse-proj-update
+      - TEST-APP
   workflow_dispatch:
 
 jobs:
