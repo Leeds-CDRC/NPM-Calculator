@@ -121,7 +121,7 @@ shinyUI(fluidPage(use_theme(custom_theme),
     
     # Home page ----
     navbarPage(title = p(strong("NPM", style = "font-size:40px;text-align: center;vertical-align: middle;"),strong("Calculator", style="font-size:30px;vertical-align: middle; color:#21a5a5"), br(),em("Nutrient Profile Model Calculator", style="font-size:16px; color:black")), collapsible=TRUE, 
-    fluid=TRUE, windowTitle="NPM Calculator",
+    fluid=TRUE, windowTitle="NPM Calculator", id="about",
                tabPanel(p("Home", style = "font-size:20px;", id = "about"),
               #  tabPanel(p("Home", style = "font-size:20px;"), 
                         # Welcome statement
