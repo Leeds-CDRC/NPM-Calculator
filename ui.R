@@ -157,10 +157,13 @@ shinyUI(fluidPage(use_theme(custom_theme),
                                         br(),
                                         br(),
                                         p("Please let us know why you are using this tool:"),
-                                        bsCollapsePanel(title=p(icon("up-right-and-down-left-from-center"), strong("Click to show/hide form"), style = "color: white; background-color: #166e6e;font-size:20px;text-align: center;vertical-align: middle;", align="center"),
-                                        p("Please tell us the purpose of your assessment.", style = "color: white; background-color: #166e6e"), style = "color: white; background-color: #166e6e",
-                                        includeHTML("www/responses.html")
-                                        ),
+                                        # bsCollapsePanel(title=p(icon("up-right-and-down-left-from-center"), strong("Click to show/hide form"), style = "color: white; background-color: #166e6e;font-size:20px;text-align: center;vertical-align: middle;", align="center"),
+                                        # p("Please tell us the purpose of your assessment.", style = "color: white; background-color: #166e6e"), style = "color: white; background-color: #166e6e",
+                                        # includeHTML("www/responses.html")
+                                        # ),
+                                        actionButton('infoForm1', "Open Microsoft Form in a new tab", icon = icon("square-poll-vertical"),
+                                               style = "color: white; background-color: #166e6e", width = '100%',
+                                               onclick ="window.open('https://forms.office.com/e/RL86YQfvc7', '_blank')"),
                                         # ui.accordion(
                                         #   ui.accordion_panel(title="Testing",),
                                         #   open=FALSE,
