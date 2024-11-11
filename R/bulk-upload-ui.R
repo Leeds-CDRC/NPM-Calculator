@@ -28,6 +28,9 @@ library(DT)
 introTab <- tabPanel(
   title = tags$b("NPM Table Calculator"),
   value = "bulkDataDesc",
+  fluidRow(
+    column(1),
+    column(10,
   h3("NPM Table Calculator"),
   # p("At present the Table Calculator is experimental and not guaranteed
   # to work against all data. Please use the available template spreadsheet files
@@ -41,80 +44,94 @@ introTab <- tabPanel(
   # href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v1.0.0", style = "color:white;font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ",
   # class= "alert alert-success"),
   p("The Table Calculator mode enables you to upload information for multiple products and run the entire table through the Nutrient Profile Model.",
-  br(),
-  br(),
-  "How to use the Table Calculator mode:"),
-  tags$ol(
-    tags$li("Download the template Excel or CSV file at bottom of this page."),
-    tags$li("Prepare your data, ensuring you are using the correct column names and categories (the template Excel file contains drop down options for categorical variables)."),
-    tags$li("Select the ‘upload data’ tab."),
-    tags$li("Upload your Excel or CSV file – once uploaded you can preview to check the data looks correct."),
-    tags$li("Click ‘Calculate NPM scores’."),
-    tags$li("The calculator will provide a summary and small preview of the results. Any errors will be flagged at this stage."),
-    tags$li("Download your full results (CSV file)."),
+  fluidRow(
+    column(6,
+    wellPanel(
+    h4("How to use the Table Calculator:"),
+  "1.   Download the template Excel or CSV file provided.", br(), br(),
+  "2.   Prepare your data, ensuring you are using the correct column names and categories (the template Excel file contains drop down options for categorical variables).", br(), br(),
+  "3.   Select the ‘Upload Data’ tab.", br(), br(),
+  "4.   Upload your Excel or CSV file – once uploaded you can preview to check the data looks correct.",br(), br(),
+  "5.   Click ‘Calculate NPM scores’",br(), br(),
+  "6.   The calculator will provide a summary and small preview of the results. Any errors will be flagged at this stage.",br(), br(),
+  "7.   Download your full results (CSV file).",br(), br(),
   ),
-  br(),
-  br(),
-  h4("Help using the tool"),
-  p("Link will go here to guide video."),
-  br(),
-  p("Please see the 'Table Calculator Guide' section of the 'User guide'
-  for more information on the parameters required."),
+    ),
+    column(6,
+    # a(href="example-NPM-data.xlsx", 
+    #       "Download template Excel file", 
+    #       download=NA, 
+    #       target="_blank",
+    #       class="btn btn-primary",),
+    #       br(), br(),
+    #      a(href="example-NPM-data.csv", 
+    #       "Download template CSV file", 
+    #       download=NA, 
+    #       target="_blank",
+    #       class="btn btn-primary"),
+    #       br(), br(),
+          actionButton('download1', "Download template Excel file", icon = icon("download"),
+              style = "color: white; background-color: #166e6e;", width = '100%',
+              onclick ="window.open('example-NPM-data.xlsx', '_blank')"),
+          br(), br(),
+          actionButton('download1', "Download template CSV file", icon = icon("download"),
+              style = "color: white; background-color: #166e6e;", width = '100%',
+              onclick ="window.open('example-NPM-data.csv', '_blank')"),
+          br(), br(),
+  #         actionButton('moveBulkTab', "Next", icon = icon("nutritionix"),
+  #             style = "color: white; background-color: #166e6e;", width = '100%'),
+  #             br(),
+  # br(),
+  wellPanel(
+                            h3("Help using the tool"),
+                            p("Our tools are designed to be intuitive and easy to use. Please read our detailed user guide
+                            for step-by-step instructions."),
+                            actionButton('jumpToGuide', "Learn more in our User Guide", icon = icon("book-open"),
+                                               style = "color: white; background-color: #166e6e", width = '100%'),
+                          ),
 
-  # p("To help with larger datasets of product information
-  # you want testing against the Nutrient Profile Model we 
-  # have introduced a new, experimental Table Calculator mode.
-  # This mode offers the ability to upload a dataset of product
-  # information and run the entire table through the Nutrient Profile
-  # Model. It visualises these results and makes it possible to 
-  # download a copy of your data with the additional columns
-  # corresponding to the Nutrient Profile Model assessment."),
-  # p("Once you have prepared your data click Next and move to
-  # the Upload Data tab. There you can upload your data file 
-  # which should be either CSV or Excel format. Once uploaded
-  # your data will be previewed within that tab where you can 
-  # visually check the data looks correct. When ready click Calculate
-  # NPM scores to run the Table Calculator against your data. If an error
-  # occurs during this step a popup will appear that includes some error
-  # information. If it is unclear how to fix your error please raise an
-  # issue on ",a(href="https://github.com/Leeds-CDRC/NPM-Calculator/issues/new",
-  # "GitHub (sign in required) ")," sharing your error information or email the CDRC via ",
-  # a(href="mailto:info@cdrc.ac.uk", "info@cdrc.ac.uk"),
-  # " including all error information."),
-  # p("If this step proceeds without error you will move to the Results
-  # tab, where you will be able to view a summary of your results and a 
-  # small preview table of your data showing the result of the NPM 
-  # calculation. You will also be able to download your dataset as a CSV file
-  # with additional columns generated during the assessment step."),
-  
-  # p("The template Excel file below contains drop down options for categorical variables to assist you in correctly filling in your dataset.",
-  #                                           class= "alert alert-success"),
-  # a centered row that contains anchors for downloading
-  # template data files
-  fluidRow(style = "text-align:center;",
-    column(12,
-          a(href="example-NPM-data.xlsx", 
-          "Download template Excel file", 
-          download=NA, 
-          target="_blank",
-          class="btn btn-primary"),
-        a(href="example-NPM-data.csv", 
-          "Download template CSV file", 
-          download=NA, 
-          target="_blank",
-          class="btn btn-primary")
-        ),
-      ),
-      # row containing button to move to next tab
-      fluidRow(style = "margin: 1.5%; text-align:center;",
-        column(12,
-              actionButton('moveBulkTab', "Next", icon = icon("nutritionix"),
-              style = "color: white; background-color: teal;", width = '40%'),
-        )
-      ),
-    p("Should you experience any difficulties using the NPM Calculator, please contact", a(href="mailto:info@cdrc.ac.uk", "info@cdrc.ac.uk", style = "color:white;font-weight: bold;"), "including a screenshot of any relevant error messages.",
+  br(),
+  p("Should you experience any difficulties using the NPM Calculator, please contact", a(href="mailto:info@cdrc.ac.uk", "info@cdrc.ac.uk", style = "font-weight: bold;"), "including a screenshot of any relevant error messages.",
                                             class= "alert alert-success"),
-      )
+
+    actionButton('moveBulkTab', "Next", icon = icon("nutritionix"),
+              style = "color: white; background-color: #166e6e;", width = '100%'),
+          
+    ),
+  ),
+  ),
+  # br(),
+  # br(),
+  # h4("Help using the tool"),
+  # p("Link will go here to guide video."),
+  # br(),
+  # p("Please see the 'Table Calculator Guide' section of the 'User guide'
+  # for more information on the parameters required."),
+
+  # fluidRow(style = "text-align:center;",
+  #   column(12,
+  #         a(href="example-NPM-data.xlsx", 
+  #         "Download template Excel file", 
+  #         download=NA, 
+  #         target="_blank",
+  #         class="btn btn-primary"),
+  #       a(href="example-NPM-data.csv", 
+  #         "Download template CSV file", 
+  #         download=NA, 
+  #         target="_blank",
+  #         class="btn btn-primary"),
+  #       ),
+  #     ),
+  #     # row containing button to move to next tab
+  #     fluidRow(style = "margin: 1.5%; text-align:center;",
+  #       column(12,
+  #             actionButton('moveBulkTab', "Next", icon = icon("nutritionix"),
+  #             style = "color: white; background-color: #166e6e;", width = '40%'),
+  #       )
+  #     ),
+  #   p("Should you experience any difficulties using the NPM Calculator, please contact", a(href="mailto:info@cdrc.ac.uk", "info@cdrc.ac.uk", style = "font-weight: bold;"), "including a screenshot of any relevant error messages.",
+  #                                           class= "alert alert-success"),
+      )))
 
 
 
@@ -122,6 +139,7 @@ introTab <- tabPanel(
 tableTab <- tabPanel(
     title = tags$b("Upload data"),
     value = "bulkDataUpload",
+    br(),
       # Sidebar layout with input and output definitions ----
   sidebarLayout(
     # Sidebar panel for inputs ----
@@ -141,7 +159,7 @@ tableTab <- tabPanel(
                           ".xlsx")),
         
         actionButton('runBulk', "Calculate NPM scores", icon = icon("nutritionix"),
-              style = "color: white; background-color: teal", width = '100%')
+              style = "color: white; background-color: #166e6e", width = '100%')
       ),
 
       # Main panel for displaying outputs ----
@@ -174,8 +192,8 @@ resultTab <- tabPanel(tags$b("Results"), value = "bulkResult",
                       height = "500px"),
                       p("The Table Calculator uses the nutrientprofiler R package to calculate
                         NPM scores. Find out more about this package here:",a("nutrient profiler documentation",
-                        href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "color:white;font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 2.0.0.",
-                        href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v1.0.0", style = "color:white;font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ",
+                        href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 2.0.0.",
+                        href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v1.0.0", style = "font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ",
                         class= "alert alert-success"),
                       )
 
@@ -184,11 +202,12 @@ resultTab <- tabPanel(tags$b("Results"), value = "bulkResult",
 # all other tabs defined above
 bulkTab <- tabPanel("Table Calculator",
                     value = "bulkCalc",
-                    tabsetPanel(type = "tabs", 
+                    wellPanel(style="background-color:#f7fbfb; border-color:#f7fbfb",
+                    tabsetPanel(type = "pills", 
                                 shinyjs::useShinyjs(), 
                                 id ="calc2",
                                 introTab,
                                 tableTab,
                                 resultTab
-                    )
+                    ))
 )
