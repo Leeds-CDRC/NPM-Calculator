@@ -110,7 +110,7 @@ shinyUI(fluidPage(use_theme(custom_theme),
   use_googlefont("Nunito"),
 
   # theme = shinytheme("flatly"),
-    tags$head(
+    tags$head(HTML('<html lang="en">'),
         tags$style(HTML("
     .shiny-output-error-validation {
     color: red;
