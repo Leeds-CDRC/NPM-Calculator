@@ -139,6 +139,7 @@ introTab <- tabPanel(
 tableTab <- tabPanel(
     title = tags$b("Upload data"),
     value = "bulkDataUpload",
+    br(),
       # Sidebar layout with input and output definitions ----
   sidebarLayout(
     # Sidebar panel for inputs ----
@@ -201,11 +202,12 @@ resultTab <- tabPanel(tags$b("Results"), value = "bulkResult",
 # all other tabs defined above
 bulkTab <- tabPanel("Table Calculator",
                     value = "bulkCalc",
-                    tabsetPanel(type = "tabs", 
+                    wellPanel(style="background-color:#f7fbfb; border-color:#f7fbfb",
+                    tabsetPanel(type = "pills", 
                                 shinyjs::useShinyjs(), 
                                 id ="calc2",
                                 introTab,
                                 tableTab,
                                 resultTab
-                    )
+                    ))
 )
