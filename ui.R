@@ -83,7 +83,8 @@ custom_theme <- create_theme(
     default_link_color = "#1a8282",
     default_link_active_color = "#FFFFFF",
     default_link_active_bg = "#1a8282",
-    default_link_hover_color = "#115353",
+    # default_link_hover_color = "#115353",
+    default_link_hover_color = "#24b4b4",
     # default_link_hover_bg = "#eaf4f4",
     default_link_hover_bg = NULL,
 
@@ -237,14 +238,16 @@ shinyUI(
 
                ),
                           column(5,
-                h3("Who is it for?"),
+                          wellPanel( style = "background-color:white",
+                h2("Who is it for?"),
                p("The NPM Online Calculator is a quick, easy and transparent way to generate a product's NPM score, and check if it may be captured by The Food (Promotion and Placement) (England) Regulations 2021 ('HFSS legislation'), supporting consistency among:"),
+               br(),
                tags$ul(p(tags$span(style ="color:black","✓   Retailers"))),
                tags$ul(p(tags$span(style ="color:black","✓   Manufacturers"))),
                tags$ul(p(tags$span(style ="color:black","✓   Policymakers"))),
                tags$ul(p(tags$span(style ="color:black","✓   Academics"))),
                tags$ul(p(tags$span(style ="color:black","✓   NGOs"))),
-               br(),),
+               br(),)),
                column(1)
                ),
                         # fluidRow(column(12, tags$h4(tags$span(style ="color:#166e6e","Quickly calculate a product's UK Nutrient Profile Model (NPM) score"),sep ="",align = "center"))
