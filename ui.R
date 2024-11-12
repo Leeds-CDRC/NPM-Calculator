@@ -66,7 +66,8 @@ custom_theme <- create_theme(
     # link_color="#1a8282",
     # link_color = "#166e6e",
     # link_color= "#25b7b7"
-    link_color="#24b4b4",
+    # link_color="#24b4b4",
+    link_color="#20a2a2",
     grid_gutter_width = "45px"
   ),
   bs_vars_pills(
@@ -75,17 +76,20 @@ custom_theme <- create_theme(
   active_link_hover_color = NULL
 ),
   bs_vars_navbar(
-    height = "100px",
+    height = "80px",
     padding_horizontal = "15px",
-    padding_vertical = "40px",
+    padding_vertical = "30px",
+    # margin_bottom = "10px",
     default_bg = "#FFFFFF",
     default_color = "#1a8282",
     default_link_color = "#1a8282",
     default_link_active_color = "#FFFFFF",
     default_link_active_bg = "#1a8282",
-    default_link_hover_color = "#115353",
+    # default_link_hover_color = "#115353",
+    default_link_hover_color = "#24b4b4",
     # default_link_hover_bg = "#eaf4f4",
     default_link_hover_bg = NULL,
+    # border_radius="1000px",
 
   ),
   bs_vars_font(
@@ -231,20 +235,22 @@ shinyUI(
                                                style = "color: white; background-color: #166e6e", width = '100%'),
                           ),
                           h3("Motivation"),
-                          p(tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12486","Our research"), "revealed", tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12468","challenges"), 
+                          p(tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12486","Our research"), "revealed", tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12468","challenges", target="_blank"), 
                         "and a need for consistency and transparency in NPM calculation.",
-                        "Our tool aims to bridge this gap: the tool and underlying code are provided under open-source licenses; the source code can be", tags$a(href="https://github.com/Leeds-CDRC/NPM-calculator","found here."),),
+                        "Our tool aims to bridge this gap: the tool and underlying code are provided under open-source licenses; the source code can be", tags$a(href="https://github.com/Leeds-CDRC/NPM-calculator","found here.", target="_blank"),),
 
                ),
                           column(5,
-                h3("Who is it for?"),
+                          wellPanel( style = "background-color:white",
+                h2("Who is it for?"),
                p("The NPM Online Calculator is a quick, easy and transparent way to generate a product's NPM score, and check if it may be captured by The Food (Promotion and Placement) (England) Regulations 2021 ('HFSS legislation'), supporting consistency among:"),
+               br(),
                tags$ul(p(tags$span(style ="color:black","✓   Retailers"))),
                tags$ul(p(tags$span(style ="color:black","✓   Manufacturers"))),
                tags$ul(p(tags$span(style ="color:black","✓   Policymakers"))),
                tags$ul(p(tags$span(style ="color:black","✓   Academics"))),
                tags$ul(p(tags$span(style ="color:black","✓   NGOs"))),
-               br(),),
+               br(),)),
                column(1)
                ),
                         # fluidRow(column(12, tags$h4(tags$span(style ="color:#166e6e","Quickly calculate a product's UK Nutrient Profile Model (NPM) score"),sep ="",align = "center"))
@@ -1018,7 +1024,7 @@ shinyUI(
                                               column(5,
                                              p(tags$b("The NPM calculator tells you:")),
                                              tags$ul(tags$span(style ="color:black","✓   The NPM score")),
-                                             tags$ul(tags$span(style ="color:black","✓   If the product is likely to be in scope for",tags$a(href="https://www.legislation.gov.uk/uksi/2021/1368/contents/made","The Food (Promotion and Placement) (England) Regulations 2021", style="font-weight:bold")," which we dub 'HFSS legislation'")),
+                                             tags$ul(tags$span(style ="color:black","✓   If the product is likely to be in scope for",tags$a(href="https://www.legislation.gov.uk/uksi/2021/1368/contents/made","The Food (Promotion and Placement) (England) Regulations 2021", style="font-weight:bold", target="_blank")," which we dub 'HFSS legislation'")),
                                              br(),
                                              p(tags$b("To calculate the NPM score, all you need is:")),
                                              tags$ul(tags$span(style ="color:black","✓   Product nutrition information")),
@@ -1043,7 +1049,7 @@ shinyUI(
                                               hr(style = "border-top: 3px solid #24b4b4;"),
                                              p(tags$b("Disclaimer:")),
                                              p("The Nutrient Profile Model Calculator was developed by researchers at the University of Leeds, to make NPM score calculation quicker, easier and more consistent."),
-                                             p("It is the user's responsibility to check compliance to current legislation by following the", tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance", "latest guidance."),""),
+                                             p("It is the user's responsibility to check compliance to current legislation by following the", tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance", "latest guidance.", target="_blank"),""),
                                              p("The University of Leeds does not accept any responsibility for incorrect promotion of products under current legislation"),
                                     ))),
                                     
@@ -1139,7 +1145,7 @@ shinyUI(
                                              DTOutput('BulkGuideTable'),),
                               
                                                 br(),
-                                             p("Visit",tags$a(href="https://www.gov.uk/government/publications/the-nutrient-profiling-model","the NPM guidance"),"for full details."),
+                                             p("Visit",tags$a(href="https://www.gov.uk/government/publications/the-nutrient-profiling-model","the NPM guidance", target="_blank"),"for full details."),
                                              ),
 
                                     tabPanel(title = tags$b("About the NPM"),
@@ -1148,7 +1154,7 @@ shinyUI(
                                               column(1),
                                               column(10,
                                              h2("What is the NPM?"),
-                                             p(tags$a(href="https://www.gov.uk/government/publications/the-nutrient-profiling-model","The UK Nutrient Profile Model"), "assesses the 'healthiness' of products by assigning a score based on nutritional information."),
+                                             p(tags$a(href="https://www.gov.uk/government/publications/the-nutrient-profiling-model","The UK Nutrient Profile Model", target="_blank"), "assesses the 'healthiness' of products by assigning a score based on nutritional information."),
                                              p("The NPM score underpins:"),
                                              tags$ul(tags$span(style ="color:black","Product advertising (on TV, online, on the Transport For London network and more)")),
                                              tags$ul(tags$span(style ="color:black","Product promotions in stores and online shopping platforms")),
@@ -1178,7 +1184,7 @@ shinyUI(
                                              p("For foods, if a product scores 4 or higher, the product is classed as 'less healthy' and is said to FAIL the NPM."),
                                              p("Products which fail the NPM may be subject to certain restrictions on advertising and promotions, depending on the type of product and the specifics of the legislation."),
                                              hr(style = "border-top: 3px solid #24b4b4;"),
-                                             p("Visit",tags$a(href="https://www.gov.uk/government/publications/the-nutrient-profiling-model","the NPM guidance"),"for full details."),
+                                             p("Visit",tags$a(href="https://www.gov.uk/government/publications/the-nutrient-profiling-model","the NPM guidance", target="_blank"),"for full details."),
                                     ),
                                     column(1),),),
                                     
@@ -1190,17 +1196,17 @@ shinyUI(
                                               column(10,
                                              h3("What is HFSS legislation?"),
                                              p("HFSS stands for 'High in Fat, Sugar or Salt'"),
-                                             p("This tool is designed to support implementation and enforcement of ",tags$a(href="https://www.legislation.gov.uk/uksi/2021/1368/contents/made","The Food (Promotion and Placement) (England) Regulations 2021"),", which we dub 'HFSS legislation'."),
+                                             p("This tool is designed to support implementation and enforcement of ",tags$a(href="https://www.legislation.gov.uk/uksi/2021/1368/contents/made","The Food (Promotion and Placement) (England) Regulations 2021", target="_blank"),", which we dub 'HFSS legislation'."),
                                              p("From October 2022, new legislation will limit the placement of HFSS products in stores, removing them from prime locations like store entrances, the ends of aisles, and at the checkouts"),
-                                             p(tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","Guidance"), "for the legislation is available online."),
+                                             p(tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","Guidance", target="_blank"), "for the legislation is available online."),
                                              br(),
-                                             p("Under",tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","the guidance"),", a product is considered HFSS if it:"),
+                                             p("Under",tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","the guidance", target="_blank"),", a product is considered HFSS if it:"),
                                              tags$ul(tags$span(style ="color:black","Falls into one of 13 categories")),
                                              tags$ul(tags$span(style ="color:black","Fails the UK NPM")),
                                              p("Use our tool to check HFSS status"), 
                                              p("Additionally, restrictions on promotions only apply to packaged products sold in eligible retailers."),
                                              p("This tool is not designed to assess retailer eligibility."),
-                                             p("Make sure you're up to date with",tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","the rules"),"."),
+                                             p("Make sure you're up to date with",tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","the rules", target="_blank"),"."),
                                              hr(style = "border-top: 3px solid #24b4b4;"),
                                              wellPanel( style="background-color:white",
                                              h4("HFSS categories in The Food (Promotion and Placement) (England) Regulations 2021"),
@@ -1268,10 +1274,10 @@ shinyUI(
                   column(6,
                   h3("Development"),
                   p("The NPM Calculator is based on the MSc work of Vicki Jenneson. The original code for that project
-                        can be found", a(href="https://github.com/VickiJenneson/NPM_Promotional_Restrictions", "on GitHub"), ", and  
+                        can be found", a(href="https://github.com/VickiJenneson/NPM_Promotional_Restrictions", "on GitHub", target="_blank"), ", and  
                         was previously tested on a retail product dataset from Dietary
                         Assessment Ltd."),
-                        p("Current code for the NPM Calculator can be found on the", a(href="https://github.com/Leeds-CDRC/NPM-Calculator","CDRC GitHub")," page."),
+                        p("Current code for the NPM Calculator can be found on the", a(href="https://github.com/Leeds-CDRC/NPM-Calculator","CDRC GitHub", target="_blank")," page."),
                         p("Under the hood, the Table Calculator uses the nutrientprofiler R package to calculate
                         NPM scores. Find out more about this package here:",a("nutrient profiler documentation",
                         href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 2.0.0.",
