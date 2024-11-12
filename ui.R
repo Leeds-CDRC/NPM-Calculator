@@ -84,7 +84,9 @@ custom_theme <- create_theme(
     default_link_active_color = "#FFFFFF",
     default_link_active_bg = "#1a8282",
     default_link_hover_color = "#115353",
-    default_link_hover_bg = "#eaf4f4",
+    # default_link_hover_bg = "#eaf4f4",
+    default_link_hover_bg = NULL,
+
   ),
   bs_vars_font(
   size_base = "18px",
@@ -123,7 +125,7 @@ shinyUI(
   use_googlefont("Nunito"),
 
   # theme = shinytheme("flatly"),
-    tags$head(HTML("<html lang='en'>"),
+    header = tags$head(HTML("<html lang='en'>"),
         tags$style(HTML("
     .shiny-output-error-validation {
     color: red;
@@ -133,9 +135,9 @@ shinyUI(
     ), # close tags$head
     
     # Home page ----
-    navbarPage(title = p(strong("NPM", style = "font-size:40px;text-align: center;vertical-align: middle;"),strong("Calculator", style="font-size:30px;vertical-align: middle; color:#21a5a5"), br(),em("Nutrient Profile Model Calculator", style="font-size:16px; color:black")), collapsible=TRUE, 
+    navbarPage(title = a(p(strong("NPM", style = "color:#1a8282;font-size:40px;text-align: center;vertical-align: middle;"),strong("Calculator", style="font-size:30px;vertical-align: middle; color:#21a5a5"), br(),em("Nutrient Profile Model Calculator", style="font-size:16px; color:black")),href="https://npmcalculator-test.azurewebsites.net/", style="text-decoration:none"), collapsible=TRUE, 
     fluid=TRUE, id="about",
-               tabPanel(p("Home", style = "font-size:20px;", id = "about"),
+               tabPanel(p("Home", style = "font-size:25px;", id = "about"),
               #  tabPanel(p("Home", style = "font-size:20px;"), 
                         # Welcome statement
                         # h2("Nutrient Profile Model Online Calculator"),
@@ -290,7 +292,7 @@ shinyUI(
                ),# close tabpanel  
               
                
-               navbarMenu(strong("Calculator", style = "font-size:20px;"),
+               navbarMenu(strong("Calculator", style = "font-size:25px;"),
                # Single product assessment tab -----
                tabPanel("Single Product Calculator", value = "calculator", 
                                             
@@ -1000,7 +1002,7 @@ shinyUI(
                bulkTab,),
                            
                # User guide page -----
-               tabPanel(p("User guide", style = "font-size:20px;"), value = "Guide",
+               tabPanel(p("User guide", style = "font-size:25px;"), value = "Guide",
                         h1("User guide"),
                         p(tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12486","Our research", target="_blank"), "revealed", tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12468","challenges", target="_blank"), 
                         "and a need for consistency and transparency in NPM calculation."),
@@ -1232,7 +1234,7 @@ shinyUI(
               
                
                # Acknowledgements page -----                     
-               tabPanel(p("About", style = "font-size:20px;"),
+               tabPanel(p("About", style = "font-size:25px;"),
                fluidPage(
                 column(1),
                 column(10,
