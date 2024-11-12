@@ -117,7 +117,9 @@ custom_theme <- create_theme(
 #       default_link_hover_color = "#A4A4A4"
 #     )
 #     )),
-shinyUI(fluidPage(use_theme(custom_theme),
+tagList(
+shinyUI(
+  fluidPage(use_theme(custom_theme),
   use_googlefont("Nunito"),
 
   # theme = shinytheme("flatly"),
@@ -157,13 +159,13 @@ shinyUI(fluidPage(use_theme(custom_theme),
                           p("Use the NPM Calculator to assess a product's UK Nutrient Profile Model (NPM) score and check its compliance with legislation."),
                           br(),
                           # p("The NPM Calculator can be used to assess a single product or can be used with a file of multiple items."),
-                              actionButton('jumpToCalc', strong("Calculate score for a single product", style = "font-size:20px;"), icon = icon("nutritionix"),
+                              actionButton('jumpToCalc', "Calculate score for a single product", icon = icon("nutritionix"),
                                         style = "color: white; background-color: #166e6e", width = '100%'),
                             
                             br(),
                             br(),
 
-                            actionButton('jumpToBulk', strong("Calculate score for several products", style = "font-size:20px;"), icon = icon("nutritionix"),
+                            actionButton('jumpToBulk', "Calculate score for several products", icon = icon("nutritionix"),
                                         style = "color: white; background-color: #166e6e", width = '100%'),
                                         br(),
                                         br(),
@@ -749,7 +751,7 @@ shinyUI(fluidPage(use_theme(custom_theme),
                                                                     "Check ingredients list for %. If no fruit, veg and nuts stated, assume content is zero.", 
                                                                     placement = "top", trigger = "hover", options = NULL)),
                                                         ), # close fluid row
-                                                        actionButton('jumpToResult', strong("Step 4. Calculate NPM score"), icon = icon("nutritionix"),
+                                                        actionButton('jumpToResult', "Step 4. Calculate NPM score", icon = icon("nutritionix"),
                                                                      style = "color: white; background-color: #166e6e", width = '100%'),
                                                         br(),
                                                         ), #close div
@@ -1315,7 +1317,7 @@ tags$footer(
                         ),
                           style = "color: #166e6e; background-color: white; border-color: #eaf4f4; font-size: 12;"),
 )
-
+    )
 )) # close fluidLayout and ShinyUI
 
 )# close navbarPage
