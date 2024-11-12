@@ -75,9 +75,10 @@ custom_theme <- create_theme(
   active_link_hover_color = NULL
 ),
   bs_vars_navbar(
-    height = "100px",
+    height = "80px",
     padding_horizontal = "15px",
-    padding_vertical = "40px",
+    padding_vertical = "30px",
+    # margin_bottom = "10px",
     default_bg = "#FFFFFF",
     default_color = "#1a8282",
     default_link_color = "#1a8282",
@@ -87,6 +88,7 @@ custom_theme <- create_theme(
     default_link_hover_color = "#24b4b4",
     # default_link_hover_bg = "#eaf4f4",
     default_link_hover_bg = NULL,
+    # border_radius="1000px",
 
   ),
   bs_vars_font(
