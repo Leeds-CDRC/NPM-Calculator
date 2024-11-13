@@ -24,30 +24,31 @@
 library(shiny)
 library(DT)
 
-# define a tabPanel for introducing the NPM Table calculator
+# define a tabPanel for introducing the NPM Multiple Product Calculator
 introTab <- tabPanel(
-  title = tags$b("NPM Table Calculator"),
+  title = tags$b("NPM Multiple Product Calculator"),
   value = "bulkDataDesc",
   fluidRow(
     column(1),
     column(10,
-  h3("NPM Table Calculator"),
-  # p("At present the Table Calculator is experimental and not guaranteed
+  h3("NPM Multiple Product Calculator"),
+  # p("At present the Multiple Product Calculator is experimental and not guaranteed
   # to work against all data. Please use the available template spreadsheet files
-  # to populate your data against and run with the Table Calculator. This ensures
+  # to populate your data against and run with the Multiple Product Calculator. This ensures
   # the data contains correct column names and categories for steps used by the 
-  # Table Calculator.",
+  # Multiple Product Calculator.",
   # class= "alert alert-warning"),
-  # p("The Table Calculator uses the nutrientprofiler R package to calculate
+  # p("The Multiple Product Calculator uses the nutrientprofiler R package to calculate
   # NPM scores. Find out more about this package here:",a("nutrient profiler documentation",
   # href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "color:white;font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 2.0.0.",
   # href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v1.0.0", style = "color:white;font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ",
   # class= "alert alert-success"),
-  p("The Table Calculator mode enables you to upload information for multiple products and run the entire table through the Nutrient Profile Model.",
+  p("The Multiple Product Calculator mode enables you to upload information for multiple products and run the entire table through the Nutrient Profile Model.",
+  "Note that this calculator is not optimized for mobile use and is recommended for use at a computer. Please use the Single Product Calculator for on-the-go mobile scoring.",
   fluidRow(
     column(6,
     wellPanel(
-    h4("How to use the Table Calculator:"),
+    h4("How to use the Multiple Product Calculator:"),
   "1.   Download the template Excel or CSV file provided.", br(), br(),
   "2.   Prepare your data, ensuring you are using the correct column names and categories (the template Excel file contains drop down options for categorical variables).", br(), br(),
   "3.   Select the ‘Upload Data’ tab.", br(), br(),
@@ -70,11 +71,11 @@ introTab <- tabPanel(
     #       target="_blank",
     #       class="btn btn-primary"),
     #       br(), br(),
-          actionButton('download1', "Download template Excel file", icon = icon("download"),
+          actionButton('download1', "Excel template", icon = icon("download"),
               style = "color: white; background-color: #166e6e;", width = '100%',
               onclick ="window.open('example-NPM-data.xlsx', '_blank')"),
           br(), br(),
-          actionButton('download1', "Download template CSV file", icon = icon("download"),
+          actionButton('download1', "CSV file template", icon = icon("download"),
               style = "color: white; background-color: #166e6e;", width = '100%',
               onclick ="window.open('example-NPM-data.csv', '_blank')"),
           br(), br(),
@@ -105,7 +106,7 @@ introTab <- tabPanel(
   # h4("Help using the tool"),
   # p("Link will go here to guide video."),
   # br(),
-  # p("Please see the 'Table Calculator Guide' section of the 'User guide'
+  # p("Please see the 'Multiple Product Calculator Guide' section of the 'User guide'
   # for more information on the parameters required."),
 
   # fluidRow(style = "text-align:center;",
@@ -145,7 +146,7 @@ tableTab <- tabPanel(
     # Sidebar panel for inputs ----
       sidebarPanel(
         width = 3,
-        h3("NPM Table Calculator"),
+        h3("NPM Multiple Product Calculator"),
         p("Use the below options to upload a local file.
         If the file is a .csv please specify the additional options below otherwise if using
         and Excel file just proceed to the Calculate button."),
@@ -190,7 +191,7 @@ resultTab <- tabPanel(tags$b("Results"), value = "bulkResult",
                       class= "alert alert-warning"),
                       DTOutput("bulkResultTable", 
                       height = "500px"),
-                      p("The Table Calculator uses the nutrientprofiler R package to calculate
+                      p("The Multiple Product Calculator uses the nutrientprofiler R package to calculate
                         NPM scores. Find out more about this package here:",a("nutrient profiler documentation",
                         href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 2.0.0.",
                         href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v1.0.0", style = "font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ",
@@ -200,7 +201,7 @@ resultTab <- tabPanel(tags$b("Results"), value = "bulkResult",
 # the main tab constructor
 # this variable contructs the full tab panel from
 # all other tabs defined above
-bulkTab <- tabPanel("Table Calculator",
+bulkTab <- tabPanel("Multiple Product Calculator",
                     value = "bulkCalc",
                     wellPanel(style="background-color:#f7fbfb; border-color:#f7fbfb",
                     tabsetPanel(type = "pills", 
