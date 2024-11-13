@@ -156,33 +156,35 @@ shinyUI(
                           column(1),
                           column(10,
                           h3("NPM Calculator: Simple, consistent and transparent NPM scoring"),
-                          br(),),
+                          ),
                           column(1)
                         ),
                         fluidRow(
                           column(1),
                           column(5,
-                          p("Use the NPM Calculator to assess a product's UK Nutrient Profile Model (NPM) score and check its compliance with legislation."),
                           br(),
+                          p("Use the NPM Calculator to assess a product's UK Nutrient Profile Model (NPM) score."),
+                          p("Choose your calculator below:"),
                           # p("The NPM Calculator can be used to assess a single product or can be used with a file of multiple items."),
-                              actionButton('jumpToCalc', "Calculate score for a single product", icon = icon("nutritionix"),
+                              actionButton('jumpToCalc', "Single product", icon = icon("nutritionix"),
                                         style = "color: white; background-color: #166e6e", width = '100%'),
                             
                             br(),
                             br(),
 
-                            actionButton('jumpToBulk', "Calculate score for several products", icon = icon("nutritionix"),
+                            actionButton('jumpToBulk', "Multiple products", icon = icon("nutritionix"),
                                         style = "color: white; background-color: #166e6e", width = '100%'),
                                         br(),
                                         br(),
-                                        p("Please let us know why you are using this tool:"),
+                                        p("Please let us know how and why you are using this tool:"),
                                         # bsCollapsePanel(title=p(icon("up-right-and-down-left-from-center"), strong("Click to show/hide form"), style = "color: white; background-color: #166e6e;font-size:20px;text-align: center;vertical-align: middle;", align="center"),
                                         # p("Please tell us the purpose of your assessment.", style = "color: white; background-color: #166e6e"), style = "color: white; background-color: #166e6e",
                                         # includeHTML("www/responses.html")
                                         # ),
-                                        actionButton('infoForm1', "Open Microsoft Form in a new tab", icon = icon("square-poll-vertical"),
+                                        actionButton('infoForm1', "Open poll in new tab", icon = icon("square-poll-vertical"),
                                                style = "color: white; background-color: #166e6e", width = '100%',
                                                onclick ="window.open('https://forms.office.com/e/RL86YQfvc7', '_blank')"),
+                                        br(),
                                         # ui.accordion(
                                         #   ui.accordion_panel(title="Testing",),
                                         #   open=FALSE,
@@ -201,6 +203,7 @@ shinyUI(
               #  tags$ul(p(tags$span(style ="color:#166e6e","✓   NGOs"))),
                           ),
                           column(5,
+                          br(),
                           wellPanel(
                             strong("The NPM Calculator supports you to:"), br(), br(),
                           "✓   Quickly calculate a product's UK Nutrient Profile Model (NPM) score", br(), br(),
@@ -227,11 +230,11 @@ shinyUI(
                             h2("Help using the tool"),
                             p("Our tools are designed to be intuitive and easy to use.
                             Please watch our quick 'How To' video for step by step instructions, or read our User Guide for more detailed information."),
-                            actionButton('howToVideo1', "Watch our 'How To' video", icon = icon("play"),
+                            actionButton('howToVideo1', "'How To' video", icon = icon("play"),
                                                style = "color: white; background-color: #166e6e", width = '100%',
                                                onclick ="window.open('https://www.youtube.com/watch?v=d6zzbmPE-iI', '_blank')"),
                                                br(), br(),
-                            actionButton('jumpToGuide', "Learn more in our User Guide", icon = icon("book-open"),
+                            actionButton('jumpToGuide', "User Guide", icon = icon("book-open"),
                                                style = "color: white; background-color: #166e6e", width = '100%'),
                           ),
                           h3("Motivation"),
@@ -1053,21 +1056,21 @@ shinyUI(
                                              p("The University of Leeds does not accept any responsibility for incorrect promotion of products under current legislation"),
                                     ))),
                                     
-                                    tabPanel(title = tags$b("Table Calculator Guide"),
+                                    tabPanel(title = tags$b("Multiple Product Calculator Guide"),
                                              br(),
                                              fluidRow(
                                               column(1),
                                               column(5,
                                               wellPanel( style="background-color:white",
-                                             p("The Table Calculator mode enables you to upload information for multiple products and run the entire table through the Nutrient Profile Model.",
+                                             p("The Multiple Product Calculator mode enables you to upload information for multiple products and run the entire table through the Nutrient Profile Model.",
                                              "Please see details on the parameters required at the bottom of this page.",
                                               br(),
                                               br(),
-                                              strong("How to use the Table Calculator mode:")),
+                                              strong("How to use the Multiple Product Calculator mode:")),
                                               tags$ol(
                                                 tags$li("Download the template Excel or CSV file."),
                                                 tags$li("Prepare your data, ensuring you are using the correct column names and categories (the template Excel file contains drop down options for categorical variables)."),
-                                                tags$li("Select the ‘Go to Table Calculator’ button to go to the calculator page, and then click the ‘upload data’ tab."),
+                                                tags$li("Select the ‘Go to Multiple Product Calculator’ button to go to the calculator page, and then click the ‘upload data’ tab."),
                                                 tags$li("Upload your Excel or CSV file – once uploaded you can preview to check the data looks correct."),
                                                 tags$li("Click ‘Calculate NPM scores’."),
                                                 tags$li("The calculator will provide a summary and small preview of the results. Any errors will be flagged at this stage."),
@@ -1084,11 +1087,11 @@ shinyUI(
                                                   style = "color: white; background-color: #166e6e;", width = '100%',
                                                   onclick ="window.open('example-NPM-data.csv', '_blank')"),
                                                   br(), br(),
-                                              p("If you are ready to assess products using the Table Calculator mode,
+                                              p("If you are ready to assess products using the Multiple Product Calculator mode,
                                             click the button below. If you want more information on using the tool, see the video
                                             below."),
                                             br(),
-                                             actionButton('jumpToBulk', "Go to Table Calculator", icon = icon("nutritionix"),
+                                             actionButton('jumpToBulk', "Go to Multiple Product Calculator", icon = icon("nutritionix"),
                                                         style = "color: white; background-color: #166e6e", width = '100%'),
                                               br(),
                                               br(),
@@ -1195,17 +1198,15 @@ shinyUI(
                                               column(1),
                                               column(10,
                                              h3("What is HFSS legislation?"),
-                                             p("HFSS stands for 'High in Fat, Sugar or Salt'"),
-                                             p("This tool is designed to support implementation and enforcement of ",tags$a(href="https://www.legislation.gov.uk/uksi/2021/1368/contents/made","The Food (Promotion and Placement) (England) Regulations 2021", target="_blank"),", which we dub 'HFSS legislation'."),
-                                             p("From October 2022, new legislation will limit the placement of HFSS products in stores, removing them from prime locations like store entrances, the ends of aisles, and at the checkouts"),
-                                             p(tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","Guidance", target="_blank"), "for the legislation is available online."),
+                                             p("HFSS stands for 'High in Fat, Sugar or Salt'.", "This tool is designed to support implementation and enforcement of ",tags$a(href="https://www.legislation.gov.uk/uksi/2021/1368/contents/made","The Food (Promotion and Placement) (England) Regulations 2021", target="_blank"),", which we dub 'HFSS legislation'.",
+                                             "From October 2022, new legislation will limit the placement of HFSS products in stores, removing them from prime locations like store entrances, the ends of aisles, and at the checkouts.",
+                                             tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","Guidance", target="_blank"), "for the legislation is available online."),
                                              br(),
-                                             p("Under",tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","the guidance", target="_blank"),", a product is considered HFSS if it:"),
-                                             tags$ul(tags$span(style ="color:black","Falls into one of 13 categories")),
-                                             tags$ul(tags$span(style ="color:black","Fails the UK NPM")),
-                                             p("Use our tool to check HFSS status"), 
-                                             p("Additionally, restrictions on promotions only apply to packaged products sold in eligible retailers."),
-                                             p("This tool is not designed to assess retailer eligibility."),
+                                             p("Under",tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","the guidance", target="_blank"),", a product is considered HFSS if it",
+                                             "falls into one of the 13 categories listed in the table below, or if it fails the UK NPM.",
+                                             "The NPM Calculator will let you know the HFSS status of foods you enter."),
+                                             p("Please note that restrictions on promotions only apply to packaged products sold in eligible retailers.",
+                                             "This tool is not designed to assess retailer eligibility."),
                                              p("Make sure you're up to date with",tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","the rules", target="_blank"),"."),
                                              hr(style = "border-top: 3px solid #24b4b4;"),
                                              wellPanel( style="background-color:white",
@@ -1241,7 +1242,7 @@ shinyUI(
                
                # Acknowledgements page -----                     
                tabPanel(p("About", style = "font-size:25px;"),
-               fluidPage(
+                fluidRow(
                 column(1),
                 column(10,
                 wellPanel(
@@ -1249,7 +1250,7 @@ shinyUI(
                   "Should you experience any difficulties using the NPM Calculator, please contact", a(href="mailto:info@cdrc.ac.uk", "info@cdrc.ac.uk", style = "font-weight: bold;"),
                   ". If you encountered an error, please include a screenshot of the error message and the dataset that prompted the error (if possible).",
                   "Please also contact us with any questions or suggestions for improvement to the webapp.")
-                ), br(),
+                ), ),column(1),),
                         # p("The Nutrient Profile Model online calculator tool was developed by the Consumer Data Research Centre, University of Leeds."),
                         # h4("Cite the Nutrient Profile Model Calculator"),
                         # p("Project team, Dr Vicki Jenneson , Rosalind Martin (Data Scientist Intern at the Leeds Institute for Data Analytics (LIDA)), and Dr Michelle Morris"),
@@ -1265,31 +1266,38 @@ shinyUI(
                         # Model"), ".")
                         
                 fluidRow(
-                  column(6,
+                  column(1),
+                  column(5,
                   wellPanel(style="background-color:white",
                   h3("Used our tool? Cite us"),
                   p("If you have used our tool and are presenting the results, please cite us as shown below."),
                   p("Proper APA style formatted citation here; with associated DOI tagged. Below is just an example."),
-                  HTML('<a href="https://doi.org/10.5281/zenodo.4321771"><img src="https://zenodo.org/badge/292811671.svg" alt="DOI"></a>'))),
-                  column(6,
+                  HTML('<a href="https://doi.org/10.5281/zenodo.4321771"><img src="https://zenodo.org/badge/292811671.svg" alt="DOI"></a>')),
+                  p("If you haven't already, please let us know how and why you are using our tool. This helps us plan future development:"),
+                                        # bsCollapsePanel(title=p(icon("up-right-and-down-left-from-center"), strong("Click to show/hide form"), style = "color: white; background-color: #166e6e;font-size:20px;text-align: center;vertical-align: middle;", align="center"),
+                                        # p("Please tell us the purpose of your assessment.", style = "color: white; background-color: #166e6e"), style = "color: white; background-color: #166e6e",
+                                        # includeHTML("www/responses.html")
+                                        # ),
+                                        actionButton('infoForm1', "Open poll in new tab", icon = icon("square-poll-vertical"),
+                                               style = "color: white; background-color: #166e6e", width = '100%',
+                                               onclick ="window.open('https://forms.office.com/e/RL86YQfvc7', '_blank')"),),
+                  column(5,
                   h3("Development"),
                   p("The NPM Calculator is based on the MSc work of Vicki Jenneson. The original code for that project
                         can be found", a(href="https://github.com/VickiJenneson/NPM_Promotional_Restrictions", "on GitHub", target="_blank"), ", and  
                         was previously tested on a retail product dataset from Dietary
                         Assessment Ltd."),
                         p("Current code for the NPM Calculator can be found on the", a(href="https://github.com/Leeds-CDRC/NPM-Calculator","CDRC GitHub", target="_blank")," page."),
-                        p("Under the hood, the Table Calculator uses the nutrientprofiler R package to calculate
+                        p("Under the hood, the Multiple Product Calculator uses the nutrientprofiler R package to calculate
                         NPM scores. Find out more about this package here:",a("nutrient profiler documentation",
                         href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 2.0.0.",
                         href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v1.0.0", style = "font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ",
                         ),
                       
-                  ),
+                  ), column(1),
                 )
-                ), # close column
-                column(1)
-               ) # close fluid page
-                        ),# close tabPanel"
+
+                ),# close tabPanel"
                
               #  # open new tabpanel to store logo in
               #  tabPanel(img(src="cropped-CDRC-Col.jpg", height = 70)
