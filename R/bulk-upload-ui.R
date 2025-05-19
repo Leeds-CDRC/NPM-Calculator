@@ -43,7 +43,7 @@ introTab <- tabPanel(
   # href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "color:white;font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 2.0.0.",
   # href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v1.0.0", style = "color:white;font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ",
   # class= "alert alert-success"),
-  p("The Multiple Product Calculator mode enables you to upload information for multiple products and run the entire table through the Nutrient Profile Model.",
+  p("The Multiple Product Calculator mode enables you to upload a spreadsheet of information for multiple products and run the entire table through the Nutrient Profile Model.",
   "Note that this calculator is not optimized for mobile use and is recommended for use at a computer. Please use the Single Product Calculator for on-the-go mobile scoring.",
   fluidRow(
     column(6,
@@ -92,7 +92,7 @@ introTab <- tabPanel(
                           ),
 
   br(),
-  p("Should you experience any difficulties using the NPM Calculator, please contact", a(href="mailto:info@cdrc.ac.uk", "info@cdrc.ac.uk", style = "font-weight: bold;"), "including a screenshot of any relevant error messages.",
+  p("Should you experience any difficulties using the NPM Calculator, please contact", a(href="mailto:hasp@leeds.ac.uk", "hasp@leeds.ac.uk", style = "font-weight: bold;"), "including a screenshot of any relevant error messages.",
                                             class= "alert alert-success"),
 
     actionButton('moveBulkTab', "Next", icon = icon("nutritionix"),
@@ -148,8 +148,8 @@ tableTab <- tabPanel(
         width = 3,
         h3("NPM Multiple Product Calculator"),
         p("Use the below options to upload a local file.
-        If the file is a .csv please specify the additional options below otherwise if using
-        and Excel file just proceed to the Calculate button."),
+        You can check your data in the panel to the left, then
+        select 'Calculate NPM Scores'"),
 
             # Input: Select a file ----
         fileInput("file1", "Choose CSV/Excel File",
@@ -159,7 +159,7 @@ tableTab <- tabPanel(
                           ".csv",
                           ".xlsx")),
         
-        actionButton('runBulk', "Calculate NPM scores", icon = icon("nutritionix"),
+        actionButton('runBulk', " Calculate NPM scores  ", icon = icon("nutritionix"),
               style = "color: white; background-color: #166e6e", width = '100%')
       ),
 

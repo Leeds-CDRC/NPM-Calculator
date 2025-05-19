@@ -110,7 +110,7 @@ conda env create --file conda-env.yml
 Then, you can activate this env (`conda activate npm-env`) and use the `remotes` package to install the `nutrientprofiler` package:
 
 ```bash
-R -e 'remotes::install_github("leeds-cdrc/nutrientprofiler@v1.0.0")'
+R -e 'remotes::install_github("Leeds-CDRC/nutrientprofiler@v2.0.0")'
 ```
 Note this only needs to be done the first time the environment is activated.
 
