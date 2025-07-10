@@ -21,12 +21,39 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
     
     tags$head(
         tags$style(HTML("
+    @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+    * {
+      font-family: Figtree, sans-serif !important;
+    }
     .shiny-output-error-validation {
     color: red;
     }
+
+    .navbar-default .navbar-brand {
+    color: #24246c !important;
+    font-size: 2.5rem;
+    }
+
+    .navbar-default .navbar-nav>li>a {
+    color: #24246c !important;
+    font-size: 1.75rem;
+    }
+
+    .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+    color: #ffffff !important;
+    background-color: #24246c;
+    }
+
+    .navbar-default {
+    background-color: #ffffff !important;
+    }
+
+    .navbar-default:hover {
+        background-color: #ffffff !important;
+    }
     ")), 
         HTML("<!-- Google tag (gtag.js) --> <script async src=https://www.googletagmanager.com/gtag/js?id=G-SRBQ8RE3LV></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-SRBQ8RE3LV'); </script>")
-    ), # close tags$head
+    ), # close tags$head old: color: #1a242f !important;
     
     # Home page ----
     navbarPage(title = "Nutrient Profile Model Calculator", id = "about",
@@ -901,7 +928,7 @@ shinyUI(fluidPage(theme = shinytheme("flatly"),
                         ),# close tabPanel"
                
                # open new tabpanel to store logo in
-               tabPanel(img(src="cropped-CDRC-Col-whitewriting.png", height = 60)
+               tabPanel(img(src="HASPlogo.png", height = 50)
                         ), # close tabPanel
                
 tags$footer("",img(src="UoL_logo.png", height = 60, align ='right'), br(), style = "background-color:teal; color: white; height:50px; position:bottom"), 
