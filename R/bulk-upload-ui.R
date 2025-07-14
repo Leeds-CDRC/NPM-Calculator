@@ -24,6 +24,14 @@
 library(shiny)
 library(DT)
 
+# New HASP Colours
+# #0b5126, #24226f, #7cc6fe, #ffffff, #8789c0, #f06449
+# Additional colours:
+# lighter main: #3f3c84ff
+# lighter background: #e2e4ffff 
+# Alternative wellpanel style
+# background-color:white; border: 2px solid #f06449;
+
 # define a tabPanel for introducing the NPM Multiple Product Calculator
 introTab <- tabPanel(
   title = tags$b("NPM Multiple Product Calculator"),
@@ -72,15 +80,15 @@ introTab <- tabPanel(
     #       class="btn btn-primary"),
     #       br(), br(),
           actionButton('download1', "Excel template", icon = icon("download"),
-              style = "color: white; background-color: #166e6e;", width = '100%',
+              style = "color: white; background-color: #24226f;", width = '100%',
               onclick ="window.open('NPM calculator template.xlsx', '_blank')"),
           br(), br(),
           actionButton('download1', "CSV file template", icon = icon("download"),
-              style = "color: white; background-color: #166e6e;", width = '100%',
+              style = "color: white; background-color: #24226f;", width = '100%',
               onclick ="window.open('NPM calculator template.csv', '_blank')"),
           br(), br(),
   #         actionButton('moveBulkTab', "Next", icon = icon("nutritionix"),
-  #             style = "color: white; background-color: #166e6e;", width = '100%'),
+  #             style = "color: white; background-color: #24226f;", width = '100%'),
   #             br(),
   # br(),
   wellPanel(
@@ -88,7 +96,7 @@ introTab <- tabPanel(
                             p("Our tools are designed to be intuitive and easy to use. Please read our detailed user guide
                             for step-by-step instructions."),
                             actionButton('jumpToGuide', "Learn more in our User Guide", icon = icon("book-open"),
-                                               style = "color: white; background-color: #166e6e", width = '100%'),
+                                               style = "color: white; background-color: #24226f", width = '100%'),
                           ),
 
   br(),
@@ -96,7 +104,7 @@ introTab <- tabPanel(
                                             class= "alert alert-success"),
 
     actionButton('moveBulkTab', "Next", icon = icon("nutritionix"),
-              style = "color: white; background-color: #166e6e;", width = '100%'),
+              style = "color: white; background-color: #24226f;", width = '100%'),
           
     ),
   ),
@@ -127,7 +135,7 @@ introTab <- tabPanel(
   #     fluidRow(style = "margin: 1.5%; text-align:center;",
   #       column(12,
   #             actionButton('moveBulkTab', "Next", icon = icon("nutritionix"),
-  #             style = "color: white; background-color: #166e6e;", width = '40%'),
+  #             style = "color: white; background-color: #24226f;", width = '40%'),
   #       )
   #     ),
   #   p("Should you experience any difficulties using the NPM Calculator, please contact", a(href="mailto:info@cdrc.ac.uk", "info@cdrc.ac.uk", style = "font-weight: bold;"), "including a screenshot of any relevant error messages.",
@@ -160,7 +168,7 @@ tableTab <- tabPanel(
                           ".xlsx")),
         
         actionButton('runBulk', " Calculate NPM scores  ", icon = icon("nutritionix"),
-              style = "color: white; background-color: #166e6e", width = '100%')
+              style = "color: white; background-color: #24226f", width = '100%')
       ),
 
       # Main panel for displaying outputs ----
