@@ -25,7 +25,7 @@
 # You can also find the full text at https://www.gnu.org/licenses.
 
 # You can contact us by raising an issue on our GitHub repository (https://github.com/Leeds-CDRC/NPM-Calculator/issues/new - login required) or by emailing
-# us at info@cdrc.ac.uk.
+# us at info@hasp.ac.uk.
 
 
 # load libraries ----
@@ -73,9 +73,7 @@ custom_theme <- create_theme(
     default_link_active_color = "#FFFFFF",
     default_link_active_bg = "#24226f",
     default_link_hover_color = "#0b5126",
-    # default_link_hover_bg = "#8789c0",
     default_link_hover_bg = NULL,
-    # border_radius="1000px",
   ),
   bs_vars_font(
   size_base = "18px",
@@ -95,8 +93,6 @@ tagList(
 shinyUI(
   fluidPage(use_theme(custom_theme),
   use_googlefont("Figtree"),
-
-  # theme = shinytheme("flatly"),
     header = tags$head(HTML("<html lang='en'>"),
         tags$style(HTML("
     .shiny-output-error-validation {
@@ -127,16 +123,6 @@ shinyUI(
     navbarPage(title = a(p(strong("NPM", style = "color:#24226f;font-size:40px;text-align: center;vertical-align: middle;"),strong("Calculator", style="font-size:30px;vertical-align: middle; color:#3f3c84ff"), br(),em("Nutrient Profile Model Calculator", style="font-size:16px; color:black")),href="https://npmcalculator-test.azurewebsites.net/", style="text-decoration:none"), collapsible=TRUE, 
     fluid=TRUE, id="about",
                tabPanel(p("Home", style = "font-size:25px;", id = "about"),
-              #  tabPanel(p("Home", style = "font-size:20px;"), 
-                        # Welcome statement
-                        # h2("Nutrient Profile Model Online Calculator"),
-                        # h4("The NPM Calculator: making NPM scoring simple, consistent, and transparent", align="center"),
-                        # tags$ul(
-                        #     tags$li("Quickly calculate a product's UK Nutrient Profile Model (NPM) score"),
-                        #     tags$li("Supports decision-making and compliance with legislation"),
-                        #     tags$li("Easy to use at your desk or on the go"),
-                        #     tags$li("Transparent approach, promoting consistency and confidence in results"),
-                        #   ),
                         fluidRow(
                           column(1),
                           column(10,
@@ -168,7 +154,7 @@ shinyUI(
                                         div(style = "text-align: center;",
                                         p("Please tell us how and why you are using this tool:"),
                                         actionButton('infoForm1', "Open poll in new tab", icon = icon("square-poll-vertical"),
-                                               style = "color: white; background-color: #24226f;display:inline-block;", width = '60%',
+                                               style = "color: white; background-color: #3f3c84ff;", width = '100%',
                                                onclick ="window.open('https://forms.office.com/e/RL86YQfvc7', '_blank')"),),
                                         br(),
 
@@ -1068,22 +1054,22 @@ shinyUI(
                                             class= "alert alert-success"), br(),
                                               actionButton('download1', "Download template Excel file", icon = icon("download"),
                                                   style = "color: white; background-color: #24226f;", width = '100%',
-                                                  onclick ="window.open('example-NPM-data.xlsx', '_blank')"),
+                                                  onclick ="window.open('NPM calculator template.xlsx', '_blank')"),
                                               br(), br(),
                                               actionButton('download1', "Download template CSV file", icon = icon("download"),
                                                   style = "color: white; background-color: #24226f;", width = '100%',
-                                                  onclick ="window.open('example-NPM-data.csv', '_blank')"),
+                                                  onclick ="window.open('NPM calculator template.csv', '_blank')"),
                                                   br(), br(),
                                               p("If you are ready to assess products using the Multiple Product Calculator mode,
-                                            click the button below. If you want more information on using the tool, see the video
-                                            below."),
+                                              click the button below. Don't forget to refer to the Input Parameters guidance table
+                                              at the bottom of this page." ), # to add: If you want more information on using the tool, see the video below."
                                             br(),
                                              actionButton('jumpToBulk', "Go to Multiple Product Calculator", icon = icon("nutritionix"),
                                                         style = "color: white; background-color: #24226f", width = '100%'),
                                               br(),
-                                              br(),
-                                              h4("Help using the tool"),
-                                              p("Link will go here to guide video."),
+                                              # br(),
+                                              # h4("Help using the tool"),
+                                              # p("Link will go here to guide video."),
                                               br(),),
                                               column(1),
                                              ), # close fluidRow
@@ -1207,7 +1193,7 @@ shinyUI(
                                       column(10,
                                              h3("Specific gravity"),
                                              p("Nutrient values for drinks, and some foods, are typically presented per 100ml of product. But the NPM applies per 100g of product."),
-                                             p("A specific gravity conversion factor can be applied to convert the volume in ml to weight in grams. This accounts for the density of the prodcut."),
+                                             p("A specific gravity conversion factor can be applied to convert the volume in ml to weight in grams. This accounts for the density of the product."),
                                              p("While pure water has a specific gravity of 1, meaning that 1ml or pure water weighs 1g, most drinks will have a higher density."),
                                              p("For ease for the user, this calculator uses pre-set specific gravity conversion factors, which will be applied according to the type of product you select."),
                                              p("Specific gravity values are listed in the table below. Selecting the correct product type will ensure the most appropriate specific gravity value is used."),
@@ -1233,7 +1219,7 @@ shinyUI(
                 column(1),
                 column(10,
                 wellPanel(
-                  p("The Nutrient Profile Model online calculator tool is developed and maintained by the Healthy and Sustainable Spaces Data Service, University of Leeds.",
+                  p("The Nutrient Profile Model online calculator tool is provided by the Healthy and Sustainable Places Data Service (ES/Z504336/1), originally produced by the Consumer Data Research Centre (ES/LO11840/1; ES/LO11891/1)",
                   "Should you experience any difficulties using the NPM Calculator, please contact", a(href="mailto:hasp@leeds.ac.uk", "hasp@leeds.ac.uk", style = "font-weight: bold;color:black"),
                   ". If you encountered an error, please include a screenshot of the error message and the dataset that prompted the error (if possible).",
                   "Please also contact us with any questions or suggestions for improvement to the webapp.")
@@ -1290,9 +1276,6 @@ shinyUI(
                   tags$ul(
                     tags$li("Jenneson, V. and Morris, M.A. (2021), Data considerations for the success of policy to restrict in-store food promotions: A commentary from a food industry nutritionist consultation. Nutr Bull, 46: 40-51. ", a(href="https://doi.org/10.1111/nbu.12486", "https://doi.org/10.1111/nbu.12486", style = "font-weight: bold;")),
                     tags$li("Jenneson, V., Greenwood, D.C., Clarke, G.P., Hancock, N., Cade, J.E. and Morris, M.A. (2020), Restricting promotions of ‘less healthy’ foods and beverages by price and location: A big data application of UK Nutrient Profiling Models to a retail product dataset. Nutr Bull, 45: 389-402. ", a(href="https://doi.org/10.1111/nbu.12468", "https://doi.org/10.1111/nbu.12468", style = "font-weight: bold;")),
-                  ),
-                  p(
-                    "Please let us know if you have used the NPM calculator tool in you publication by contacting",  a(href="mailto:hasp@leeds.ac.uk", "hasp@leeds.ac.uk", style = "font-weight: bold;color:black"), ".",
                   ),
                   ),
                   ),

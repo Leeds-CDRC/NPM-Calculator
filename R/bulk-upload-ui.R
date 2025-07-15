@@ -32,6 +32,7 @@ library(DT)
 # Alternative wellpanel style
 # background-color:white; border: 2px solid #f06449;
 
+
 # define a tabPanel for introducing the NPM Multiple Product Calculator
 introTab <- tabPanel(
   title = tags$b("NPM Multiple Product Calculator"),
@@ -55,7 +56,7 @@ introTab <- tabPanel(
   "Note that this calculator is not optimized for mobile use and is recommended for use at a computer. Please use the Single Product Calculator for on-the-go mobile scoring.",
   fluidRow(
     column(6,
-    wellPanel(
+    wellPanel(style = "border: 2px solid #f06449;",
     h4("How to use the Multiple Product Calculator:"),
   "1.   Download the template Excel or CSV file provided.", br(), br(),
   "2.   Prepare your data, ensuring you are using the correct column names and categories (the template Excel file contains drop down options for categorical variables).", br(), br(),
@@ -95,7 +96,7 @@ introTab <- tabPanel(
                             h3("Help using the tool"),
                             p("Our tools are designed to be intuitive and easy to use. Please read our detailed user guide
                             for step-by-step instructions."),
-                            actionButton('jumpToGuide', "Learn more in our User Guide", icon = icon("book-open"),
+                            actionButton('jumpToGuide', "User Guide", icon = icon("book-open"),
                                                style = "color: white; background-color: #24226f", width = '100%'),
                           ),
 
@@ -156,8 +157,8 @@ tableTab <- tabPanel(
         width = 3,
         h3("NPM Multiple Product Calculator"),
         p("Use the below options to upload a local file.
-        You can check your data in the panel to the left, then
-        select 'Calculate NPM Scores'"),
+        You can check your data in the panel to the right, then
+        select 'Calculate' below."),
 
             # Input: Select a file ----
         fileInput("file1", "Choose CSV/Excel File",
@@ -167,7 +168,7 @@ tableTab <- tabPanel(
                           ".csv",
                           ".xlsx")),
         
-        actionButton('runBulk', " Calculate NPM scores  ", icon = icon("nutritionix"),
+        actionButton('runBulk', " Calculate  ", icon = icon("nutritionix"),
               style = "color: white; background-color: #24226f", width = '100%')
       ),
 
@@ -211,7 +212,7 @@ resultTab <- tabPanel(tags$b("Results"), value = "bulkResult",
 # all other tabs defined above
 bulkTab <- tabPanel("Multiple Product Calculator",
                     value = "bulkCalc",
-                    wellPanel(style="background-color:#f7fbfb; border-color:#f7fbfb",
+                    wellPanel(style="background-color:#f7fbfb; border: 2px solid #f06449",
                     tabsetPanel(type = "pills", 
                                 shinyjs::useShinyjs(), 
                                 id ="calc2",
