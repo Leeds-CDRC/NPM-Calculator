@@ -1,4 +1,4 @@
-FROM rocker/shiny-verse
+FROM rocker/shiny-verse:4.5.1
 
 RUN install2.r --error --deps TRUE shinyBS shinythemes shinyjs shinydashboard shinydashboardPlus shinyWidgets remotes
 

@@ -80,11 +80,11 @@ introTab <- tabPanel(
     #       target="_blank",
     #       class="btn btn-primary"),
     #       br(), br(),
-          actionButton('download1', "Excel template", icon = icon("download"),
+          actionButton('downloadExcelBulk', "Excel template", icon = icon("download"),
               style = "color: white; background-color: #24226f;", width = '100%',
               onclick ="window.open('NPM calculator template.xlsx', '_blank')"),
           br(), br(),
-          actionButton('download1', "CSV file template", icon = icon("download"),
+          actionButton('downloadCSVBulk', "CSV file template", icon = icon("download"),
               style = "color: white; background-color: #24226f;", width = '100%',
               onclick ="window.open('NPM calculator template.csv', '_blank')"),
           br(), br(),
@@ -96,7 +96,7 @@ introTab <- tabPanel(
                             h3("Help using the tool"),
                             p("Our tools are designed to be intuitive and easy to use. Please read our detailed user guide
                             for step-by-step instructions."),
-                            actionButton('jumpToGuide', "User Guide", icon = icon("book-open"),
+                            actionButton('jumpToGuideFromBulk', "User Guide", icon = icon("book-open"),
                                                style = "color: white; background-color: #24226f", width = '100%'),
                           ),
 

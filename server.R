@@ -53,8 +53,18 @@ shinyServer(function(input, output, session) {
       updateTabsetPanel(session, "about", selected = "calculator")
       }
     )
-  # button to jump from home page to bulk calculator page
-    observeEvent(input$jumpToBulk, {
+  # buttons to jump to bulk calculator page from different locations
+    observeEvent(input$jumpToBulkHome, {
+      updateTabsetPanel(session, "about", selected = "bulkCalc")
+      }
+    )
+    
+    observeEvent(input$jumpToBulkFromSingle, {
+      updateTabsetPanel(session, "about", selected = "bulkCalc")
+      }
+    )
+    
+    observeEvent(input$jumpToBulkFromGuide, {
       updateTabsetPanel(session, "about", selected = "bulkCalc")
       }
     )
@@ -64,8 +74,12 @@ shinyServer(function(input, output, session) {
     updateTabsetPanel(session, "about", selected = "Multi")
   })
   
-  # button to jump from home page to user guide
-  observeEvent(input$jumpToGuide, {
+  # buttons to jump to user guide from different locations
+  observeEvent(input$jumpToGuideHome, {
+    updateTabsetPanel(session, "about", selected = "Guide")
+  })
+  
+  observeEvent(input$jumpToGuideFromBulk, {
     updateTabsetPanel(session, "about", selected = "Guide")
   })
     

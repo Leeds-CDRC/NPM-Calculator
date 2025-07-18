@@ -143,7 +143,7 @@ shinyUI(
                             br(),
 
                             strong("✓   Upload a table to calculate the NPM score for many products at once."),
-                            actionButton('jumpToBulk', "Multiple products", icon = icon("nutritionix"),
+                            actionButton('jumpToBulkHome', "Multiple products", icon = icon("nutritionix"),
                                         style = "color: white; background-color: #24226f", width = '100%'),
                                         br(),
                                         hr(style = "border-top: 3px solid #f06449;"),
@@ -153,7 +153,7 @@ shinyUI(
                                         # ),
                                         div(style = "text-align: center;",
                                         p("Please tell us how and why you are using this tool:"),
-                                        actionButton('infoForm1', "Open poll in new tab", icon = icon("square-poll-vertical"),
+                                        actionButton('infoForm1Home', "Open poll in new tab", icon = icon("square-poll-vertical"),
                                                style = "color: white; background-color: #3f3c84ff;", width = '100%',
                                                onclick ="window.open('https://forms.office.com/e/RL86YQfvc7', '_blank')"),),
                                         br(),
@@ -207,7 +207,7 @@ shinyUI(
                                                style = "color: white; background-color: #24226f", width = '100%',
                                                onclick ="window.open('https://www.youtube.com/watch?v=d6zzbmPE-iI', '_blank')"),
                                                br(), br(),
-                            actionButton('jumpToGuide', "User Guide", icon = icon("book-open"),
+                            actionButton('jumpToGuideHome', "User Guide", icon = icon("book-open"),
                                                style = "color: white; background-color: #24226f", width = '100%'),
                           ),
                           h3("Motivation"),
@@ -303,7 +303,7 @@ shinyUI(
                                                                                  # add conditions for if soft drink selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '1'",
-                                                                                   checkboxGroupInput("SoftDrink", label = p("Does the drink contain any of the following? (select all that apply)"),
+                                                                                   checkboxGroupInput("SoftDrink", label = "Does the drink contain any of the following? (select all that apply)",
                                                                                                       choices = list("Alcohol (>1.2% ABV)"=1, "No added sugar (check ingredients list)"=2,
                                                                                                                      "Infant milk formula" = 3, "Meal replacement powder"=4,
                                                                                                                      "Drink for medical purposes" = 5)
@@ -323,7 +323,7 @@ shinyUI(
                                                                                  # add conditions for if savoury snack selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '2'",
-                                                                                   checkboxGroupInput("Savourysnacks", label = p("Is the snack any of the following? (select all that apply)"),
+                                                                                   checkboxGroupInput("Savourysnacks", label = "Is the snack any of the following? (select all that apply)",
                                                                                                       choices = list("Nuts or seeds"=1, "Fruit/dried fruit"=2,
                                                                                                                      "Meat jerky" = 3)
                                                                                    )
@@ -349,7 +349,7 @@ shinyUI(
                                                                                  # add conditions for if confectionary selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '4'",
-                                                                                   checkboxGroupInput("Confectionary", label = p("Is the confectionary product any of the following? (select all that apply)"),
+                                                                                   checkboxGroupInput("Confectionary", label = "Is the confectionary product any of the following? (select all that apply)",
                                                                                                       choices = list("Dried fruit"=1, "Sweet/savoury coated nuts (not including chocolate)"=2
                                                                                                       ))
                                                                                  ),
@@ -368,7 +368,7 @@ shinyUI(
                                                                                  # add conditions for if ices selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '5'",
-                                                                                   checkboxGroupInput("Ices", label = p("Is the ice cream product any of the following? (select all that apply)"),
+                                                                                   checkboxGroupInput("Ices", label = "Is the ice cream product any of the following? (select all that apply)",
                                                                                                       choices = list("Alcohol >1.2% ABV"=1, "Toppings, sauces or sprinkles"=2
                                                                                                       ))
                                                                                  ),
@@ -387,7 +387,7 @@ shinyUI(
                                                                                  # add conditions for if cakes selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '6'",
-                                                                                   checkboxGroupInput("Cakes", label = p("Is the cake product any of the following? (select all that apply)"),
+                                                                                   checkboxGroupInput("Cakes", label = "Is the cake product any of the following? (select all that apply)",
                                                                                                       choices = list("Cake decorations e.g. sugar sprinkles"=1, "Icing"=2, "Sauces" = 3
                                                                                                       ))
                                                                                  ),
@@ -413,7 +413,7 @@ shinyUI(
                                                                                  # add conditions for if morning goods selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '8'",
-                                                                                   checkboxGroupInput("MorningGoods", label = p("Is the morning goods product a savoury bread (except bagels, crumpets or English muffins)?"),
+                                                                                   checkboxGroupInput("MorningGoods", label = "Is the morning goods product a savoury bread (except bagels, crumpets or English muffins)?",
                                                                                                       choices = list("Yes"=1, "No"=2
                                                                                                       ))
                                                                                  ),
@@ -437,7 +437,7 @@ shinyUI(
                                                                                  # add conditions for if desserts selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '9'",
-                                                                                   checkboxGroupInput("Desserts", label = p("Is the Dessert product any of the following? (select all that apply)"),
+                                                                                   checkboxGroupInput("Desserts", label = "Is the Dessert product any of the following? (select all that apply)",
                                                                                                       choices = list("Cream"=1, "Syrup"=2, "Condensed milk/caramel" = 3,
                                                                                                                      "Dessert topping/sauce" =4, "Plain meringue nests" = 5,
                                                                                                                      "Sponge fingers"=6, "Tinned/canned fruit"=7
@@ -458,7 +458,7 @@ shinyUI(
                                                                                  # add conditions for if yoghurt selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '10'",
-                                                                                   checkboxGroupInput("Yoghurt", label = p("Check the ingredients list. Does the yoghurt contain any of the following? (select all that apply)"),
+                                                                                   checkboxGroupInput("Yoghurt", label = "Check the ingredients list. Does the yoghurt contain any of the following? (select all that apply)",
                                                                                                       choices = list("Added sugar"=1, "Artificial sweetener"=2, "Fruit" = 3
                                                                                                       ))
                                                                                  ),
@@ -477,7 +477,7 @@ shinyUI(
                                                                                  # add conditions for if pizza selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '11'",
-                                                                                   checkboxGroupInput("Pizza", label = p("Is the product classed as any of the following? (select all that apply)"),
+                                                                                   checkboxGroupInput("Pizza", label = "Is the product classed as any of the following? (select all that apply)",
                                                                                                       choices = list("Plain pizza base"=1, "Garlic bread/garlic bread with cheese"=2
                                                                                                       ))
                                                                                  ),
@@ -496,7 +496,7 @@ shinyUI(
                                                                                  # add conditions for if potato products selected selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '12'",
-                                                                                   checkboxGroupInput("Potatoes", label = p("Is the potato product any of the following? (select all that apply)"),
+                                                                                   checkboxGroupInput("Potatoes", label = "Is the potato product any of the following? (select all that apply)",
                                                                                                       choices = list("Plain unprocessed potato"=1, "Sliced or mashed potato (with/without butter)"=2,
                                                                                                                      "Potato salad" = 3
                                                                                                       ))
@@ -516,7 +516,7 @@ shinyUI(
                                                                                  # add conditions for if ready meals selected selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '13'",
-                                                                                   checkboxGroupInput("Readymeals", label = p("Is the ready meal product any of the following? (select all that apply)"),
+                                                                                   checkboxGroupInput("Readymeals", label = "Is the ready meal product any of the following? (select all that apply)",
                                                                                                       choices = list("Dried pasta/noodles/rice"=1, "Side dishes/party food"=2,
                                                                                                                      "Self-assembly meal kits e.g. fajitas" = 3, "Savoury pastries/pies/quiches"=4,
                                                                                                                      "Breaded ham/charcuterie"=5, "Plain or marinaded fish/meat/poultry/alternative"=6,
@@ -554,7 +554,7 @@ shinyUI(
                                                                                                                     selected = FALSE),
                                                                           conditionalPanel(
                                                                            condition = "input.Type_button == 'TRUE'",
-                                                                          checkboxGroupInput("Format", label = p("Drink format (select one)"),
+                                                                          checkboxGroupInput("Format", label = "Drink format (select one)",
                                                                                             choices = list("Ready to drink"=1, "Powdered drink"=2, "Cordial/squash"=3)) 
                                                                           ),),
                                                                    column(4, 
@@ -565,7 +565,7 @@ shinyUI(
                                                                      ),
                                                                           conditionalPanel(
                                                                             condition = "input.Type_button == 'TRUE' && input.Format == '1'",
-                                                                            checkboxGroupInput("DrinkSG", label =p("Select type of drink for appropriate specific gravity conversion"),
+                                                                            checkboxGroupInput("DrinkSG", label = "Select type of drink for appropriate specific gravity conversion",
                                                                                                choices =list("Milk" = 1, "Carbonated/juice drink" = 2,
                                                                                                              "Diet carbonated drink" = 3, "Energy drink" = 4,
                                                                                                              "Cordial/squash (ready to drink)" = 5))
@@ -574,7 +574,7 @@ shinyUI(
                                                                                placement = "top", trigger = "hover", options = NULL),
                                                                           conditionalPanel(
                                                                             condition = "input.Type_button == 'FALSE' && input.Unit_button == 'TRUE'",
-                                                                            checkboxGroupInput("FoodSG", label = p("Select type of food for appropriate specific gravity conversion"),
+                                                                            checkboxGroupInput("FoodSG", label = "Select type of food for appropriate specific gravity conversion",
                                                                                                choices = list("Ice cream" = 1, "Ice lolly" = 2, "Mayonnaise" = 3,
                                                                                                               "Maple syrup" = 4, "Single cream" = 5, "Double cream" = 6,
                                                                                                               "Whipping cream" = 7, "Evaporated milk" = 8, 
@@ -584,7 +584,7 @@ shinyUI(
                                                                                placement = "top", trigger = "hover", options = NULL),
                                                                           conditionalPanel(
                                                                             condition = "input.Type_button =='TRUE' && input.Format == '2'",
-                                                                            checkboxGroupInput("Pow_sold", label = p("How is nutrition information presented?"),
+                                                                            checkboxGroupInput("Pow_sold", label = "How is nutrition information presented?",
                                                                                                choices = list("As consumed (diluted)" = 1,
                                                                                                               "As sold (preparation instructions given)" = 2,
                                                                                                               "As sold (preparation instructions not given)" = 3)),
@@ -592,7 +592,7 @@ shinyUI(
                                                                             placement = "top", trigger = "hover", options = NULL),                                                                        ),
                                                                           conditionalPanel(
                                                                             condition = "input.Type_button == 'TRUE' && input.Format == '3'",
-                                                                            checkboxGroupInput("Cor_sold", label = p("How is nutrition information presented?"),
+                                                                            checkboxGroupInput("Cor_sold", label = "How is nutrition information presented?",
                                                                                                choices = list("As consumed (diluted)" = 1,
                                                                                                               "As sold (preparation instructions given)" = 2,
                                                                                                               "As sold (preparation instructions not given)" = 3)),
@@ -969,7 +969,7 @@ shinyUI(
                                                                               style = "color: white; background-color: #24226f", width = '50%'),
                                                                               br(),
                                                                               br(),
-                                                                  actionButton('jumpToBulk', "Asses several products at once", icon = icon("nutritionix"),
+                                                                  actionButton('jumpToBulkFromSingle', "Asses several products at once", icon = icon("nutritionix"),
                                                                               style = "color: white; background-color: #24226f", width = '50%'), align="center"),
                                                        ),
                                               
@@ -1052,11 +1052,11 @@ shinyUI(
                                               column(5,
                                               p("The template Excel file below contains drop down options for categorical variables to assist you in correctly filling in your dataset.",
                                             class= "alert alert-success"), br(),
-                                              actionButton('download1', "Download template Excel file", icon = icon("download"),
+                                              actionButton('downloadExcelGuide', "Download template Excel file", icon = icon("download"),
                                                   style = "color: white; background-color: #24226f;", width = '100%',
                                                   onclick ="window.open('NPM calculator template.xlsx', '_blank')"),
                                               br(), br(),
-                                              actionButton('download1', "Download template CSV file", icon = icon("download"),
+                                              actionButton('downloadCSVGuide', "Download template CSV file", icon = icon("download"),
                                                   style = "color: white; background-color: #24226f;", width = '100%',
                                                   onclick ="window.open('NPM calculator template.csv', '_blank')"),
                                                   br(), br(),
@@ -1064,7 +1064,7 @@ shinyUI(
                                               click the button below. Don't forget to refer to the Input Parameters guidance table
                                               at the bottom of this page." ), # to add: If you want more information on using the tool, see the video below."
                                             br(),
-                                             actionButton('jumpToBulk', "Go to Multiple Product Calculator", icon = icon("nutritionix"),
+                                             actionButton('jumpToBulkFromGuide', "Go to Multiple Product Calculator", icon = icon("nutritionix"),
                                                         style = "color: white; background-color: #24226f", width = '100%'),
                                               br(),
                                               # br(),
@@ -1248,7 +1248,7 @@ shinyUI(
                   p("Once we are happy with this version, we can release v2 and update the DOI; DOI below just a palceholder."),
                   HTML('<a href="https://doi.org/10.5281/zenodo.4321771"><img src="https://zenodo.org/badge/292811671.svg" alt="DOI"></a>')),
                   p("If you haven't already, please let us know how and why you are using our tool. This helps us plan future development:"),
-                                        actionButton('infoForm1', "Open poll in new tab", icon = icon("square-poll-vertical"),
+                                        actionButton('infoForm1Guide', "Open poll in new tab", icon = icon("square-poll-vertical"),
                                                style = "color: white; background-color: #24226f", width = '100%',
                                                onclick ="window.open('https://forms.office.com/e/RL86YQfvc7', '_blank')"),),
                   column(5,
