@@ -13,7 +13,7 @@ which is explicitly installed in the [Dockerfile](./Dockerfile). All components
 of the Table Calculator except server functions are defined within new component
 files that are present in the [`R`](./R/) folder. All server functions for the
 Table Calculator are defined within [server.R](./server.R#L509) to enable proper
-propogration of input and output variables.
+propagation of input and output variables.
 
 ### Updating `nutrientprofiler` package in NPM Calculator
 

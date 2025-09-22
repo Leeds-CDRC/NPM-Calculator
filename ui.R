@@ -111,6 +111,9 @@ shinyUI(
         z-index: 1000;
         border-width: 0 0 0px;
     }
+    a {
+      display: inline-block !important;
+    }
 
     footer {
     border: 0px solid #fff;
@@ -1220,9 +1223,9 @@ shinyUI(
                 column(10,
                 wellPanel(
                   p("The Nutrient Profile Model online calculator tool is provided by the Healthy and Sustainable Places Data Service (ES/Z504336/1), originally produced by the Consumer Data Research Centre (ES/LO11840/1; ES/LO11891/1)",
-                  "Should you experience any difficulties using the NPM Calculator, please contact", a(href="mailto:hasp@leeds.ac.uk", "hasp@leeds.ac.uk", style = "font-weight: bold;color:black"),
+                  "Should you experience any difficulties using the NPM Calculator, please contact ", a(href="mailto:hasp@leeds.ac.uk", "hasp@leeds.ac.uk", style = "font-weight: bold;color:black", .noWS = "outside"),
                   ". If you encountered an error, please include a screenshot of the error message and the dataset that prompted the error (if possible).",
-                  "Please also contact us with any questions or suggestions for improvement to the webapp.")
+                  "Please also contact us with any questions or suggestions for improvement to the webapp.", .noWS = c("after-begin", "before-end"))
                 ), ),column(1),),
                         # p("The Nutrient Profile Model online calculator tool was developed by the Consumer Data Research Centre, University of Leeds."),
                         # h4("Cite the Nutrient Profile Model Calculator"),
@@ -1245,7 +1248,6 @@ shinyUI(
                   h3("Used our tool? Cite us"),
                   p("If you have used our tool and are presenting the results, please cite us as shown below."),
                   p("Jenneson, V., Martin, R., Morris, M., Baudains, P., Coleman, A., Foley, Z., & Murphy Quinlan, M. (2025). NPM Calculator (Version 2.0) [Software]. Available from https://npmcalculator.hasp.ac.uk/.", style = "font-size: 1.6rem;color: #24226f;"),
-                  p("Once we are happy with this version, we can release v2 and update the DOI; DOI below just a palceholder."),
                   HTML('<a href="https://doi.org/10.5281/zenodo.4321771"><img src="https://zenodo.org/badge/292811671.svg" alt="DOI"></a>')),
                   p("If you haven't already, please let us know how and why you are using our tool. This helps us plan future development:"),
                                         actionButton('infoForm1Guide', "Open poll in new tab", icon = icon("square-poll-vertical"),
@@ -1255,14 +1257,14 @@ shinyUI(
                   br(),
                   h3("Development"),
                   p("The NPM Calculator is based on the MSc work of Vicki Jenneson. The original code for that project
-                        can be found", a(href="https://github.com/VickiJenneson/NPM_Promotional_Restrictions", "on GitHub", target="_blank"), ", and  
+                        can be found ", a(href="https://github.com/VickiJenneson/NPM_Promotional_Restrictions", "on GitHub", target="_blank", .noWS = "outside"), ", and  
                         was previously tested on a retail product dataset from Dietary
-                        Assessment Ltd."),
-                        p("Current code for the NPM Calculator can be found on our", a(href="https://github.com/Leeds-CDRC/NPM-Calculator","GitHub repository", target="_blank"),"."),
+                        Assessment Ltd.", .noWS = c("after-begin", "before-end")),
+                        p("Current code for the NPM Calculator can be found in our ", a(href="https://github.com/Leeds-CDRC/NPM-Calculator","GitHub repository", target="_blank", .noWS = "outside"),".", .noWS = c("after-begin", "before-end")),
                         p("Under the hood, the Multiple Product Calculator uses the nutrientprofiler R package to calculate
-                        NPM scores. Find out more about this package here:",a("nutrient profiler documentation",
-                        href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "font-weight: bold;", target="_blank")," . This tool currently uses",a("nutrientprofiler version 2.0.0.",
-                        href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v2.0.0", style = "font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ",
+                        NPM scores. Find out more about this package here: ", a("nutrient profiler documentation",
+                        href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "font-weight: bold;", target="_blank", .noWS = "outside"),". This tool currently uses",a("nutrientprofiler version 2.0.0.",
+                        href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v2.0.0", style = "font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ", .noWS = c("after-begin", "before-end")
                         ),
                       
                   ), column(1),
