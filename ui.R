@@ -1222,7 +1222,7 @@ shinyUI(
                 column(1),
                 column(10,
                 wellPanel(
-                  p("The Nutrient Profile Model online calculator tool is provided by the Healthy and Sustainable Places Data Service (ES/Z504336/1), originally produced by the Consumer Data Research Centre (ES/LO11840/1; ES/LO11891/1)",
+                  p("The Nutrient Profile Model online calculator tool is provided by the Healthy and Sustainable Places Data Service (ES/Z504336/1), originally produced by the Consumer Data Research Centre (ES/LO11840/1; ES/LO11891/1).",
                   "Should you experience any difficulties using the NPM Calculator, please contact ", a(href="mailto:hasp@leeds.ac.uk", "hasp@leeds.ac.uk", style = "font-weight: bold;color:black", .noWS = "outside"),
                   ". If you encountered an error, please include a screenshot of the error message and the dataset that prompted the error (if possible).",
                   "Please also contact us with any questions or suggestions for improvement to the webapp.", .noWS = c("after-begin", "before-end"))
@@ -1246,15 +1246,15 @@ shinyUI(
                   column(5,
                   wellPanel(style = "background-color:white; border: 2px solid #f06449;",
                   h3("Used our tool? Cite us"),
-                  p("If you have used our tool and are presenting the results, please cite us as shown below."),
-                  p("Jenneson, V., Martin, R., Morris, M., Baudains, P., Coleman, A., Foley, Z., & Murphy Quinlan, M. (2025). NPM Calculator (Version 2.0) [Software]. Available from https://npmcalculator.hasp.ac.uk/.", style = "font-size: 1.6rem;color: #24226f;"),
+                  p('If you have used our tool and are presenting the results, please cite us as shown below.'),
+                  p('Jenneson, V., Martin, R., Morris, M., Baudains, P., Coleman, A., Foley, Z., & Murphy Quinlan, M. (2025). "NPM Calculator (Version 2.0)", https://npmcalculator.hasp.ac.uk/. Data asset provided by the Healthy & Sustainable Places Data Service (ES/Z504336/1), originally produced by the CDRC (ES/L011840/1;ES/L011891/1)', style = "font-size: 1.6rem;color: #24226f;"),
                   HTML('<a href="https://doi.org/10.5281/zenodo.4321771"><img src="https://zenodo.org/badge/292811671.svg" alt="DOI"></a>')),
+                  br(),
                   p("If you haven't already, please let us know how and why you are using our tool. This helps us plan future development:"),
                                         actionButton('infoForm1Guide', "Open poll in new tab", icon = icon("square-poll-vertical"),
                                                style = "color: white; background-color: #24226f", width = '100%',
                                                onclick ="window.open('https://forms.office.com/e/RL86YQfvc7', '_blank')"),),
                   column(5,
-                  br(),
                   h3("Development"),
                   p("The NPM Calculator is based on the MSc work of Vicki Jenneson. The original code for that project
                         can be found ", a(href="https://github.com/VickiJenneson/NPM_Promotional_Restrictions", "on GitHub", target="_blank", .noWS = "outside"), ", and  
@@ -1266,6 +1266,9 @@ shinyUI(
                         href="https://leeds-cdrc.github.io/nutrientprofiler/", style = "font-weight: bold;", target="_blank", .noWS = "outside"),". This tool currently uses",a("nutrientprofiler version 2.0.0.",
                         href="https://github.com/Leeds-CDRC/nutrientprofiler/releases/tag/v2.0.0", style = "font-weight: bold;", target="_blank"),"Please note this alongside your analysis. ", .noWS = c("after-begin", "before-end")
                         ),
+                        p(tags$b("Disclaimer:")),
+                                             p("It is the user's responsibility to check compliance to current legislation by following the", tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance", "latest guidance.", target="_blank"),""),
+                                             p("The University of Leeds does not accept any responsibility for incorrect promotion of products under current legislation"),
                       
                   ), column(1),
                 ),
@@ -1273,7 +1276,7 @@ shinyUI(
                 fluidRow(
                   column(1),
                   column(10,
-                  br(),
+                  hr(style = "border-top: 2px solid #f06449;"),
                   wellPanel(style="background-color:white; box-shadow: None",
                   h3("Related Publications"),
                   tags$ul(
