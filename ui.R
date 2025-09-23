@@ -1209,6 +1209,8 @@ shinyUI(
                                              tableOutput('SGTable'),),),
                                              column(3)),
                                              p("Specific gravity values are taken from", tags$a(href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/694145/Annex__A_the_2018_review_of_the_UK_nutrient_profiling_model.pdf","The 2018 review of the UK Nutrient Profiling Model Appendix A"),", pages 95-96. For products not listed, a specific gravity of 1 is applied"),
+                                             h3("Fruit, Veg and Nuts"),
+                                             p("The NPM calculator isn’t currently designed to assist with the calculation of the percentage of fruits, vegetables and nuts. It is only designed to take a user-inputted percentage value, which assumes that the user has already consulted the", tags$a(href="https://assets.publishing.service.gov.uk/media/5a7cdac7e5274a2c9a484867/dh_123492.pdf","NPM technical guidance", target="_blank"), "and calculated the fruit, vegetable and nut percentage correctly. Fruit, vegetable and nut percentages should be calculated as a proportion of the total product by weight."),
                                     ), column(1))),
                                     ),# close tabsetpanel
                         ),
