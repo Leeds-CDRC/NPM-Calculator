@@ -95,6 +95,10 @@ shinyUI(
   use_googlefont("Figtree"),
     header = tags$head(HTML("<html lang='en'>"),
         tags$style(HTML("
+    @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+    body, p, h1, h2, h3, h4, h5, h6, .btn {
+      font-family: 'FigTree', sans-serif;
+    }
     .shiny-output-error-validation {
     color: red;
     }
@@ -117,10 +121,11 @@ shinyUI(
 
     footer {
     border: 0px solid #fff;
+
     }
     ")), 
         HTML("<!-- Google tag (gtag.js) --> <script async src=https://www.googletagmanager.com/gtag/js?id=G-SRBQ8RE3LV></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-SRBQ8RE3LV'); </script>")
-    ), # close tags$head
+    ), # close tags$head old: color: #1a242f !important;
     
     # Home page ----
     navbarPage(title = a(p(strong("NPM", style = "color:#24226f;font-size:40px;text-align: center;vertical-align: middle;"),strong("Calculator", style="font-size:30px;vertical-align: middle; color:#3f3c84ff"), br(),em("Nutrient Profile Model Calculator", style="font-size:16px; color:black")),href="https://npmcalculator-test.azurewebsites.net/", style="text-decoration:none"), collapsible=TRUE, 
@@ -1294,6 +1299,7 @@ shinyUI(
                 ),
 
                 tabPanel(img(src="HASPlogo.png", height = 60, style = "margin-left: 20px; margin-top: -15px;")
+
                         ), # close tabPanel
                 
                 # close tabPanel"
@@ -1302,15 +1308,6 @@ shinyUI(
               #  tabPanel(img(src="cropped-CDRC-Col.jpg", height = 70)
               #           ), # close tabPanel
                
-# tags$footer("",img(src="UoL_logo.png", height = 50, align ='right'), br(), style = "background-color:#24226f; color: white; height:50px; position:bottom"), 
-# tags$footer(HTML("<small>  Designed by researchers at the University of Leeds</small>"), style = "background-color: #24226f; color: white; height:60px; position:bottom",
-#             br(), HTML("<small>  Published under the AGPL-3.0 License, Copyright © 2024 Leeds-CDRC</small>"), 
-#             br(), HTML('<div style="color:white";><small><a href="https://www.cdrc.ac.uk/privacy/">  Privacy and Cookies</a></small></div>'), br(),)
-
-# tags$footer("",img(src="UoL_logo.png", height = 50, align ='right'), br(), style = "background-color:#24226f; color: white; height:50px; position:bottom"), 
-# tags$footer(HTML("<small>  Designed by researchers at the University of Leeds</small>"), style = "background-color: #24226f; color: white; height:60px; position:bottom",
-#             br(), HTML("<small>  Published under the AGPL-3.0 License, Copyright © 2024 Leeds-CDRC</small>"), 
-#             br(), HTML('<div style="color:white";><small><a href="https://www.cdrc.ac.uk/privacy/">  Privacy and Cookies</a></small></div>'), br(),)
 tags$footer(
   br(),
   br(),
