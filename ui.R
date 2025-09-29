@@ -158,7 +158,7 @@ shinyUI(
                                         p("Please tell us how and why you are using this tool:"),
                                         actionButton('infoForm1Home', "Open poll in new tab", icon = icon("square-poll-vertical"),
                                                style = "color: white; background-color: #3f3c84ff;", width = '100%',
-                                               onclick ="window.open('https://forms.office.com/e/RL86YQfvc7', '_blank')"),),
+                                               onclick ="window.open('https://forms.office.com/e/MDEGQVeR6r', '_blank')"),),
                                         br(),
 
                                         # ui.accordion(
@@ -1250,12 +1250,13 @@ shinyUI(
                   h3("Used our tool? Cite us"),
                   p('If you have used our tool and are presenting the results, please cite us as shown below.'),
                   p('Jenneson, V., Martin, R., Morris, M., Baudains, P., Coleman, A., Foley, Z., & Murphy Quinlan, M. (2025). "NPM Calculator (Version 2.0)", https://npmcalculator.hasp.ac.uk/. Data asset provided by the Healthy & Sustainable Places Data Service (ES/Z504336/1), originally produced by the CDRC (ES/L011840/1;ES/L011891/1)', style = "font-size: 1.6rem;color: #24226f;"),
-                  HTML('<a href="https://doi.org/10.5281/zenodo.4321771"><img src="https://zenodo.org/badge/292811671.svg" alt="DOI"></a>')),
+                  # HTML('<a href="https://doi.org/10.5281/zenodo.4321771"><img src="https://zenodo.org/badge/292811671.svg" alt="DOI"></a>')
+                  ),
                   br(),
                   p("If you haven't already, please let us know how and why you are using our tool. This helps us plan future development:"),
                                         actionButton('infoForm1Guide', "Open poll in new tab", icon = icon("square-poll-vertical"),
                                                style = "color: white; background-color: #24226f", width = '100%',
-                                               onclick ="window.open('https://forms.office.com/e/RL86YQfvc7', '_blank')"),),
+                                               onclick ="window.open('https://forms.office.com/e/MDEGQVeR6r', '_blank')"),),
                   column(5,
                   h3("Development"),
                   p("The NPM Calculator is based on the MSc work of Vicki Jenneson. The original code for that project
