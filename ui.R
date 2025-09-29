@@ -1249,8 +1249,8 @@ shinyUI(
                   wellPanel(style = "background-color:white; border: 2px solid #f06449;",
                   h3("Used our tool? Cite us"),
                   p('If you have used our tool and are presenting the results, please cite us as shown below.'),
-                  p('Jenneson, V., Martin, R., Morris, M., Baudains, P., Coleman, A., Foley, Z., & Murphy Quinlan, M. (2025). "NPM Calculator (Version 2.0)", https://npmcalculator.hasp.ac.uk/. Data asset provided by the Healthy & Sustainable Places Data Service (ES/Z504336/1), originally produced by the CDRC (ES/L011840/1;ES/L011891/1)', style = "font-size: 1.6rem;color: #24226f;"),
-                  # HTML('<a href="https://doi.org/10.5281/zenodo.4321771"><img src="https://zenodo.org/badge/292811671.svg" alt="DOI"></a>')
+                  p('Jenneson, V., Martin, R., Morris, M., Baudains, P., Coleman, A., Foley, Z., & Murphy Quinlan, M. (2025). "NPM Calculator (Version 2.0)",', a(href='https://npmcalculator.hasp.ac.uk/', 'https://npmcalculator.hasp.ac.uk/', .noWS = 'outside'),'. Data asset provided by the Healthy & Sustainable Places Data Service (ES/Z504336/1), originally produced by the CDRC (ES/L011840/1;ES/L011891/1).', a(href='https://doi.org/10.5281/zenodo.7100435', 'https://doi.org/10.5281/zenodo.7100435', target='_blank'), .noWS = c("after-begin", "before-end"), style = "font-size: 1.6rem;color: #24226f;"),
+                  HTML('<a href="https://doi.org/10.5281/zenodo.7100435"><img src="https://zenodo.org/badge/525283616.svg" alt="DOI"></a>')
                   ),
                   br(),
                   p("If you haven't already, please let us know how and why you are using our tool. This helps us plan future development:"),
