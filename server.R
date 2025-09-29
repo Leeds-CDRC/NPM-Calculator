@@ -2,6 +2,30 @@
 # Adapted from https://github.com/VickiJenneson/NPM_Promotional_Restrictions
 # 2021, Rosalind Martin, Data Scientist Intern, Leeds Institute for Data Analytics
 # Supervisors: Michelle Morris and Vicki Jenneson, Univeristy of Leeds
+# Modifications by Maeve Murphy Quinlan, 2024, 2025
+
+# # License
+
+# The NPM calculator and underlying nutrientprofiler R package provide functions to help assess product information against the UK Nutrient Profiling Model (2004/5) and scope for HFSS legislation around product placement. It is designed to provide low level functions that implement UK Nutrient Profiling Model scoring that can be applied across product datasets.
+
+# Copyright (C) 2025 University of Leeds
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+
+# A copy of the GNU Affero General Public License is supplied
+# along with this program in the `LICENSE` file in the repository.
+# You can also find the full text at https://www.gnu.org/licenses.
+
+# You can contact us by raising an issue on our GitHub repository (https://github.com/Leeds-CDRC/NPM-Calculator/issues/new - login required) or by emailing
+# us at hasp@leeds.ac.uk.
 
 # load libraries ----
 library(shiny)
@@ -29,14 +53,33 @@ shinyServer(function(input, output, session) {
       updateTabsetPanel(session, "about", selected = "calculator")
       }
     )
+  # buttons to jump to bulk calculator page from different locations
+    observeEvent(input$jumpToBulkHome, {
+      updateTabsetPanel(session, "about", selected = "bulkCalc")
+      }
+    )
+    
+    observeEvent(input$jumpToBulkFromSingle, {
+      updateTabsetPanel(session, "about", selected = "bulkCalc")
+      }
+    )
+    
+    observeEvent(input$jumpToBulkFromGuide, {
+      updateTabsetPanel(session, "about", selected = "bulkCalc")
+      }
+    )
   
   # button to jump from home page to calculator page
   observeEvent(input$jumpMulti, {
     updateTabsetPanel(session, "about", selected = "Multi")
   })
   
-  # button to jump from home page to user guide
-  observeEvent(input$jumpToGuide, {
+  # buttons to jump to user guide from different locations
+  observeEvent(input$jumpToGuideHome, {
+    updateTabsetPanel(session, "about", selected = "Guide")
+  })
+  
+  observeEvent(input$jumpToGuideFromBulk, {
     updateTabsetPanel(session, "about", selected = "Guide")
   })
     
@@ -100,10 +143,69 @@ shinyServer(function(input, output, session) {
                 ncol=2, byrow=TRUE)
   colnames(SGtab) <-c('Product', 'Specific gravity')
   
-  
   # render table which will be displayed
   output$SGTable <- renderTable(SGtab)  
   
+
+  # Bulk assessment guide table ----
+
+  # create a table for the bulk calculation guide
+  # load the guide contents from csv
+  BulkGuideTab <- read.csv("www/Bulk_calc_table.csv", header=TRUE)
+
+  # render table which will be displayed
+
+  output$BulkGuideTable <- renderDT({
+       datatable(BulkGuideTab, options = list(
+       deferRender = TRUE,
+       pageLength = 21,
+       scrollY = 400,
+       scrollX = TRUE,
+       scroller = TRUE,
+       autoWidth = TRUE,
+       columnDefs = list(list(width = '23%', targets = c(1,3,4)))
+       ),
+       class = "cell-border stripe",
+       colnames = c("Valid data entry" = "Valid.data.entry", "Required field" = "Required.field"),
+       escape = FALSE)
+  }) 
+    # A - points thresholds table
+    # Load from csv file
+    APointsThreshTab <- read.csv("www/A-points_thresholds.csv", header=TRUE)
+    # Render display table
+    output$APointsTable <- renderDT({
+       datatable(APointsThreshTab, options = list(
+              deferRender = TRUE,
+              dom = 't',
+              pageLength = 11),
+       class = "cell-border stripe",
+       rownames = FALSE,
+       colnames = c(
+              "Energy (kJ)" = "Energy..kJ.",
+              "Sat. Fat (g)" = "Sat.Fat..g.",
+              "Total Sugar (g)" = "Total.Sugar..g.",
+              "Sodium (mg)" = "Sodium..mg."),
+       escape = FALSE)
+       })
+    # C - points thresholds table
+    # Load from csv file
+    CPointsThreshTab <- read.csv("www/C-points_thresholds.csv", header=TRUE)
+    # Render display table
+    output$CPointsTable <- renderDT({
+       datatable(CPointsThreshTab, options = list(
+              deferRender = TRUE,
+              dom = 't',
+              pageLength = 11),
+       class = "cell-border stripe",
+       rownames = FALSE,
+       colnames = c(
+              "Fruit, Veg. and Nuts (%)" = "Fruit..Veg...Nuts....",
+              "NSP Fibre (g)" = "NSP.Fibre....g.",
+              "Or AOAC Fibre (g)" = "Or.AOAC.Fibre....g.",
+              "Protein (g)" = "Protein..g."),
+       escape = FALSE)
+       })
+
     # Single product assessment ----
     
     # clear form button using shinyjs package
@@ -287,10 +389,8 @@ shinyServer(function(input, output, session) {
     output$Sugar_points <- reactive({Sug()})
     
     # Saturated fat
-
-    # Add tolerance to avoid floating point error
-    epsilon <- 0.00000001
       # stored value
+       epsilon <- 0.0000001
     SatF <- reactive({ifelse(
       (input$in_satfat/Pweight())*100 >10, 10, 
       ifelse((input$in_satfat/Pweight())*100 >9, 9,
@@ -508,6 +608,118 @@ shinyServer(function(input, output, session) {
       })
     }
     })
+
+  ####### NPM Table Converter server section #######
+
+  # trigger move tab from Intro to bulkDataUpload
+  observeEvent(input$moveBulkTab, {
+      updateTabsetPanel(session, 
+                        inputId = "calc2", 
+                        selected = "bulkDataUpload")
+      }
+    )
+  
+  # this function handles the loading of data
+  # in the Upload Data tab
+  # and renders the data as a DT
+  # this will allow the loading of any csv or xlsx file
+  output$bulkTable <- renderDT({
+                req(input$file1)
+                # function from R/bulk-upload-server.R
+                load_and_render(input$file1)
+                }, 
+              fillContainer=TRUE)
+
+  
+  # this block defines the logic for when "Calculate NPM scores" button
+  # is pressed
+  observeEvent(input$runBulk, {
+
+    # here we check if the uploaded file has a length
+    # this logic prevents a crash if you click the button
+    # before uploading a file
+    if(length(input$file1) == 0) {
+        showModal(modalDialog(
+        title = "Warning",
+        HTML("No input file found. Did you select a file to upload?"),
+        easyClose = TRUE
+        ))
+        req(FALSE)
+    } else {
+       # function from R/bulk-upload-server.R
+       bulk_data <- load_and_render(input$file1)
+    }
+    tryCatch({
+       checkColumnNames(bulk_data)
+    },
+    error = function(e) {
+        showModal(modalDialog(
+        title = "Error",
+        HTML("<strong>The data provided does not contain the correct column headers.</strong><br/>
+        The full error message is:<br /><br /> <pre>",unlist(e['message']),"</pre>"),
+        easyClose = TRUE
+        ))
+       req(FALSE)
+    })
+    # in this block we try to run the runNP function
+    # on the uploaded data
+    # if an error occurs a modal popup is created with a message
+    # and include the error from nutrientprofiler
+    bulk_output <- tryCatch({
+      # function from R/NP-utils.R
+      runNP(bulk_data)
+      }, 
+      error = function(e) {
+        showModal(modalDialog(
+        title = "Error",
+        HTML("<strong>An error occured whilst running the calculator.</strong><br/>
+        The full error message is:<br /><br /> <pre>",unlist(e['message']),"</pre>"),
+        easyClose = TRUE
+        ))
+        # this call here is what prevents the app from crashing
+        # it stops the run logic allowing the user to retry
+        req(FALSE)
+      })
+    
+    
+    # if the above tryCatch block is OK
+    # we render a DT table in Results tab
+    # using a subset of total columns
+    output$bulkResultTable <- renderDT({
+      req(bulk_output)
+#       bulk_output$background.color = ifelse(is.na(bulk_output$NPM_score), "lightgreen", NA)
+      bulk_output$NPM_assessment = ifelse(is.na(bulk_output$NPM_score), "ERROR", bulk_output$NPM_assessment)
+#       bulk_output %>%
+#       formatStyle("NPM_score",
+#                   backgroundColor = styleEqual(bulk_output$NPM_score,bulk_output$background.color ))
+      # the columns specified here determine what is shown in the app
+      bulk_output[,c("name","brand", "NPM_score","NPM_assessment")]
+    }, fillContainer=TRUE
+    )
+    
+    # this function determines the logic for downloading the
+    # newly computed NPM scores ontop of the original data
+    output$downloadData <- downloadHandler(
+      filename = function() {
+        # we write the output file as CSV and add -npm-scored to the 
+        # original file name
+        paste(extract_ext(input$file1$name, 1), "-npm-scored.csv", sep = "")
+      },
+      content = function(file) {
+        write.csv(bulk_output, file, row.names = FALSE)
+      }
+    )
+
+    # logic here for rendering a plot summarising the 
+    # NPM_assessment column
+    output$bulkResultPlot <- renderPlot({
+       bulk_output$NPM_assessment = ifelse(is.na(bulk_output$NPM_score), "ERROR", bulk_output$NPM_assessment)
+        plot(as.factor(bulk_output$NPM_assessment))
+      })
+
+    # automatically move to the Result tab after the computation has run
+    updateTabsetPanel(session = session, inputId = "calc2", selected = "bulkResult")
+  })
     
 
    
