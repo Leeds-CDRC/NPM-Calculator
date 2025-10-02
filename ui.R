@@ -93,7 +93,8 @@ tagList(
 shinyUI(
   fluidPage(use_theme(custom_theme),
   use_googlefont("Figtree"),
-    header = tags$head(HTML("<html lang='en'>"),
+    lang = "en",
+    header = tags$head(
         tags$style(HTML("
     @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
     body, p, h1, h2, h3, h4, h5, h6, .btn {
@@ -1195,14 +1196,15 @@ shinyUI(
                                              " is available online."),
                                              br(),
                                              p("Under",tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","the guidance", target="_blank"),", a product is considered HFSS if it",
-                                             "falls into one of the 13 categories listed in the table below, or if it fails the UK NPM.",
-                                             "The NPM Calculator will let you know the HFSS status of foods you enter."),
+                                             "falls into one of the 13 categories listed in the table below, and if it fails the UK NPM.",
+                                             "The NPM Calculator will let you know the HFSS status of foods you enter.",
+                                             "Please note, there is a slight difference in in-scope products in category 13 between the Promotion and Placement Regulations, and The Advertising Regulations, as outlined in the table below."),
                                              p("Please note that restrictions on promotions only apply to packaged products sold in eligible retailers.",
                                              "This tool is not designed to assess retailer eligibility."),
                                              p("Make sure you're up to date with",tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","the rules", target="_blank"),"."),
                                              hr(style = "border-top: 3px solid #f06449;"),
                                              wellPanel( style="background-color:white; border: 1px solid #f06449;",
-                                             h4("HFSS categories in The Food (Promotion and Placement) (England) Regulations 2021"),
+                                             h4("HFSS categories in The Food (Promotion and Placement) (England) Regulations 2021 and The Advertising (Less Healthy Food Definitions and Exemptions) Regulations 2024"),
                                              tableOutput('CategoryTable'),)),
                                              column(1),
                                              )),
@@ -1309,7 +1311,7 @@ shinyUI(
 
                 ),
 
-                tabPanel(img(src="HASPlogo.png", height = 60, style = "margin-left: 20px; margin-top: -15px;")
+                tabPanel(img(src="HASPlogo.png", height = 60, style = "margin-left: 20px; margin-top: -15px;", alt = "HASP Logo: colourful semicircles next to the text 'Healthy and Sustainable Places Data Service'.")
 
                         ), # close tabPanel
                 
