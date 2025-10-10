@@ -9,5 +9,6 @@
 !www/A-points_thresholds.csv
 !www/C-points_thresholds.csv
 !www/NPM calculator template.csv
-app_cache/
+app_cache/*/*
 scratch/
+

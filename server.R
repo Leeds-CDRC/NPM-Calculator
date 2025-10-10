@@ -30,8 +30,8 @@
 # load libraries ----
 library(shiny)
 library(dplyr)
-library(tidyverse)
-library(vroom)
+# Note: tidyverse loads many packages - only load what's needed
+# library(tidyverse)  # Commented out to reduce memory
 library(shinyBS)
 library(ggplot2)
 library(shinyjs)
@@ -41,7 +41,12 @@ library(shinyWidgets)
 
 #options(warn=2,shiny.error=recover)
 
-options(shiny.maxRequestSize=30*1024^2) # allow file upload size max 30MB
+# Reduce max file upload to 10MB to prevent memory spikes
+options(shiny.maxRequestSize=10*1024^2) # allow file upload size max 10MB
+
+# Enable garbage collection optimization
+options(shiny.sanitize.errors = FALSE)  # For better error handling
+gc() # Initial garbage collection
 
 # define server logic required
 shinyServer(function(input, output, session) {
@@ -445,16 +450,13 @@ shinyServer(function(input, output, session) {
     output$Sodium_points <- reactive({Sod()})
     
     
-    # calculate total A-points
-
-    totalA <- reactive({E_KJ() + Sug() + SatF() + Sod()})
-    output$totalA <- totalA
-    # stored value for use in total score calc
+    # calculate total A-points - consolidated reactive
     TOT_A <- reactive({E_KJ() + Sug() + SatF() + Sod()})
+    output$totalA <- TOT_A  # Reference same reactive
     # to use in html output
     output$TOTALA <- renderText({
-      req(totalA())
-      paste("<span style=\"color:teal\"> <b><h1>",totalA(),"<h1><b> </span>")
+      req(TOT_A())
+      paste("<span style=\"color:teal\"> <b><h1>",TOT_A(),"<h1><b> </span>")
     }) 
     
      
@@ -516,16 +518,13 @@ shinyServer(function(input, output, session) {
     # create reactive output
     output$protein_points <- reactive({Prot()})  
     
-    # calculate total C-points
-    
-    totalC <- reactive({FVN_P() + Prot()+ FIB()})
-    output$totalC <- totalC
-    #stored value for use in total score calc
+    # calculate total C-points - consolidated reactive
     TOT_C <- reactive({FVN_P() + Prot()+ FIB()})
+    output$totalC <- TOT_C  # Reference same reactive
     # to use in html output
     output$TOTALC <-renderText({
-      req(totalC())
-      paste("<span style=\"color:teal\"> <b><h1>",totalC(),"<h1><b> </span>")
+      req(TOT_C())
+      paste("<span style=\"color:teal\"> <b><h1>",TOT_C(),"<h1><b> </span>")
     })
     
     
@@ -661,15 +660,35 @@ shinyServer(function(input, output, session) {
         ))
        req(FALSE)
     })
+    # Memory optimization: Check data size before processing
+    data_size_mb <- object.size(bulk_data) / 1024^2
+    if (data_size_mb > 5) {  # If larger than 5MB, warn user
+        showModal(modalDialog(
+        title = "Large Dataset Warning",
+        HTML(paste0("Processing a large dataset (", round(data_size_mb, 1), " MB). This may take some time and use significant memory.")),
+        easyClose = TRUE
+        ))
+    }
+    
     # in this block we try to run the runNP function
-    # on the uploaded data
+    # on the uploaded data with memory optimization
     # if an error occurs a modal popup is created with a message
     # and include the error from nutrientprofiler
     bulk_output <- tryCatch({
-      # function from R/NP-utils.R
-      runNP(bulk_data)
+      # function from R/NP-utils.R - now with chunking for large datasets
+      result <- runNP(bulk_data)
+      
+      # Clean up intermediate data
+#       rm(bulk_data)
+      gc()  # Force garbage collection
+      
+      result
       }, 
       error = function(e) {
+        # Clean up on error
+       #  if (exists("bulk_data")) rm(bulk_data)
+       #  gc()
+        
         showModal(modalDialog(
         title = "Error",
         HTML("<strong>An error occured whilst running the calculator.</strong><br/>

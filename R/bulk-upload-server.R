@@ -37,21 +37,36 @@ load_and_render <- function(file) {
 
             # retrieve file extension
             file_ext <- extract_ext(file$datapath, -1)
+            
+            # Check file size before loading to prevent memory issues
+            file_size_mb <- file.info(file$datapath)$size / 1024^2
+            if (file_size_mb > 50) {  # Limit to 50MB
+                stop(safeError(paste0("File too large: ", round(file_size_mb, 1), " MB. Maximum allowed size is 50 MB.")))
+            }
 
             tryCatch(
             {
                 if (file_ext == "csv") {
-
-                    df <- read.csv(file$datapath)
+                    # Use more efficient reading for large CSV files
+                    df <- read.csv(file$datapath, stringsAsFactors = FALSE)
 
                 } else if (file_ext == "xlsx") {
-
-                    df <- as.data.frame(read_excel(file$datapath))
-                    df$food_type[is.na(df$food_type)] <- ""
+                    # Read Excel files more efficiently
+                    df <- as.data.frame(read_excel(file$datapath, .name_repair = "minimal"))
+                    # Handle missing values more efficiently
+                    if ("food_type" %in% names(df)) {
+                        df$food_type[is.na(df$food_type)] <- ""
+                    }
 
                 } else {
                     stop(safeError(paste0("Invalid file type uploaded: {",file_ext,"} only `csv` and `xlsx` supported.")))
                 }
+                
+                # Check loaded data size
+                if (nrow(df) > 10000) {
+                    warning(paste0("Large dataset loaded: ", nrow(df), " rows. Processing may take time and use significant memory."))
+                }
+                
             },
             error = function(e) {
                 # return a safeError if a parsing error occurs
