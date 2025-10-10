@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+body, p, h1, h2, h3, h4, h5, h6, .btn {
+    font-family: 'FigTree', sans-serif;
+}
+.shiny-output-error-validation {
+color: red;
+}
+
+.navbar-default {
+    background-color: #fff;
+    border-color: #fff;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #fff;
+    border-width: 0 0 0px;
+}
+.navbar-static-top {
+    z-index: 1000;
+    border-width: 0 0 0px;
+}
+a {
+    display: inline-block !important;
+}
+
+footer {
+border: 0px solid #fff;
+
+}

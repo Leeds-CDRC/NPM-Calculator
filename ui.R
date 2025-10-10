@@ -91,45 +91,16 @@ custom_theme <- create_theme(
 
 tagList(
 shinyUI(
-  fluidPage(use_theme(custom_theme),
-  use_googlefont("Figtree"),
+  fluidPage(
+    use_theme(custom_theme),
+    use_googlefont("Figtree"),
     lang = "en",
-    header = tags$head(
-        tags$style(HTML("
-    @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
-    body, p, h1, h2, h3, h4, h5, h6, .btn {
-      font-family: 'FigTree', sans-serif;
-    }
-    .shiny-output-error-validation {
-    color: red;
-    }
-
-    .navbar-default {
-        background-color: #fff;
-        border-color: #fff;
-    }
-    .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-        border-color: #fff;
-        border-width: 0 0 0px;
-    }
-    .navbar-static-top {
-        z-index: 1000;
-        border-width: 0 0 0px;
-    }
-    a {
-      display: inline-block !important;
-    }
-
-    footer {
-    border: 0px solid #fff;
-
-    }
-    ")), 
-        HTML("<!-- Google tag (gtag.js) --> <script async src=https://www.googletagmanager.com/gtag/js?id=G-SRBQ8RE3LV></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-SRBQ8RE3LV'); </script>")
-    ), # close tags$head old: color: #1a242f !important;
+    tags$head(includeHTML("www/google-analytics.html"),
+    includeCSS("branding.css"),
+    ), # close
     
     # Home page ----
-    navbarPage(title = a(p(strong("NPM", style = "color:#24226f;font-size:40px;text-align: center;vertical-align: middle;"),strong("Calculator", style="font-size:30px;vertical-align: middle; color:#3f3c84ff"), br(),em("Nutrient Profile Model Calculator", style="font-size:16px; color:black")),href="https://npmcalculator-test.azurewebsites.net/", style="text-decoration:none"), collapsible=TRUE, 
+    navbarPage(title = a(p(strong("NPM", style = "color:#24226f;font-size:40px;text-align: center;vertical-align: middle;"),strong("Calculator", style="font-size:30px;vertical-align: middle; color:#3f3c84ff"), br(),em("Nutrient Profile Model Calculator", style="font-size:16px; color:black")),href="https://npmcalculator.hasp.ac.uk/", style="text-decoration:none"), collapsible=TRUE, 
     fluid=TRUE, id="about",
                tabPanel(p("Home", style = "font-size:25px;", id = "about"),
                         fluidRow(
