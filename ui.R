@@ -96,7 +96,7 @@ shinyUI(
     use_googlefont("Figtree"),
     lang = "en",
     tags$head(includeHTML("www/google-analytics.html"),
-    includeCSS("branding.css"),
+    includeCSS("www/branding.css"),
     ), # close
     
     # Home page ----
