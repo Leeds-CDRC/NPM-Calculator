@@ -6,24 +6,20 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libcurl4-openssl-dev \
     libxml2-dev \
+    libfontconfig1-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
     pandoc \
+    wget \
+    gdebi-core \
     && rm -rf /var/lib/apt/lists/*
 
 # Install only necessary R packages to reduce image size
-RUN install2.r --error --deps TRUE \
-    shiny \
-    dplyr \
-    shinyBS \
-    shinythemes \
-    shinyjs \
-    shinydashboard \
-    shinydashboardPlus \
-    shinyWidgets \
-    remotes \
-    ggplot2 \
-    DT \
-    fresh \
-    readxl \
+RUN R -e "install.packages(c('shiny', 'dplyr', 'shinyBS', 'shinythemes', 'shinyjs', 'shinydashboard', 'shinydashboardPlus', 'shinyWidgets', 'remotes', 'ggplot2', 'DT', 'fresh', 'readxl'), repos='https://cran.rstudio.com/', dependencies=TRUE)" \
     && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
 # Install shiny-server
@@ -42,12 +38,8 @@ COPY server.R /srv/shiny-server/server.R
 COPY ui.R /srv/shiny-server/ui.R
 COPY www /srv/shiny-server/www
 COPY R /srv/shiny-server/R
-COPY shiny-server.conf /etc/shiny-server/shiny-server.conf
 
-# Set proper permissions
-RUN chown -R shiny:shiny /srv/shiny-server/
-
-# Add memory configuration for shiny-server
+# Create shiny-server configuration with memory settings
 RUN echo 'run_as shiny;' > /etc/shiny-server/shiny-server.conf && \
     echo 'server {' >> /etc/shiny-server/shiny-server.conf && \
     echo '  listen 3838;' >> /etc/shiny-server/shiny-server.conf && \
@@ -59,6 +51,9 @@ RUN echo 'run_as shiny;' > /etc/shiny-server/shiny-server.conf && \
     echo '    app_idle_timeout 300;' >> /etc/shiny-server/shiny-server.conf && \
     echo '  }' >> /etc/shiny-server/shiny-server.conf && \
     echo '}' >> /etc/shiny-server/shiny-server.conf
+
+# Set proper permissions
+RUN chown -R shiny:shiny /srv/shiny-server/
 
 EXPOSE 3838
 
