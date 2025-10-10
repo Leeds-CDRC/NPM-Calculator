@@ -31,8 +31,8 @@
 # load libraries ----
 library(shiny)
 library(dplyr)
-library(tidyverse)
-library(vroom)
+# Note: tidyverse loads many packages - only load what's needed
+# library(tidyverse)  # Commented out to reduce memory
 library(shinyBS)
 library(ggplot2)
 library(shinythemes)
