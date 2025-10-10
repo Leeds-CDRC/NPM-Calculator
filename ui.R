@@ -91,44 +91,16 @@ custom_theme <- create_theme(
 
 tagList(
 shinyUI(
-  fluidPage(use_theme(custom_theme),
-  use_googlefont("Figtree"),
-    header = tags$head(HTML("<html lang='en'>"),
-        tags$style(HTML("
-    @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
-    body, p, h1, h2, h3, h4, h5, h6, .btn {
-      font-family: 'FigTree', sans-serif;
-    }
-    .shiny-output-error-validation {
-    color: red;
-    }
-
-    .navbar-default {
-        background-color: #fff;
-        border-color: #fff;
-    }
-    .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-        border-color: #fff;
-        border-width: 0 0 0px;
-    }
-    .navbar-static-top {
-        z-index: 1000;
-        border-width: 0 0 0px;
-    }
-    a {
-      display: inline-block !important;
-    }
-
-    footer {
-    border: 0px solid #fff;
-
-    }
-    ")), 
-        HTML("<!-- Google tag (gtag.js) --> <script async src=https://www.googletagmanager.com/gtag/js?id=G-SRBQ8RE3LV></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-SRBQ8RE3LV'); </script>")
-    ), # close tags$head old: color: #1a242f !important;
+  fluidPage(
+    use_theme(custom_theme),
+    use_googlefont("Figtree"),
+    lang = "en",
+    tags$head(includeHTML("www/google-analytics.html"),
+    includeCSS("www/branding.css"),
+    ), # close
     
     # Home page ----
-    navbarPage(title = a(p(strong("NPM", style = "color:#24226f;font-size:40px;text-align: center;vertical-align: middle;"),strong("Calculator", style="font-size:30px;vertical-align: middle; color:#3f3c84ff"), br(),em("Nutrient Profile Model Calculator", style="font-size:16px; color:black")),href="https://npmcalculator-test.azurewebsites.net/", style="text-decoration:none"), collapsible=TRUE, 
+    navbarPage(title = a(p(strong("NPM", style = "color:#24226f;font-size:40px;text-align: center;vertical-align: middle;"),strong("Calculator", style="font-size:30px;vertical-align: middle; color:#3f3c84ff"), br(),em("Nutrient Profile Model Calculator", style="font-size:16px; color:black")),href="https://npmcalculator.hasp.ac.uk/", style="text-decoration:none"), collapsible=TRUE, 
     fluid=TRUE, id="about",
                tabPanel(p("Home", style = "font-size:25px;", id = "about"),
                         fluidRow(
@@ -227,7 +199,7 @@ shinyUI(
                           column(5,
                           wellPanel( style = "background-color:white; border: 2px solid #f06449;",
                 h2("Who is it for?"),
-               p("The NPM Online Calculator is a quick, easy and transparent way to generate a product's NPM score, and check if it may be captured by The Food (Promotion and Placement) (England) Regulations 2021 ('HFSS legislation'), supporting consistency among:"),
+               p("The NPM Online Calculator is a quick, easy and transparent way to generate a product's NPM score, and check if it may be captured by The Food (Promotion and Placement) (England) Regulations 2021 ('HFSS legislation') and The Advertising (Less Healthy Food Definitions and Exemptions) Regulations 2024, supporting consistency among:"),
                br(),
                tags$ul(p(tags$span(style ="color:black","✓   Retailers"))),
                tags$ul(p(tags$span(style ="color:black","✓   Manufacturers"))),
@@ -299,7 +271,7 @@ shinyUI(
                                                                  h3("Step 1. Enter product information", style="color:#24226f"),
                                                                  fluidRow(column(4,textInput("in_prodname", NULL, label = "Name", placeholder = "Product name")),
                                                                           column(4,textInput("in_brand", NULL, label ="Brand", placeholder = "Brand name")),
-                                                                          column(4, p("Check if your product is in scope for Promotion and Placement Regulations 'HFSS legislation' (optional)"),
+                                                                          column(4, p("Check if your product is in scope for Promotion, Placement and Advertising Regulations 'HFSS legislation' (optional)"),
                                                                                  selectInput("Cat_dropdown", label = "Select product category",
                                                                                              choices = list("Soft drink" = 1, "Savoury snack" = 2, "Breakfast cereals" = 3,
                                                                                                             "Confectionary" = 4, "Ices" = 5, "Cakes" = 6, "Sweet biscuits and bars"=7,
@@ -319,13 +291,13 @@ shinyUI(
                                                                                  ),
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '1' && input.SoftDrink == ''",
-                                                                                   p("Drink in scope for HFSS promotions restrictions", style = "color:red"
+                                                                                   p("Drink in scope for HFSS regulations", style = "color:red"
                                                                                    ),
                                                                                  ),
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '1' && input.SoftDrink != ''",
-                                                                                   p("Drink exempt from HFSS promotions restrictions", style = "color:green"),
+                                                                                   p("Drink exempt from HFSS regulations", style = "color:green"),
                                                                                  ), 
                                                                                  
                                                                                  # add conditions for if savoury snack selected 
@@ -338,19 +310,19 @@ shinyUI(
                                                                                  ),
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '2' && input.Savourysnacks == ''",
-                                                                                   p("Snack in scope for HFSS promotions restrictions", style = "color:red"
+                                                                                   p("Snack in scope for HFSS regulations", style = "color:red"
                                                                                    ),
                                                                                  ),
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '2' && input.Savourysnacks != ''",
-                                                                                   p("Snack exempt from HFSS promotions restrictions", style = "color:green"),
+                                                                                   p("Snack exempt from HFSS regulations", style = "color:green"),
                                                                                  ), 
                                                                                  
                                                                                  # add conditions for if cereals selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '3'",
-                                                                                   p("No exemptions for cereals category. Product in scope for HFSS promotions restrictions",
+                                                                                   p("No exemptions for cereals category. Product in scope for HFSS regulations",
                                                                                      style = "color:red"),
                                                                                  ),
                                                                                  
@@ -364,13 +336,13 @@ shinyUI(
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '4' && input.Confectionary == ''",
-                                                                                   p("Confectionary in scope for HFSS promotions restrictions", style = "color:red"
+                                                                                   p("Confectionary in scope for HFSS regulations", style = "color:red"
                                                                                    ),
                                                                                  ),
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '4' && input.Confectionary != ''",
-                                                                                   p("Confectionary exempt from HFSS promotions restrictions", style = "color:green"),
+                                                                                   p("Confectionary exempt from HFSS regulations", style = "color:green"),
                                                                                  ),
                                                                                  
                                                                                  # add conditions for if ices selected 
@@ -383,13 +355,13 @@ shinyUI(
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '5' && input.Ices == ''",
-                                                                                   p("Ice cream product in scope for HFSS promotions restrictions", style = "color:red"
+                                                                                   p("Ice cream product in scope for HFSS regulations", style = "color:red"
                                                                                    ),
                                                                                  ),
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '5' && input.Ices != ''",
-                                                                                   p("Ice cream product exempt from HFSS promotions restrictions", style = "color:green"),
+                                                                                   p("Ice cream product exempt from HFSS regulations", style = "color:green"),
                                                                                  ),
                                                                                  
                                                                                  # add conditions for if cakes selected 
@@ -402,19 +374,19 @@ shinyUI(
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '6' && input.Cakes == ''",
-                                                                                   p("Cake product in scope for HFSS promotions restrictions", style = "color:red"
+                                                                                   p("Cake product in scope for HFSS regulations", style = "color:red"
                                                                                    ),
                                                                                  ),
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '6' && input.Cakes != ''",
-                                                                                   p("Cake product exempt from HFSS promotions restrictions", style = "color:green"),
+                                                                                   p("Cake product exempt from HFSS regulations", style = "color:green"),
                                                                                  ), 
                                                                                  
                                                                                  # add conditions for if biscuits selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '7'",
-                                                                                   p("No exemptions for biscuits category. Product in scope for HFSS promotions restrictions",
+                                                                                   p("No exemptions for biscuits category. Product in scope for HFSS regulations",
                                                                                      style = "color:red"),
                                                                                  ),
                                                                                  
@@ -428,17 +400,17 @@ shinyUI(
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '8' && input.MorningGoods == ''",
-                                                                                   p("Morning goods product in scope for HFSS promotions restrictions", style = "color:red"
+                                                                                   p("Morning goods product in scope for HFSS regulations", style = "color:red"
                                                                                    ),
                                                                                  ),
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '8' && input.MorningGoods == '1'",
-                                                                                   p("Morning goods product exempt from HFSS promotions restrictions", style = "color:green"
+                                                                                   p("Morning goods product exempt from HFSS regulations", style = "color:green"
                                                                                    ),
                                                                                  ),
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '8' && input.MorningGoods == 2",
-                                                                                   p("Morning goods product in scope for HFSS promotions restrictions", style = "color:red"
+                                                                                   p("Morning goods product in scope for HFSS regulations", style = "color:red"
                                                                                    ),
                                                                                  ),
                                                                                  
@@ -454,13 +426,13 @@ shinyUI(
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '9' && input.Desserts == ''",
-                                                                                   p("Dessert product in scope for HFSS promotions restrictions", style = "color:red"
+                                                                                   p("Dessert product in scope for HFSS regulations", style = "color:red"
                                                                                    ),
                                                                                  ),
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '9' && input.Desserts != ''",
-                                                                                   p("Dessert product exempt from HFSS promotions restrictions", style = "color:green"),
+                                                                                   p("Dessert product exempt from HFSS regulations", style = "color:green"),
                                                                                  ), 
                                                                                  
                                                                                  # add conditions for if yoghurt selected 
@@ -473,13 +445,13 @@ shinyUI(
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '10' && input.Yoghurt == ''",
-                                                                                   p("Yoghurt is unsweetened and exempt HFSS promotions restrictions", style = "color:green"
+                                                                                   p("Yoghurt is unsweetened and exempt HFSS regulations", style = "color:green"
                                                                                    ),
                                                                                  ),
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '10' && input.Yoghurt != ''",
-                                                                                   p("Yoghurt is sweetened and in scope for HFSS promotions restrictions", style = "color:red"),
+                                                                                   p("Yoghurt is sweetened and in scope for HFSS regulations", style = "color:red"),
                                                                                  ),  
                                                                                  
                                                                                  # add conditions for if pizza selected 
@@ -492,13 +464,13 @@ shinyUI(
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '11' && input.Pizza == ''",
-                                                                                   p("Pizza in scope for HFSS promotions restrictions", style = "color:red"
+                                                                                   p("Pizza in scope for HFSS regulations", style = "color:red"
                                                                                    ),
                                                                                  ),
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '11' && input.Pizza != ''",
-                                                                                   p("Pizza product exempt from HFSS promotions restrictions", style = "color:green"),
+                                                                                   p("Pizza product exempt from HFSS regulations", style = "color:green"),
                                                                                  ), 
                                                                                  
                                                                                  # add conditions for if potato products selected selected 
@@ -512,13 +484,13 @@ shinyUI(
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '12' && input.Potatoes == ''",
-                                                                                   p("Potato product in scope for HFSS promotions restrictions", style = "color:red"
+                                                                                   p("Potato product in scope for HFSS regulations", style = "color:red"
                                                                                    ),
                                                                                  ),
                                                                                  
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown == '12' && input.Potatoes != ''",
-                                                                                   p("Potato product exempt from HFSS promotions restrictions", style = "color:green"),
+                                                                                   p("Potato product exempt from HFSS regulations", style = "color:green"),
                                                                                  ), 
                                                                                  
                                                                                  # add conditions for if ready meals selected selected 
@@ -532,21 +504,28 @@ shinyUI(
                                                                                                       ))
                                                                                  ),
                                                                                  
-                                                                                 conditionalPanel(
-                                                                                   condition = "input.Cat_dropdown == '13' && input.Readymeals == ''",
-                                                                                   p("Ready meal in scope for HFSS promotions restrictions", style = "color:red"
-                                                                                   ),
-                                                                                 ),
-                                                                                 
-                                                                                 conditionalPanel(
-                                                                                   condition = "input.Cat_dropdown == '13' && input.Readymeals != ''",
-                                                                                   p("Ready meal exempt from HFSS promotions restrictions", style = "color:green"),
-                                                                                 ), 
+                                                                                 # If sandwiches/sushi is selected (regardless of other selections)
+                                                                                    conditionalPanel(
+                                                                                      condition = "input.Cat_dropdown == '13' && input.Readymeals != null && input.Readymeals.indexOf('7') >= 0",
+                                                                                      p("Sandwiches, of any kind, including baguettes, ciabattas, wraps, bagels, filled muffins, filled buns or baps, filled croissants, toasties or paninis are in scope for The Advertising Regulations, but are exempt from Promotion and Placement Regulations.", style = "color:orange"),
+                                                                                    ),
+
+                                                                                    # If nothing is selected
+                                                                                    conditionalPanel(
+                                                                                      condition = "input.Cat_dropdown == '13' && (input.Readymeals == null || input.Readymeals.length == 0)",
+                                                                                      p("Ready meal in scope for HFSS regulations", style = "color:red"),
+                                                                                    ),
+
+                                                                                    # If other items are selected but NOT sandwiches/sushi
+                                                                                    conditionalPanel(
+                                                                                      condition = "input.Cat_dropdown == '13' && input.Readymeals != null && input.Readymeals.length > 0 && input.Readymeals.indexOf('7') < 0",
+                                                                                      p("Ready meal exempt from HFSS regulations", style = "color:green"),
+                                                                                    ),
                                                                                  
                                                                                  # add conditions for if other selected 
                                                                                  conditionalPanel(
                                                                                    condition = "input.Cat_dropdown ==  '14'",
-                                                                                   p("Other food products are exempt from HFSS promotions restrictions",
+                                                                                   p("Other food products are exempt from HFSS regulations",
                                                                                      style = "color:green"),
                                                                                  ),
                                                                                  bsPopover("Cat_dropdown", "Optional_HFSS", 
@@ -1008,7 +987,7 @@ shinyUI(
                                               column(5,
                                              p(tags$b("The NPM calculator tells you:")),
                                              tags$ul(tags$span(style ="color:black","✓   The NPM score")),
-                                             tags$ul(tags$span(style ="color:black","✓   If the product is likely to be in scope for",tags$a(href="https://www.legislation.gov.uk/uksi/2021/1368/contents/made","The Food (Promotion and Placement) (England) Regulations 2021", style="font-weight:bold", target="_blank")," which we dub 'HFSS legislation'")),
+                                             tags$ul(tags$span(style ="color:black","✓   If the product is likely to be in scope for",tags$a(href="https://www.legislation.gov.uk/uksi/2021/1368/contents/made","The Food (Promotion and Placement) (England) Regulations 2021", style="font-weight:bold", target="_blank")," and The Advertising (Less Healthy Food Definitions and Exemptions) Regulations 2024 which we dub 'HFSS legislation'")),
                                              br(),
                                              p(tags$b("To calculate the NPM score, all you need is:")),
                                              tags$ul(tags$span(style ="color:black","✓   Product nutrition information")),
@@ -1179,19 +1158,24 @@ shinyUI(
                                               column(1),
                                               column(10,
                                              h3("What is HFSS legislation?"),
-                                             p("HFSS stands for 'High in Fat, Sugar or Salt'.", "This tool is designed to support implementation and enforcement of ",tags$a(href="https://www.legislation.gov.uk/uksi/2021/1368/contents/made","The Food (Promotion and Placement) (England) Regulations 2021", target="_blank"),", which we dub 'HFSS legislation'.",
-                                             "From October 2022, new legislation will limit the placement of HFSS products in stores, removing them from prime locations like store entrances, the ends of aisles, and at the checkouts.",
-                                             tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","Guidance", target="_blank"), "for the legislation is available online."),
+                                             p("HFSS stands for 'High in Fat, Sugar or Salt'.", "This tool is designed to support implementation and enforcement of ",tags$a(href="https://www.legislation.gov.uk/uksi/2021/1368/contents/made","The Food (Promotion and Placement) (England) Regulations 2021", target="_blank"),"and The Advertising (Less Healthy Food Definitions and Exemptions) Regulations 2024, which we dub 'HFSS legislation'.",
+                                             "Since October 2022, the placement of HFSS products in stores and online is restricted, removing them from prime locations like store entrances, the ends of aisles, and at the checkouts. From October 2025, volume price promotions (e.g. “buy one get one free”, and “50% extra free”) are banned for HFSS products. From January 2026, advertising restrictions will be introduced, placing a 9pm watershed on television advertising and a ban on paid for advertising online, for HFSS products.",
+                                             "Guidance for the ",
+                                             tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance", "Promotion and Placement", target="_blank"),
+                                             "legislation, and ",
+                                             tags$a(href="https://www.gov.uk/government/publications/restricting-advertising-of-less-healthy-food-or-drink-on-tv-and-online-products-in-scope/restricting-advertising-of-less-healthy-food-or-drink-on-tv-and-online-products-in-scope#food-or-drink-products-in-scope","Advertising Regulations", target="_blank"),
+                                             " is available online."),
                                              br(),
                                              p("Under",tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","the guidance", target="_blank"),", a product is considered HFSS if it",
-                                             "falls into one of the 13 categories listed in the table below, or if it fails the UK NPM.",
-                                             "The NPM Calculator will let you know the HFSS status of foods you enter."),
+                                             "falls into one of the 13 categories listed in the table below, and if it fails the UK NPM.",
+                                             "The NPM Calculator will let you know the HFSS status of foods you enter.",
+                                             "Please note, there is a slight difference in in-scope products in category 13 between the Promotion and Placement Regulations, and The Advertising Regulations, as outlined in the table below."),
                                              p("Please note that restrictions on promotions only apply to packaged products sold in eligible retailers.",
                                              "This tool is not designed to assess retailer eligibility."),
                                              p("Make sure you're up to date with",tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance","the rules", target="_blank"),"."),
                                              hr(style = "border-top: 3px solid #f06449;"),
                                              wellPanel( style="background-color:white; border: 1px solid #f06449;",
-                                             h4("HFSS categories in The Food (Promotion and Placement) (England) Regulations 2021"),
+                                             h4("HFSS categories in The Food (Promotion and Placement) (England) Regulations 2021 and The Advertising (Less Healthy Food Definitions and Exemptions) Regulations 2024"),
                                              tableOutput('CategoryTable'),)),
                                              column(1),
                                              )),
@@ -1298,7 +1282,7 @@ shinyUI(
 
                 ),
 
-                tabPanel(img(src="HASPlogo.png", height = 60, style = "margin-left: 20px; margin-top: -15px;")
+                tabPanel(img(src="HASPlogo.png", height = 60, style = "margin-left: 20px; margin-top: -15px;", alt = "HASP Logo: colourful semicircles next to the text 'Healthy and Sustainable Places Data Service'.")
 
                         ), # close tabPanel
                 
