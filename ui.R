@@ -1301,7 +1301,7 @@ tags$footer(
                           br(),
                           HTML("<small>  Published under the AGPL-3.0 License, Copyright © 2025 HASP, University of Leeds</small>"),
                           br(),
-                           HTML('<div><small><a href="https://hasp.ac.uk/privacy/">Privacy and Cookies</a></small></div>'),
+                           HTML('<div><small><a href="https://hasp.ac.uk/privacy/">Privacy and Cookies</a> | <a href="#" id="open_preferences_center">Update cookies preferences</a> </small></div>'),
                           ),
                           column(2,
                           img(src="HASPlogo.png", height = 50, align ='right',
