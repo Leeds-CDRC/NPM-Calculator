@@ -96,6 +96,10 @@ introTab <- tabPanel(
                             h3("Help using the tool"),
                             p("Our tools are designed to be intuitive and easy to use. Please read our detailed user guide
                             for step-by-step instructions."),
+                            actionButton('howToVideo3', "'How To' video", icon = icon("play"),
+                                               style = "color: white; background-color: #24226f", width = '100%',
+                                               onclick ="window.open('https://www.youtube.com/watch?v=asFKi9jrr0U', '_blank')"),
+                                               br(), br(),
                             actionButton('jumpToGuideFromBulk', "User Guide", icon = icon("book-open"),
                                                style = "color: white; background-color: #24226f", width = '100%'),
                           ),
