@@ -199,7 +199,9 @@ shinyUI(
                         "and a need for consistency and transparency in NPM calculation.",
                         "Our tool aims to bridge this gap: the tool and underlying code are provided under open-source licenses; the source code can be", tags$a(href="https://github.com/Leeds-CDRC/NPM-calculator","found here.", target="_blank"),),
                         h4("Future Development"),
-                        p("We are currently monitoring the policy landscape with regard to the use of the 2004/5 UK NPM in future policy. Once confirmation of the Department of Health and Social Care's chosen model is available we will review and respond."),
+                        p("We are currently monitoring the policy landscape with regard to the use of the 2004/5 UK NPM in future policy."),
+                        p("In 2025, The Government confirmed its commitment to updating the Nutrient Profiling Model in its “Fit for the Future”,",tags$a(href="https://www.gov.uk/government/publications/10-year-health-plan-for-england-fit-for-the-future","10-year Health Plan for England.", target="_blank"),
+                        "Once confirmation of the Department of Health and Social Care's chosen model is available we will review and respond."),
 
                ),
                           column(5,
