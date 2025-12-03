@@ -159,7 +159,7 @@ shinyUI(
                           br(),
                           wellPanel(
                             strong("The NPM Calculator supports you to:"), br(), br(),
-                          "✓   Quickly calculate a product's UK Nutrient Profile Model (NPM) score", br(), br(),
+                          "✓   Quickly calculate a product's UK Nutrient Profile Model (NPM) score based on the 2004/5 NPM model", br(), br(),
                           "✓   Make informed decisions and comply with legislation", br(), br(),
                           "✓   Easily calculate scores at your desk or on the go, via your web browser", br(), br(),
                           "✓   Take a transparent approach to NPM scoring, promoting consistency and confidence in results", br()
@@ -198,6 +198,10 @@ shinyUI(
                           p(tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12486","Our research"), "revealed", tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12468","challenges", target="_blank"), 
                         "and a need for consistency and transparency in NPM calculation.",
                         "Our tool aims to bridge this gap: the tool and underlying code are provided under open-source licenses; the source code can be", tags$a(href="https://github.com/Leeds-CDRC/NPM-calculator","found here.", target="_blank"),),
+                        h4("Future Development"),
+                        p("We are currently monitoring the policy landscape with regard to the use of the 2004/5 UK NPM in future policy."),
+                        p("In 2025, The Government confirmed its commitment to updating the Nutrient Profiling Model in its “Fit for the Future”,",tags$a(href="https://www.gov.uk/government/publications/10-year-health-plan-for-england-fit-for-the-future","10-year Health Plan for England.", target="_blank"),
+                        "Once confirmation of the Department of Health and Social Care's chosen model is available we will review and respond."),
 
                ),
                           column(5,
@@ -990,7 +994,7 @@ shinyUI(
                                               column(1),
                                               column(5,
                                              p(tags$b("The NPM calculator tells you:")),
-                                             tags$ul(tags$span(style ="color:black","✓   The NPM score")),
+                                             tags$ul(tags$span(style ="color:black","✓   The NPM score based on the 2004/5 NPM model")),
                                              tags$ul(tags$span(style ="color:black","✓   If the product is likely to be in scope for",tags$a(href="https://www.legislation.gov.uk/uksi/2021/1368/contents/made","The Food (Promotion and Placement) (England) Regulations 2021", style="font-weight:bold", target="_blank")," and The Advertising (Less Healthy Food Definitions and Exemptions) Regulations 2024 which we dub 'HFSS legislation'")),
                                              br(),
                                              p(tags$b("To calculate the NPM score, all you need is:")),
@@ -1001,7 +1005,7 @@ shinyUI(
                                              p(tags$b("To assess if a product is in scope for HFSS legislation:")),
                                              tags$ul(tags$span(style ="color:black","✓   You'll need to provide information about the product category")),),
                                              column(5,
-                                             wellPanel(
+                                             wellPanel(style = "padding-left: 50px !important;",
                                               br(),
                                              p(tags$b("Additional information:")),
                                              tags$li("The nutrient panel and ingredients list can be found on the back of packaged products."),
