@@ -630,6 +630,8 @@ shinyServer(function(input, output, session) {
                 }, 
               fillContainer=TRUE)
 
+
+
   
   # this block defines the logic for when "Calculate NPM scores" button
   # is pressed
