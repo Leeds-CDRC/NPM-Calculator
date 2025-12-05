@@ -96,6 +96,18 @@ shinyUI(
     use_googlefont("Figtree"),
     lang = "en",
     tags$head(includeHTML("www/google-analytics.html"),
+    ui <- fluidPage(
+      tags$style(HTML("
+        table.dataTable thead th {
+          white-space: nowrap;       /* keep text on one line */
+          overflow: hidden;          /* hide overflow */
+          text-overflow: ellipsis;   /* show '...' */
+          max-width: 250px;          /* adjust width as needed */
+        }
+      ")),
+      
+      DTOutput("bulkTable")
+    ),
     includeCSS("www/branding.css"),
     ), # close
     

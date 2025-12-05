@@ -334,36 +334,36 @@ shinyServer(function(input, output, session) {
      })
     
    # SPA A-points calculation ----
-     
+     epsilon <- 0.0000001
     # calculate score for each component to be displayed as an output
     # A-points
     # Energy
     # this stores the output of energy points allowing them to be added up and displayed to the user as total A points 
     E_KJ <- reactive({if(input$Energy_button == FALSE){ # KJ entered
     E_KJ <- ifelse(
-      (input$in_E/Pweight())*100 >3350, 10, 
-      ifelse((input$in_E/Pweight())*100 >3015, 9,
-             ifelse((input$in_E/Pweight())*100 >2680, 8,
-                    ifelse((input$in_E/Pweight())*100 >2345, 7,
-                           ifelse((input$in_E/Pweight())*100 >2010, 6,
-                                  ifelse((input$in_E/Pweight())*100 >1675, 5,
-                                         ifelse((input$in_E/Pweight())*100 >1340, 4,
-                                                ifelse((input$in_E/Pweight())*100 >1005, 3,
-                                                       ifelse((input$in_E/Pweight())*100 >670, 2,
-                                                              ifelse((input$in_E/Pweight())*100 >335, 1,
+      (input$in_E/Pweight())*100 >3350 + epsilon, 10, 
+      ifelse((input$in_E/Pweight())*100 >3015 + epsilon, 9,
+             ifelse((input$in_E/Pweight())*100 >2680 + epsilon, 8,
+                    ifelse((input$in_E/Pweight())*100 >2345 + epsilon, 7,
+                           ifelse((input$in_E/Pweight())*100 >2010 + epsilon, 6,
+                                  ifelse((input$in_E/Pweight())*100 >1675 + epsilon, 5,
+                                         ifelse((input$in_E/Pweight())*100 >1340 + epsilon, 4,
+                                                ifelse((input$in_E/Pweight())*100 >1005 + epsilon, 3,
+                                                       ifelse((input$in_E/Pweight())*100 >670 + epsilon, 2,
+                                                              ifelse((input$in_E/Pweight())*100 >335 + epsilon, 1,
                                                                      0))))))))))
     }else{ # kcal entered
       ifelse(
-        ((input$in_E/Pweight())*100)*4.184 >3350, 10, 
-        ifelse(((input$in_E/Pweight())*100)*4.184 >3015, 9,
-               ifelse(((input$in_E/Pweight())*100)*4.184 >2680, 8,
-                      ifelse(((input$in_E/Pweight())*100)*4.184 >2345, 7,
-                             ifelse(((input$in_E/Pweight())*100)*4.184 >2020, 6,
-                                    ifelse(((input$in_E/Pweight())*100)*4.184 >1675, 5,
-                                           ifelse(((input$in_E/Pweight())*100)*4.184 >1340, 4,
-                                                  ifelse(((input$in_E/Pweight())*100)*4.184 >1005, 3,
-                                                         ifelse(((input$in_E/Pweight())*100)*4.184 >670, 2,
-                                                                ifelse(((input$in_E/Pweight())*100)*4.184 >335, 1,
+        ((input$in_E/Pweight())*100)*4.184 >3350 + epsilon, 10, 
+        ifelse(((input$in_E/Pweight())*100)*4.184 >3015 + epsilon, 9,
+               ifelse(((input$in_E/Pweight())*100)*4.184 >2680 + epsilon, 8,
+                      ifelse(((input$in_E/Pweight())*100)*4.184 >2345 + epsilon, 7,
+                             ifelse(((input$in_E/Pweight())*100)*4.184 >2020 + epsilon, 6,
+                                    ifelse(((input$in_E/Pweight())*100)*4.184 >1675 + epsilon, 5,
+                                           ifelse(((input$in_E/Pweight())*100)*4.184 >1340 + epsilon, 4,
+                                                  ifelse(((input$in_E/Pweight())*100)*4.184 >1005 + epsilon, 3,
+                                                         ifelse(((input$in_E/Pweight())*100)*4.184 >670 + epsilon, 2,
+                                                                ifelse(((input$in_E/Pweight())*100)*4.184 >335 + epsilon, 1,
                                                                        0))))))))))
     }})
     
@@ -373,16 +373,16 @@ shinyServer(function(input, output, session) {
     # Sugar
      # Stored value
     Sug <- reactive({ifelse(
-      (input$in_sugar/Pweight())*100 >45, 10, 
-      ifelse((input$in_sugar/Pweight())*100 >40, 9,
-             ifelse((input$in_sugar/Pweight())*100 >36, 8,
-                    ifelse((input$in_sugar/Pweight())*100 >31, 7,
-                           ifelse((input$in_sugar/Pweight())*100 >27, 6,
-                                  ifelse((input$in_sugar/Pweight())*100 >22.5, 5,
-                                         ifelse((input$in_sugar/Pweight())*100 >18, 4,
-                                                ifelse((input$in_sugar/Pweight())*100 >13.5, 3,
-                                                       ifelse((input$in_sugar/Pweight())*100 >9, 2,
-                                                              ifelse((input$in_sugar/Pweight())*100 >4.5, 1,
+      (input$in_sugar/Pweight())*100 >45 + epsilon, 10, 
+      ifelse((input$in_sugar/Pweight())*100 >40 + epsilon, 9,
+             ifelse((input$in_sugar/Pweight())*100 >36 + epsilon, 8,
+                    ifelse((input$in_sugar/Pweight())*100 >31 + epsilon, 7,
+                           ifelse((input$in_sugar/Pweight())*100 >27 + epsilon, 6,
+                                  ifelse((input$in_sugar/Pweight())*100 >22.5 + epsilon, 5,
+                                         ifelse((input$in_sugar/Pweight())*100 >18 + epsilon, 4,
+                                                ifelse((input$in_sugar/Pweight())*100 >13.5 + epsilon, 3,
+                                                       ifelse((input$in_sugar/Pweight())*100 >9 + epsilon, 2,
+                                                              ifelse((input$in_sugar/Pweight())*100 >4.5 + epsilon, 1,
                                                                      0))))))))))
     })
     # create reactive output
@@ -390,18 +390,18 @@ shinyServer(function(input, output, session) {
     
     # Saturated fat
       # stored value
-       epsilon <- 0.0000001
+       
     SatF <- reactive({ifelse(
-      (input$in_satfat/Pweight())*100 >10, 10, 
-      ifelse((input$in_satfat/Pweight())*100 >9, 9,
-             ifelse((input$in_satfat/Pweight())*100 >8, 8,
+      (input$in_satfat/Pweight())*100 >10 + epsilon, 10, 
+      ifelse((input$in_satfat/Pweight())*100 >9 + epsilon, 9,
+             ifelse((input$in_satfat/Pweight())*100 >8 + epsilon, 8,
                     ifelse((input$in_satfat/Pweight())*100 >7 + epsilon, 7,
-                           ifelse((input$in_satfat/Pweight())*100 >6, 6,
-                                  ifelse((input$in_satfat/Pweight())*100 >5, 5,
-                                         ifelse((input$in_satfat/Pweight())*100 >4, 4,
-                                                ifelse((input$in_satfat/Pweight())*100 >3, 3,
-                                                       ifelse((input$in_satfat/Pweight())*100 >2, 2,
-                                                              ifelse((input$in_satfat/Pweight())*100 >1, 1,
+                           ifelse((input$in_satfat/Pweight())*100 >6+ epsilon, 6,
+                                  ifelse((input$in_satfat/Pweight())*100 >5+ epsilon, 5,
+                                         ifelse((input$in_satfat/Pweight())*100 >4+ epsilon, 4,
+                                                ifelse((input$in_satfat/Pweight())*100 >3+ epsilon, 3,
+                                                       ifelse((input$in_satfat/Pweight())*100 >2+ epsilon, 2,
+                                                              ifelse((input$in_satfat/Pweight())*100 >1+ epsilon, 1,
                                                                      0))))))))))
     })
     # create reactive output
@@ -411,30 +411,30 @@ shinyServer(function(input, output, session) {
     # convert salt to sodium ----
       Sod <- reactive({if(input$salt_button == FALSE){ # NA entered
       Sod <- ifelse(
-      (input$in_NA/Pweight())*100 >900, 10, 
-      ifelse((input$in_NA/Pweight())*100 >810, 9,
-             ifelse((input$in_NA/Pweight())*100 >720, 8,
-                    ifelse((input$in_NA/Pweight())*100 >630, 7,
-                           ifelse((input$in_NA/Pweight())*100 >540, 6,
-                                  ifelse((input$in_NA/Pweight())*100 >450, 5,
-                                         ifelse((input$in_NA/Pweight())*100 >360, 4,
-                                                ifelse((input$in_NA/Pweight())*100 >270, 3,
-                                                       ifelse((input$in_NA/Pweight())*100 >180, 2,
-                                                              ifelse((input$in_NA/Pweight())*100 >90, 1,
+      (input$in_NA/Pweight())*100 >900 + epsilon, 10, 
+      ifelse((input$in_NA/Pweight())*100 >810 + epsilon, 9,
+             ifelse((input$in_NA/Pweight())*100 >720 + epsilon, 8,
+                    ifelse((input$in_NA/Pweight())*100 >630 + epsilon, 7,
+                           ifelse((input$in_NA/Pweight())*100 >540 + epsilon, 6,
+                                  ifelse((input$in_NA/Pweight())*100 >450 + epsilon, 5,
+                                         ifelse((input$in_NA/Pweight())*100 >360 + epsilon, 4,
+                                                ifelse((input$in_NA/Pweight())*100 >270 + epsilon, 3,
+                                                       ifelse((input$in_NA/Pweight())*100 >180 + epsilon, 2,
+                                                              ifelse((input$in_NA/Pweight())*100 >90 + epsilon, 1,
                                                                      0))))))))))
     
       } else { # salt entered
         Sod <- ifelse(
-          (((input$in_NA/2.5)*1000)/Pweight())*100 >900, 10, 
-          ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >810, 9,
-                 ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >720, 8,
-                        ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >630, 7,
-                               ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >540, 6,
-                                      ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >450, 5,
-                                             ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >360, 4,
-                                                    ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >270, 3,
-                                                           ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >180, 2,
-                                                                  ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >90, 1,
+          (((input$in_NA/2.5)*1000)/Pweight())*100 >900 + epsilon, 10, 
+          ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >810 + epsilon, 9,
+                 ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >720 + epsilon, 8,
+                        ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >630 + epsilon, 7,
+                               ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >540 + epsilon, 6,
+                                      ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >450 + epsilon, 5,
+                                             ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >360 + epsilon, 4,
+                                                    ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >270 + epsilon, 3,
+                                                           ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >180 + epsilon, 2,
+                                                                  ifelse((((input$in_NA/2.5)*1000)/Pweight())*100 >90 + epsilon, 1,
                                                                          0))))))))))
         }})
       
@@ -463,9 +463,9 @@ shinyServer(function(input, output, session) {
     # C-points
     # FVN
     # stored value
-    FVN_P <- reactive({ifelse(input$in_FVNper > 80,5,
-                                          ifelse(input$in_FVNper > 60,2,
-                                                 ifelse(input$in_FVNper > 40,1,0)
+    FVN_P <- reactive({ifelse(input$in_FVNper > 80 + epsilon,5,
+                                          ifelse(input$in_FVNper > 60 + epsilon,2,
+                                                 ifelse(input$in_FVNper > 40 + epsilon,1,0)
                                           )
     )})
     # create reactive output
@@ -474,21 +474,21 @@ shinyServer(function(input, output, session) {
     # Fibre
     # stored value
     FIB <- reactive({if(input$fibre_button == FALSE){ #NSP fibre entered
-      FIB <- ifelse((input$in_fib/Pweight())*100 > 3.5,5,
-                                          ifelse((input$in_fib/Pweight())*100 > 2.8,4,
-                                                 ifelse((input$in_fib/Pweight())*100 > 2.1,3,
-                                                        ifelse((input$in_fib/Pweight())*100 > 1.4,2,
-                                                               ifelse((input$in_fib/Pweight())*100 > 0.7,1,0)
+      FIB <- ifelse((input$in_fib/Pweight())*100 > 3.5 + epsilon,5,
+                                          ifelse((input$in_fib/Pweight())*100 > 2.8 + epsilon,4,
+                                                 ifelse((input$in_fib/Pweight())*100 > 2.1 + epsilon,3,
+                                                        ifelse((input$in_fib/Pweight())*100 > 1.4 + epsilon,2,
+                                                               ifelse((input$in_fib/Pweight())*100 > 0.7 + epsilon,1,0)
                                                         )
                                                  )
                                           )
     )
     }else{ # AOAC fibre entered
-      FIB <- ifelse((input$in_fib/Pweight())*100 > 4.7,5, 
-                    ifelse((input$in_fib/Pweight())*100 > 3.7,4,
-                           ifelse((input$in_fib/Pweight())*100 > 2.8,3,
-                                  ifelse((input$in_fib/Pweight())*100 > 1.9,2,
-                                         ifelse((input$in_fib/Pweight())*100 > 0.9,1,0)
+      FIB <- ifelse((input$in_fib/Pweight())*100 > 4.7 + epsilon,5, 
+                    ifelse((input$in_fib/Pweight())*100 > 3.7 + epsilon,4,
+                           ifelse((input$in_fib/Pweight())*100 > 2.8 + epsilon,3,
+                                  ifelse((input$in_fib/Pweight())*100 > 1.9 + epsilon,2,
+                                         ifelse((input$in_fib/Pweight())*100 > 0.9 + epsilon,1,0)
                                   )
                            )
                     )
@@ -503,11 +503,11 @@ shinyServer(function(input, output, session) {
     
     # protein
     # stored value
-    Prot <- reactive({ifelse((input$in_protein/Pweight())*100 > 8,5,
-                                       ifelse((input$in_protein/Pweight())*100 > 6.4,4,
-                                              ifelse((input$in_protein/Pweight())*100 > 4.8,3,
-                                                     ifelse((input$in_protein/Pweight())*100 > 3.2,2,
-                                                            ifelse((input$in_protein/Pweight())*100 > 1.6,1,0)
+    Prot <- reactive({ifelse((input$in_protein/Pweight())*100 > 8.0 + epsilon,5,
+                                       ifelse((input$in_protein/Pweight())*100 > 6.4 + epsilon,4,
+                                              ifelse((input$in_protein/Pweight())*100 > 4.8 + epsilon,3,
+                                                     ifelse((input$in_protein/Pweight())*100 > 3.2 + epsilon,2,
+                                                            ifelse((input$in_protein/Pweight())*100 > 1.6 + epsilon,1,0)
                                                      )
                                               )
                                        )
@@ -629,6 +629,8 @@ shinyServer(function(input, output, session) {
                 load_and_render(input$file1)
                 }, 
               fillContainer=TRUE)
+
+
 
   
   # this block defines the logic for when "Calculate NPM scores" button
