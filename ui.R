@@ -210,10 +210,6 @@ shinyUI(
                           p(tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12486","Our research"), "revealed", tags$a(href="https://onlinelibrary.wiley.com/doi/10.1111/nbu.12468","challenges", target="_blank"), 
                         "and a need for consistency and transparency in NPM calculation.",
                         "Our tool aims to bridge this gap: the tool and underlying code are provided under open-source licenses; the source code can be", tags$a(href="https://github.com/Leeds-CDRC/NPM-calculator","found here.", target="_blank"),),
-                        h4("Future Development"),
-                        p("We are currently monitoring the policy landscape with regard to the use of the 2004/5 UK NPM in future policy."),
-                        p("In 2025, The Government confirmed its commitment to updating the Nutrient Profiling Model in its “Fit for the Future”,",tags$a(href="https://www.gov.uk/government/publications/10-year-health-plan-for-england-fit-for-the-future","10-year Health Plan for England.", target="_blank"),
-                        "Once confirmation of the Department of Health and Social Care's chosen model is available we will review and respond."),
 
                ),
                           column(5,
@@ -229,6 +225,16 @@ shinyUI(
                br(),)),
                column(1)
                ),
+                        fluidRow(
+                          column(1),
+                          column(10,
+                          h3("Future Development"),
+                          p(style="word-break: break-word;", "On 27 January 2026 the ",tags$a(href="https://www.gov.uk/government/collections/nutrient-profiling-model","Government confirmed its commitment to move towards the UK NPM 2018 model.", target="_blank", style="display: inline; word-break: break-word;"), "However, this does not yet apply to policy."),
+                          p("A public consultation on applying the",tags$a(href="https://www.gov.uk/government/publications/nutrient-profiling-model-2018/nutrient-profiling-model-2018-technical-guidance"," NPM 2018"), "to advertising and promotions restrictions will take place in 2026."),
+                          p("Until that consultation is complete the 2004/5 UK NPM model will still apply and this tool can be used to generate a product's NPM score, and check if it may be captured by The Food (Promotion and Placement) (England) Regulations 2021 ('HFSS legislation') and The Advertising (Less Healthy Food Definitions and Exemptions) Regulations 2024."),
+                          ),
+                          column(1)
+                        ),
                         # fluidRow(column(12, tags$h4(tags$span(style ="color:#24226f","Quickly calculate a product's UK Nutrient Profile Model (NPM) score"),sep ="",align = "center"))
                         #         ), #close fluid row
                         # fluidRow(column(12, tags$h4(tags$span(style ="color:#24226f","Supports decision-making and compliance with legislation"),sep ="",align = "center"))
