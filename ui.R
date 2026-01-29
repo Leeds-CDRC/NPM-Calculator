@@ -171,7 +171,7 @@ shinyUI(
                           br(),
                           wellPanel(
                             strong("The NPM Calculator supports you to:"), br(), br(),
-                          "✓   Quickly calculate a product's UK Nutrient Profile Model (NPM) score based on the 2004/5 NPM model", tags$sup(tags$a(href="#future-dev", "*", style="text-decoration:none;")), br(), br(),
+                          "✓   Quickly calculate a product's UK Nutrient Profile Model (NPM) score based on the 2004/5 NPM model", tags$sup(tags$a(href="#future-dev", "*", style="text-decoration:none; font-size:20px; font-weight:bold;")), br(), br(),
                           "✓   Make informed decisions and comply with legislation", br(), br(),
                           "✓   Easily calculate scores at your desk or on the go, via your web browser", br(), br(),
                           "✓   Take a transparent approach to NPM scoring, promoting consistency and confidence in results", br()
@@ -1012,7 +1012,7 @@ shinyUI(
                                               column(1),
                                               column(5,
                                              p(tags$b("The NPM calculator tells you:")),
-                                             tags$ul(tags$span(style ="color:black","✓   The NPM score based on the 2004/5 NPM model")),
+                                             tags$ul(tags$span(style ="color:black","✓   The NPM score based on the 2004/5 NPM model", tags$sup(tags$a(href="#future-dev-guide", "*", style="text-decoration:none; font-size:16px; font-weight:bold;")))),
                                              tags$ul(tags$span(style ="color:black","✓   If the product is likely to be in scope for",tags$a(href="https://www.legislation.gov.uk/uksi/2021/1368/contents/made","The Food (Promotion and Placement) (England) Regulations 2021", style="font-weight:bold", target="_blank")," and The Advertising (Less Healthy Food Definitions and Exemptions) Regulations 2024 which we dub 'HFSS legislation'")),
                                              br(),
                                              p(tags$b("To calculate the NPM score, all you need is:")),
@@ -1038,6 +1038,9 @@ shinyUI(
                                               hr(style = "border-top: 3px solid #f06449;"),
                                              p(tags$b("Disclaimer:")),
                                              p("The Nutrient Profile Model Calculator was developed by researchers at the University of Leeds, to make NPM score calculation quicker, easier and more consistent."),
+                                             p(id="future-dev-guide", style="word-break: break-word;", "On 27 January 2026 the ",tags$a(href="https://www.gov.uk/government/collections/nutrient-profiling-model","Government confirmed its commitment to move towards the UK NPM 2018 model.", target="_blank", style="display: inline; word-break: break-word;"), "However, this does not yet apply to policy."),
+                                              p("A public consultation on applying the",tags$a(href="https://www.gov.uk/government/publications/nutrient-profiling-model-2018/nutrient-profiling-model-2018-technical-guidance"," NPM 2018"), "to advertising and promotions restrictions will take place in 2026."),
+                                              p("Until that consultation is complete the 2004/5 UK NPM model will still apply and this tool can be used to generate a product's NPM score, and check if it may be captured by The Food (Promotion and Placement) (England) Regulations 2021 ('HFSS legislation') and The Advertising (Less Healthy Food Definitions and Exemptions) Regulations 2024."),
                                              p("It is the user's responsibility to check compliance to current legislation by following the", tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance", "latest guidance.", target="_blank"),""),
                                              p("The University of Leeds does not accept any responsibility for incorrect promotion of products under current legislation"),
                                     ))),
@@ -1185,7 +1188,7 @@ shinyUI(
                                               column(10,
                                              h3("What is HFSS legislation?"),
                                              p("HFSS stands for 'High in Fat, Sugar or Salt'.", "This tool is designed to support implementation and enforcement of ",tags$a(href="https://www.legislation.gov.uk/uksi/2021/1368/contents/made","The Food (Promotion and Placement) (England) Regulations 2021", target="_blank"),"and The Advertising (Less Healthy Food Definitions and Exemptions) Regulations 2024, which we dub 'HFSS legislation'.",
-                                             "Since October 2022, the placement of HFSS products in stores and online is restricted, removing them from prime locations like store entrances, the ends of aisles, and at the checkouts. From October 2025, volume price promotions (e.g. “buy one get one free”, and “50% extra free”) are banned for HFSS products. From January 2026, advertising restrictions will be introduced, placing a 9pm watershed on television advertising and a ban on paid for advertising online, for HFSS products.",
+                                             "Since October 2022, the placement of HFSS products in stores and online is restricted, removing them from prime locations like store entrances, the ends of aisles, and at the checkouts. From October 2025, volume price promotions (e.g. “buy one get one free”, and “50% extra free”) are banned for HFSS products. From January 2026, advertising restrictions apply, placing a 9pm watershed on television advertising and a ban on paid for advertising online, for HFSS products.",
                                              "Guidance for the ",
                                              tags$a(href="https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance", "Promotion and Placement", target="_blank"),
                                              "legislation, and ",
@@ -1274,7 +1277,7 @@ shinyUI(
                                                onclick ="window.open('https://forms.office.com/e/MDEGQVeR6r', '_blank')"),),
                   column(5,
                   h3("Development"),
-                  p("The NPM Calculator is based on the MSc work of Vicki Jenneson. The original code for that project
+                  p("The NPM Calculator is based on the MSc work of Dr Vicki Jenneson. The original code for that project
                         can be found ", a(href="https://github.com/VickiJenneson/NPM_Promotional_Restrictions", "on GitHub", target="_blank", .noWS = "outside"), ", and  
                         was previously tested on a retail product dataset from Dietary
                         Assessment Ltd.", .noWS = c("after-begin", "before-end")),
