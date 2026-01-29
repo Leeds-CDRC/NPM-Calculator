@@ -171,7 +171,7 @@ shinyUI(
                           br(),
                           wellPanel(
                             strong("The NPM Calculator supports you to:"), br(), br(),
-                          "✓   Quickly calculate a product's UK Nutrient Profile Model (NPM) score based on the 2004/5 NPM model", br(), br(),
+                          "✓   Quickly calculate a product's UK Nutrient Profile Model (NPM) score based on the 2004/5 NPM model", tags$sup(tags$a(href="#future-dev", "*", style="text-decoration:none;")), br(), br(),
                           "✓   Make informed decisions and comply with legislation", br(), br(),
                           "✓   Easily calculate scores at your desk or on the go, via your web browser", br(), br(),
                           "✓   Take a transparent approach to NPM scoring, promoting consistency and confidence in results", br()
@@ -228,7 +228,7 @@ shinyUI(
                         fluidRow(
                           column(1),
                           column(10,
-                          h3("Future Development"),
+                          h3(id="future-dev", "Future Development"),
                           p(style="word-break: break-word;", "On 27 January 2026 the ",tags$a(href="https://www.gov.uk/government/collections/nutrient-profiling-model","Government confirmed its commitment to move towards the UK NPM 2018 model.", target="_blank", style="display: inline; word-break: break-word;"), "However, this does not yet apply to policy."),
                           p("A public consultation on applying the",tags$a(href="https://www.gov.uk/government/publications/nutrient-profiling-model-2018/nutrient-profiling-model-2018-technical-guidance"," NPM 2018"), "to advertising and promotions restrictions will take place in 2026."),
                           p("Until that consultation is complete the 2004/5 UK NPM model will still apply and this tool can be used to generate a product's NPM score, and check if it may be captured by The Food (Promotion and Placement) (England) Regulations 2021 ('HFSS legislation') and The Advertising (Less Healthy Food Definitions and Exemptions) Regulations 2024."),
