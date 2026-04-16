@@ -46,6 +46,45 @@ options(shiny.maxRequestSize=30*1024^2) # allow file upload size max 30MB
 # define server logic required
 shinyServer(function(input, output, session) {
 
+# Welcome modal shown on app startup ----
+  observe({
+    showModal(modalDialog(
+      title = "Welcome to the NPM Calculator",
+      p("Before using the NPM calculator, help us to plan development and track engagement by letting us know why you use it."),
+      tags$iframe(
+        id = "typeform-iframe",
+        src = "https://rzad75uqobc.typeform.com/to/dtnf476R",
+        frameborder = "0",
+        marginwidth = "0",
+        marginheight = "0",
+        scrolling = "no",
+        style = "border: none; width: 100%; height: 500px; overflow: hidden; transition: height 0.2s ease;",
+        allowfullscreen = NA,
+        webkitallowfullscreen = NA,
+        mozallowfullscreen = NA,
+        msallowfullscreen = NA
+      ),
+      tags$script(HTML("
+        window.addEventListener('message', function(e) {
+          var iframe = document.getElementById('typeform-iframe');
+          if (!iframe) return;
+          var data = e.data;
+          if (typeof data === 'string') {
+            try { data = JSON.parse(data); } catch(err) { return; }
+          }
+          if (data && typeof data.height === 'number' && data.height > 0) {
+            iframe.style.height = data.height + 'px';
+          } else if (data && data.type === 'form-height' && data.value > 0) {
+            iframe.style.height = data.value + 'px';
+          }
+        });
+      ")),
+      size = "l",
+      easyClose = TRUE,
+      footer = modalButton("Continue to the calculator...")
+    ))
+  })
+
 # Define page navigation action buttons ----
 
     # button to jump from home page to calculator page
