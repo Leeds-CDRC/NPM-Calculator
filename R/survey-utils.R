@@ -80,9 +80,9 @@ send_to_azure_table <- function(
       sas_token = sas_token,
       partition_key = partition_key
     )
-    cat("✓ Response sent to Azure Table Storage successfully\n")
+    cat("Response sent to Azure Table Storage successfully\n")
   }, error = function(e) {
-    cat("⚠ Could not write to Azure Table Storage:\n")
+    cat("Could not write to Azure Table Storage:\n")
     cat("  ", e$message, "\n")
     cat("  Saving response locally as backup.\n")
     send_via_local_backup(data)
