@@ -39,6 +39,9 @@ library(shinydashboard)
 library(shinydashboardPlus)
 library(shinyWidgets)
 
+# Load survey utilities
+source("R/survey-utils.R")
+
 #options(warn=2,shiny.error=recover)
 
 options(shiny.maxRequestSize=30*1024^2) # allow file upload size max 30MB
@@ -51,38 +54,70 @@ shinyServer(function(input, output, session) {
     showModal(modalDialog(
       title = "Welcome to the NPM Calculator",
       p("Before using the NPM calculator, help us to plan development and track engagement by letting us know why you use it."),
-      tags$iframe(
-        id = "typeform-iframe",
-        src = "https://rzad75uqobc.typeform.com/to/dtnf476R",
-        frameborder = "0",
-        marginwidth = "0",
-        marginheight = "0",
-        scrolling = "no",
-        style = "border: none; width: 100%; height: 500px; overflow: hidden; transition: height 0.2s ease;",
-        allowfullscreen = NA,
-        webkitallowfullscreen = NA,
-        mozallowfullscreen = NA,
-        msallowfullscreen = NA
+      selectInput(
+        inputId = "survey_purpose",
+        label = "What is your primary reason for using the NPM Calculator?",
+        choices = c(
+          "-- Select an option --" = "",
+          "Enforcement" = "Enforcement",
+          "Check compliance" = "Check compliance",
+          "Research" = "Research",
+          "Policy Development" = "Policy Development",
+          "Other" = "Other",
+          "I'd rather not say" = "I'd rather not say"
+        )
       ),
-      tags$script(HTML("
-        window.addEventListener('message', function(e) {
-          var iframe = document.getElementById('typeform-iframe');
-          if (!iframe) return;
-          var data = e.data;
-          if (typeof data === 'string') {
-            try { data = JSON.parse(data); } catch(err) { return; }
-          }
-          if (data && typeof data.height === 'number' && data.height > 0) {
-            iframe.style.height = data.height + 'px';
-          } else if (data && data.type === 'form-height' && data.value > 0) {
-            iframe.style.height = data.value + 'px';
-          }
-        });
-      ")),
       size = "l",
       easyClose = TRUE,
-      footer = modalButton("Continue to the calculator...")
+      footer = tagList(
+        actionButton(
+          inputId = "submit_survey",
+          label = "Submit & Continue to Calculator",
+          class = "btn btn-primary"
+        ),
+        modalButton("Skip for now")
+      )
     ))
+  })
+
+# Handle survey form submission ----
+  observeEvent(input$submit_survey, {
+    survey_response <- input$survey_purpose
+    
+    # Only submit if a valid selection was made
+    if (survey_response != "") {
+      # Sanitize and prepare data
+      sanitized_response <- sanitize_survey_response(survey_response)
+      
+      # Try to send to Azure Table Storage
+      tryCatch({
+        send_to_azure_table(sanitized_response)
+        # Show success message
+        showNotification(
+          "Thank you! Your response has been recorded.",
+          type = "message",
+          duration = 3
+        )
+      }, error = function(e) {
+        # If Azure fails, log locally but don't block user
+        cat("Warning: Could not send response to Azure storage:", e$message, "\n")
+        showNotification(
+          "Response submitted (stored locally backup). Thank you!",
+          type = "message",
+          duration = 3
+        )
+      })
+      
+      # Close modal and allow user to proceed
+      removeModal()
+    } else {
+      # Show message if no selection made
+      showNotification(
+        "Please select an option before submitting.",
+        type = "warning",
+        duration = 3
+      )
+    }
   })
 
 # Define page navigation action buttons ----

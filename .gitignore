@@ -12,3 +12,10 @@
 app_cache/
 scratch/
 .vscode/
+
+# Credential files
+.Renviron
+config.R
+
+# Survey response backups
+data/survey_responses/

@@ -1,6 +1,6 @@
 FROM rocker/shiny-verse:4.5.1
 
-RUN install2.r --error --deps TRUE shinyBS shinythemes shinyjs shinydashboard shinydashboardPlus shinyWidgets remotes
+RUN install2.r --error --deps TRUE shinyBS shinythemes shinyjs shinydashboard shinydashboardPlus shinyWidgets remotes httr jsonlite
 
 RUN R -e 'remotes::install_github("leeds-cdrc/nutrientprofiler@v2.0.0")'
 
