@@ -120,6 +120,24 @@ And then run the app from the project directory:
 R -e "shiny::runApp(host='0.0.0.0', port=3838)"
 ```
 
+# New feature: collecting use info
+
+In order to store the output of the user feedback, Azure needs the SAS token for the storage account. This should be regenerated/rotated frequently.
+
+To regenerate:
+
+1. In the `appuserfeedback` storage account on Azure, go to *Security + networking* > *Access keys* > Rotate key
+2. Then, *Security + networking* > *Shared access signature* > Create a new access signature:
+    - Deselect all services except Table
+    - Deselect all resources except Object
+    - Deselect all permissions except Add
+    - Set start and expiry date/time
+    - Select a key under Signing key
+    - Click generate and copy the SAS token
+3. Go to the NPM Calculator test app service
+4. Go to *Settings* > *Environment variables* > AZURE_TABLE_SAS_TOKEN and update, pasting in the new SAS token.
+5. Give the app a few minutes to restart, and test. If successful, repeat with the production version.
+
 # License
 
 The NPM calculator and underlying nutrientprofiler R package provide functions to help assess product information against the UK Nutrient Profiling Model (2004/5) and scope for HFSS legislation around product placement. It is designed to provide low level functions that implement UK Nutrient Profiling Model scoring that can be applied across product datasets.
