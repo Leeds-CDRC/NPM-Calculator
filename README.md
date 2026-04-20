@@ -124,7 +124,9 @@ R -e "shiny::runApp(host='0.0.0.0', port=3838)"
 
 In order to store the output of the user feedback, Azure needs the SAS token for the storage account. This should be regenerated/rotated frequently.
 
-To regenerate:
+When running the app locally, the keys will not be available and instead the input will be saved locally in the untracked folder `data/survey_responses`.
+
+To regenerate the Azure tokens:
 
 1. In the `appuserfeedback` storage account on Azure, go to *Security + networking* > *Access keys* > Rotate key
 2. Then, *Security + networking* > *Shared access signature* > Create a new access signature:
@@ -138,9 +140,11 @@ To regenerate:
 4. Go to *Settings* > *Environment variables* > AZURE_TABLE_SAS_TOKEN and update, pasting in the new SAS token.
 5. Give the app a few minutes to restart, and test. If successful, repeat with the production version.
 
+Note that the tokens should not be stored locally, and do not need to be added to the secrets of the GitHub repository.
+
 # License
 
-The NPM calculator and underlying nutrientprofiler R package provide functions to help assess product information against the UK Nutrient Profiling Model (2004/5) and scope for HFSS legislation around product placement. It is designed to provide low level functions that implement UK Nutrient Profiling Model scoring that can be applied across product datasets.
+The NPM calculator and underlying `nutrientprofiler` R package provide functions to help assess product information against the UK Nutrient Profiling Model (2004/5) and scope for HFSS legislation around product placement. It is designed to provide low level functions that implement UK Nutrient Profiling Model scoring that can be applied across product datasets.
 
 Copyright (C) 2024 University of Leeds
 

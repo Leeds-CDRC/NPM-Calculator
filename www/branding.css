@@ -30,3 +30,52 @@ footer {
 border: 0px solid #fff;
 
 }
+
+.modal-footer .btn-primary,
+.modal-footer .btn-primary:focus,
+.modal-footer .btn-primary:active,
+.modal-footer .btn-primary:visited {
+    background-color: #24226f;
+    border-color: #24226f;
+    color: #ffffff;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: #3f3c84;
+    border-color: #3f3c84;
+    color: #ffffff;
+}
+
+.modal-footer .btn-default,
+.modal-footer .btn-default:focus,
+.modal-footer .btn-default:active,
+.modal-footer .btn-default:visited {
+    background-color: #24226f;
+    border-color: #24226f;
+    color: #ffffff;
+}
+
+.modal-footer .btn-default:hover {
+    background-color: #3f3c84;
+    border-color: #3f3c84;
+    color: #ffffff;
+}
+
+#welcome_modal_close.close,
+#welcome_modal_close.close:hover,
+#welcome_modal_close.close:focus,
+#welcome_modal_close.close:active {
+    color: #24226f;
+    font-size: 48px;
+    line-height: 1;
+    opacity: 1;
+    text-shadow: none;
+    background: transparent;
+    border: none;
+}
+
+#welcome_modal_close.close:focus-visible,
+.modal-footer .btn:focus-visible {
+    outline: 2px solid #24226f;
+    outline-offset: 2px;
+}

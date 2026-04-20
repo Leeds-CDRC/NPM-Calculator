@@ -51,33 +51,58 @@ shinyServer(function(input, output, session) {
 
 # Welcome modal shown on app startup ----
   observe({
-    showModal(modalDialog(
-      title = "Welcome to the NPM Calculator",
-      p("Before using the NPM calculator, help us to plan development and track engagement by letting us know why you use it."),
-      selectInput(
-        inputId = "survey_purpose",
-        label = "What is your primary reason for using the NPM Calculator?",
-        choices = c(
-          "-- Select an option --" = "",
-          "Enforcement" = "Enforcement",
-          "Check compliance" = "Check compliance",
-          "Research" = "Research",
-          "Policy Development" = "Policy Development",
-          "Other" = "Other",
-          "I'd rather not say" = "I'd rather not say"
-        )
-      ),
-      size = "l",
-      easyClose = TRUE,
-      footer = tagList(
-        actionButton(
-          inputId = "submit_survey",
-          label = "Submit & Continue to Calculator",
-          class = "btn btn-primary"
+    showModal(
+      htmltools::tagAppendAttributes(
+        modalDialog(
+          title = tagList(
+            tags$span(id = "welcome_modal_title", "Welcome to the NPM Calculator"),
+            tags$button(
+              id = "welcome_modal_close",
+              type = "button",
+              class = "close",
+              onclick = "Shiny.setInputValue('close_welcome_modal', Date.now(), {priority: 'event'})",
+              `aria-label` = "Close welcome dialog",
+              tags$span(`aria-hidden` = "true", "\u00d7")
+            )
+          ),
+          tags$div(
+            id = "welcome_modal_description",
+            p("Before using the NPM calculator, help us to plan development and track engagement by letting us know why you use it."),
+            selectInput(
+              inputId = "survey_purpose",
+              label = "What is your primary reason for using the NPM Calculator?",
+              choices = c(
+                "-- Select an option --" = "",
+                "Enforcement" = "Enforcement",
+                "Check compliance" = "Check compliance",
+                "Research" = "Research",
+                "Policy Development" = "Policy Development",
+                "Other" = "Other",
+                "I'd rather not say" = "I'd rather not say"
+              )
+            )
+          ),
+          size = "l",
+          easyClose = TRUE,
+          footer = tagList(
+            actionButton(
+              inputId = "submit_survey",
+              label = "Submit & Continue to Calculator",
+              class = "btn btn-primary"
+            ),
+            modalButton("Skip for now")
+          )
         ),
-        modalButton("Skip for now")
+        role = "dialog",
+        `aria-modal` = "true",
+        `aria-labelledby` = "welcome_modal_title",
+        `aria-describedby` = "welcome_modal_description"
       )
-    ))
+    )
+  })
+
+  observeEvent(input$close_welcome_modal, {
+    removeModal()
   })
 
 # Handle survey form submission ----
