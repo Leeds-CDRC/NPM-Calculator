@@ -79,3 +79,68 @@ border: 0px solid #fff;
     outline: 2px solid #24226f;
     outline-offset: 2px;
 }
+
+.survey-modal .survey-modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.survey-modal .survey-modal-footer .btn {
+    margin-left: 0;
+    flex: 1 1 240px;
+    max-width: 100%;
+}
+
+@media (max-width: 480px) {
+    .survey-modal .survey-modal-footer .btn {
+        flex-basis: 100%;
+    }
+}
+
+.survey-modal .survey-why-details {
+    margin-top: 12px;
+}
+
+.survey-modal .survey-why-details summary {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 4px;
+    background-color: #24226f;
+    border: 1px solid #24226f;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.survey-modal .survey-why-details summary:hover {
+    background-color: #3f3c84;
+    border-color: #3f3c84;
+}
+
+.survey-modal .survey-why-details summary:focus-visible {
+    outline: 2px solid #24226f;
+    outline-offset: 2px;
+}
+
+.survey-modal .survey-why-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.survey-modal .survey-why-details summary::after {
+    content: "▾";
+    font-size: 0.9em;
+}
+
+.survey-modal .survey-why-details[open] summary::after {
+    transform: rotate(180deg);
+}
+
+.survey-modal .survey-why-details p {
+    margin: 10px 0 0 0;
+}
