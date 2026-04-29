@@ -74,7 +74,8 @@ shinyServer(function(input, output, session) {
               choices = c(
                 "-- Select an option --" = "",
                 "Enforcement" = "Enforcement",
-                "Check compliance" = "Check compliance",
+                "Check compliance (industry)" = "Check compliance (industry)",
+                "Check compliance (public/third sector)" = "Check compliance (public/third sector)",
                 "Research" = "Research",
                 "Policy Development" = "Policy Development",
                 "Other" = "Other",

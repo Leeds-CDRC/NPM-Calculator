@@ -138,16 +138,16 @@ shinyUI(
                             actionButton('jumpToBulkHome', "Multiple products", icon = icon("nutritionix"),
                                         style = "color: white; background-color: #24226f", width = '100%'),
                                         br(),
-                                        hr(style = "border-top: 3px solid #f06449;"),
+                                        # hr(style = "border-top: 3px solid #f06449;"),
                                         # bsCollapsePanel(title=p(icon("up-right-and-down-left-from-center"), strong("Click to show/hide form"), style = "color: white; background-color: #24226f;font-size:20px;text-align: center;vertical-align: middle;", align="center"),
                                         # p("Please tell us the purpose of your assessment.", style = "color: white; background-color: #24226f"), style = "color: white; background-color: #24226f",
                                         # includeHTML("www/responses.html")
                                         # ),
-                                        div(style = "text-align: center;",
-                                        p("Please tell us how and why you are using this tool:"),
-                                        actionButton('infoForm1Home', "Open poll in new tab", icon = icon("square-poll-vertical"),
-                                               style = "color: white; background-color: #3f3c84ff;", width = '100%',
-                                               onclick ="window.open('https://forms.office.com/e/MDEGQVeR6r', '_blank')"),),
+                                        # div(style = "text-align: center;",
+                                        # p("Please tell us how and why you are using this tool:"),
+                                        # actionButton('infoForm1Home', "Open poll in new tab", icon = icon("square-poll-vertical"),
+                                        #        style = "color: white; background-color: #3f3c84ff;", width = '100%',
+                                        #        onclick ="window.open('https://forms.office.com/e/MDEGQVeR6r', '_blank')"),),
                                         br(),
 
                                         # ui.accordion(
