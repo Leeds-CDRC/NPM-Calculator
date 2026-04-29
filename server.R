@@ -50,7 +50,7 @@ options(shiny.maxRequestSize=30*1024^2) # allow file upload size max 30MB
 shinyServer(function(input, output, session) {
 
 # Welcome modal shown on app startup ----
-  observe({
+  show_survey_modal <- function() {
     showModal(
       htmltools::tagAppendAttributes(
         modalDialog(
@@ -100,6 +100,14 @@ shinyServer(function(input, output, session) {
         `aria-describedby` = "welcome_modal_description"
       )
     )
+  }
+
+  observe({
+    show_survey_modal()
+  })
+
+  observeEvent(input$infoForm1Guide, {
+    show_survey_modal()
   })
 
   observeEvent(input$close_welcome_modal, {

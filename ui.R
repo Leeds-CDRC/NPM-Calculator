@@ -1272,9 +1272,8 @@ shinyUI(
                   ),
                   br(),
                   p("If you haven't already, please let us know how and why you are using our tool. This helps us plan future development:"),
-                                        actionButton('infoForm1Guide', "Open poll in new tab", icon = icon("square-poll-vertical"),
-                                               style = "color: white; background-color: #24226f", width = '100%',
-                                               onclick ="window.open('https://forms.office.com/e/MDEGQVeR6r', '_blank')"),),
+                             actionButton('infoForm1Guide', "Open survey", icon = icon("square-poll-vertical"),
+                               style = "color: white; background-color: #24226f", width = '100%'),),
                   column(5,
                   h3("Development"),
                   p("The NPM Calculator is based on the MSc work of Dr Vicki Jenneson. The original code for that project
