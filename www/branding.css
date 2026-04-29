@@ -100,11 +100,11 @@ border: 0px solid #fff;
     }
 }
 
-.survey-modal .survey-why-details {
+.survey-why-details {
     margin-top: 12px;
 }
 
-.survey-modal .survey-why-details summary {
+.survey-why-details summary {
     list-style: none;
     display: inline-flex;
     align-items: center;
@@ -116,31 +116,43 @@ border: 0px solid #fff;
     color: #ffffff;
     cursor: pointer;
     font-weight: 600;
+    text-align: center;
 }
 
-.survey-modal .survey-why-details summary:hover {
+.survey-why-details summary:hover {
     background-color: #3f3c84;
     border-color: #3f3c84;
 }
 
-.survey-modal .survey-why-details summary:focus-visible {
+.survey-why-details summary:focus-visible {
     outline: 2px solid #24226f;
     outline-offset: 2px;
 }
 
-.survey-modal .survey-why-details summary::-webkit-details-marker {
+.survey-why-details summary::-webkit-details-marker {
     display: none;
 }
 
-.survey-modal .survey-why-details summary::after {
+.survey-why-details summary::after {
     content: "▾";
     font-size: 0.9em;
 }
 
-.survey-modal .survey-why-details[open] summary::after {
+.survey-why-details[open] summary::after {
     transform: rotate(180deg);
 }
 
-.survey-modal .survey-why-details p {
+.survey-why-details p {
     margin: 10px 0 0 0;
+}
+
+.survey-why-details-full summary {
+    width: 100%;
+    justify-content: center;
+    position: relative;
+}
+
+.survey-why-details-full summary::after {
+    position: absolute;
+    right: 14px;
 }
