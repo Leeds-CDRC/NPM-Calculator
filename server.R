@@ -49,7 +49,14 @@ options(shiny.maxRequestSize=30*1024^2) # allow file upload size max 30MB
 # define server logic required
 shinyServer(function(input, output, session) {
 
-# Welcome modal shown on app startup ----
+# Welcome modal shown on app startup  - set to a week?
+  # survey_cache_ms <- 7 * 24 * 60 * 60 * 1000 # a week
+  survey_cache_ms <- 60 * 1000 # 60 s for testing
+
+  mark_survey_modal_seen <- function() {
+    shinyjs::runjs("try { localStorage.setItem('npmSurveyLastShown', Date.now().toString()); } catch(e) {}")
+  }
+
   show_survey_modal <- function() {
     showModal(
       htmltools::tagAppendAttributes(
@@ -100,7 +107,11 @@ shinyServer(function(input, output, session) {
               label = "Submit & Continue to Calculator",
               class = "btn btn-primary"
             ),
-            modalButton("Skip for now")
+            actionButton(
+              inputId = "skip_survey",
+              label = "Skip for now",
+              class = "btn btn-default"
+            )
           )
         ),
         class = "survey-modal",
@@ -112,7 +123,25 @@ shinyServer(function(input, output, session) {
     )
   }
 
-  observe({
+  session$onFlushed(function() {
+    shinyjs::runjs(
+      paste0(
+        "try {",
+        "var key = 'npmSurveyLastShown';",
+        "var now = Date.now();",
+        "var maxAge = ", survey_cache_ms, ";",
+        "var lastShown = parseInt(localStorage.getItem(key) || '0', 10);",
+        "if (!lastShown || isNaN(lastShown) || (now - lastShown) >= maxAge) {",
+        "Shiny.setInputValue('show_welcome_modal', now, {priority: 'event'});",
+        "}",
+        "} catch(e) {",
+        "Shiny.setInputValue('show_welcome_modal', Date.now(), {priority: 'event'});",
+        "}"
+      )
+    )
+  }, once = TRUE)
+
+  observeEvent(input$show_welcome_modal, {
     show_survey_modal()
   })
 
@@ -121,6 +150,12 @@ shinyServer(function(input, output, session) {
   })
 
   observeEvent(input$close_welcome_modal, {
+    mark_survey_modal_seen()
+    removeModal()
+  })
+
+  observeEvent(input$skip_survey, {
+    mark_survey_modal_seen()
     removeModal()
   })
 
@@ -153,6 +188,7 @@ shinyServer(function(input, output, session) {
       })
       
       # Close modal and allow user to proceed
+      mark_survey_modal_seen()
       removeModal()
     } else {
       # Show message if no selection made
