@@ -49,9 +49,9 @@ options(shiny.maxRequestSize=30*1024^2) # allow file upload size max 30MB
 # define server logic required
 shinyServer(function(input, output, session) {
 
-# Welcome modal shown on app startup  - set to a week?
-  # survey_cache_ms <- 7 * 24 * 60 * 60 * 1000 # a week
-  survey_cache_ms <- 60 * 1000 # 60 s for testing
+# Welcome modal shown on app startup  - in ms
+  survey_cache_ms <- 7 * 24 * 60 * 60 * 1000 * 2 # two weeks
+  # survey_cache_ms <- 60 * 1000 # 60 s for testing
 
   mark_survey_modal_seen <- function() {
     shinyjs::runjs("try { localStorage.setItem('npmSurveyLastShown', Date.now().toString()); } catch(e) {}")
