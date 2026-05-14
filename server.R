@@ -165,29 +165,27 @@ shinyServer(function(input, output, session) {
     
     # Only submit if a valid selection was made
     if (survey_response != "") {
-      # Sanitize and prepare data
-      sanitized_response <- sanitize_survey_response(survey_response)
-      
-      # Try to send to Azure Table Storage
       tryCatch({
+        # Sanitize and prepare data
+        sanitized_response <- sanitize_survey_response(survey_response)
+
+        # Send to Azure Table Storage (with local fallback handled in helper)
         send_to_azure_table(sanitized_response)
-        # Show success message
         showNotification(
           "Thank you! Your response has been recorded.",
           type = "message",
           duration = 3
         )
       }, error = function(e) {
-        # If Azure fails, log locally but don't block user
-        cat("Warning: Could not send response to Azure storage:", e$message, "\n")
+        cat("Warning: Could not process survey response:", e$message, "\n")
         showNotification(
-          "Response submitted (stored locally backup). Thank you!",
-          type = "message",
-          duration = 3
+          "Could not submit response right now. Continuing to calculator.",
+          type = "warning",
+          duration = 4
         )
       })
       
-      # Close modal and allow user to proceed
+      # Always close modal and allow user to proceed
       mark_survey_modal_seen()
       removeModal()
     } else {

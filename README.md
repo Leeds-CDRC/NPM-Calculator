@@ -124,7 +124,7 @@ R -e "shiny::runApp(host='0.0.0.0', port=3838)"
 
 In order to store the output of the user feedback, Azure needs the SAS token for the storage account. This should be regenerated/rotated frequently.
 
-When running the app locally, the keys will not be available and instead the input will be saved locally in the untracked folder `data/survey_responses`.
+When running the app locally, the keys will not be available and an error message will show.
 
 To regenerate the Azure tokens:
 

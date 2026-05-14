@@ -22,6 +22,8 @@ sanitize_survey_response <- function(response) {
   allowed_values <- c(
     "Enforcement",
     "Check compliance",
+    "Check compliance (industry)",
+    "Check compliance (public/third sector)",
     "Research",
     "Policy Development",
     "Other",
@@ -46,7 +48,7 @@ sanitize_survey_response <- function(response) {
 #' Send Survey Response to Azure Table Storage
 #'
 #' Sends sanitized survey response to Azure Table Storage.
-#' Uses SAS token auth and falls back to local backup if config is missing
+#' Uses SAS token auth and raises an error if config is missing
 #' or if the Azure request fails.
 #'
 #' @param data Data frame with sanitized survey response
@@ -66,27 +68,18 @@ send_to_azure_table <- function(
 ) {
 
   if (storage_account == "" || sas_token == "") {
-    cat("ℹ Survey response saved locally (Azure Table not configured).\n")
-    cat("  Set: AZURE_STORAGE_ACCOUNT and AZURE_TABLE_SAS_TOKEN\n")
-    send_via_local_backup(data)
-    return(invisible(NULL))
+    stop("Azure Table not configured. Set AZURE_STORAGE_ACCOUNT and AZURE_TABLE_SAS_TOKEN")
   }
 
-  tryCatch({
-    send_via_azure_table_rest(
-      data = data,
-      storage_account = storage_account,
-      table_name = table_name,
-      sas_token = sas_token,
-      partition_key = partition_key
-    )
-    cat("Response sent to Azure Table Storage successfully\n")
-  }, error = function(e) {
-    cat("Could not write to Azure Table Storage:\n")
-    cat("  ", e$message, "\n")
-    cat("  Saving response locally as backup.\n")
-    send_via_local_backup(data)
-  })
+  send_via_azure_table_rest(
+    data = data,
+    storage_account = storage_account,
+    table_name = table_name,
+    sas_token = sas_token,
+    partition_key = partition_key
+  )
+
+  cat("Response recorded successfully\n")
 
   invisible(NULL)
 }
@@ -166,7 +159,8 @@ send_via_local_backup <- function(data) {
   }
   
   # Create timestamped backup file
-  timestamp <- format(Sys.time(), "%Y%m%d_%H%M%S")
+  timestamp <- format(Sys.time(), "%Y%m%d_%H%M%OS3")
+  timestamp <- gsub("[^0-9_]", "", timestamp)
   backup_file <- file.path(backup_dir, paste0("response_", timestamp, ".csv"))
   
   # Write to CSV
