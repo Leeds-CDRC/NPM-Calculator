@@ -1,6 +1,6 @@
 # NPM Calculator Tool
 
-[![DOI](https://zenodo.org/badge/525283616.svg)](https://zenodo.org/badge/latestdoi/525283616)
+[![DOI](image.png)](https://doi.org/10.5281/zenodo.7100435)
 
 Second release of the NPM Calculator tool. This version is designed to assess user-entered single product information against the [UK NPM (2004/5)](https://www.gov.uk/government/publications/the-nutrient-profiling-model) and scope for [HFSS legislation](https://www.gov.uk/government/publications/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price/restricting-promotions-of-products-high-in-fat-sugar-or-salt-by-location-and-by-volume-price-implementation-guidance) around product placement.
 
@@ -120,9 +120,31 @@ And then run the app from the project directory:
 R -e "shiny::runApp(host='0.0.0.0', port=3838)"
 ```
 
+# New feature: collecting use info
+
+In order to store the output of the user feedback, Azure needs the SAS token for the storage account. This should be regenerated/rotated frequently.
+
+When running the app locally, the keys will not be available and an error message will show.
+
+To regenerate the Azure tokens:
+
+1. In the `appuserfeedback` storage account on Azure, go to *Security + networking* > *Access keys* > Rotate key
+2. Then, *Security + networking* > *Shared access signature* > Create a new access signature:
+    - Deselect all services except Table
+    - Deselect all resources except Object
+    - Deselect all permissions except Add
+    - Set start and expiry date/time
+    - Select a key under Signing key
+    - Click generate and copy the SAS token
+3. Go to the NPM Calculator test app service
+4. Go to *Settings* > *Environment variables* > AZURE_TABLE_SAS_TOKEN and update, pasting in the new SAS token.
+5. Give the app a few minutes to restart, and test. If successful, repeat with the production version.
+
+Note that the tokens should not be stored locally, and do not need to be added to the secrets of the GitHub repository.
+
 # License
 
-The NPM calculator and underlying nutrientprofiler R package provide functions to help assess product information against the UK Nutrient Profiling Model (2004/5) and scope for HFSS legislation around product placement. It is designed to provide low level functions that implement UK Nutrient Profiling Model scoring that can be applied across product datasets.
+The NPM calculator and underlying `nutrientprofiler` R package provide functions to help assess product information against the UK Nutrient Profiling Model (2004/5) and scope for HFSS legislation around product placement. It is designed to provide low level functions that implement UK Nutrient Profiling Model scoring that can be applied across product datasets.
 
 Copyright (C) 2024 University of Leeds
 

@@ -127,6 +127,7 @@ shinyUI(
                           column(5,
                           br(),
                           p("Use the NPM Calculator to assess a product's UK Nutrient Profile Model (NPM) score."),
+                          br(),
                           strong("✓   Assess one product at a time. Great for on the go."),
                               actionButton('jumpToCalc', "Single product", icon = icon("nutritionix"),
                                         style = "color: white; background-color: #24226f", width = '100%'),
@@ -138,16 +139,16 @@ shinyUI(
                             actionButton('jumpToBulkHome', "Multiple products", icon = icon("nutritionix"),
                                         style = "color: white; background-color: #24226f", width = '100%'),
                                         br(),
-                                        hr(style = "border-top: 3px solid #f06449;"),
+                                        # hr(style = "border-top: 3px solid #f06449;"),
                                         # bsCollapsePanel(title=p(icon("up-right-and-down-left-from-center"), strong("Click to show/hide form"), style = "color: white; background-color: #24226f;font-size:20px;text-align: center;vertical-align: middle;", align="center"),
                                         # p("Please tell us the purpose of your assessment.", style = "color: white; background-color: #24226f"), style = "color: white; background-color: #24226f",
                                         # includeHTML("www/responses.html")
                                         # ),
-                                        div(style = "text-align: center;",
-                                        p("Please tell us how and why you are using this tool:"),
-                                        actionButton('infoForm1Home', "Open poll in new tab", icon = icon("square-poll-vertical"),
-                                               style = "color: white; background-color: #3f3c84ff;", width = '100%',
-                                               onclick ="window.open('https://forms.office.com/e/MDEGQVeR6r', '_blank')"),),
+                                        # div(style = "text-align: center;",
+                                        # p("Please tell us how and why you are using this tool:"),
+                                        # actionButton('infoForm1Home', "Open poll in new tab", icon = icon("square-poll-vertical"),
+                                        #        style = "color: white; background-color: #3f3c84ff;", width = '100%',
+                                        #        onclick ="window.open('https://forms.office.com/e/MDEGQVeR6r', '_blank')"),),
                                         br(),
 
                                         # ui.accordion(
@@ -1268,13 +1269,22 @@ shinyUI(
                   h3("Used our tool? Cite us"),
                   p('If you have used our tool and are presenting the results, please cite us as shown below.'),
                   p('Jenneson, V., Martin, R., Morris, M., Baudains, P., Coleman, A., Foley, Z., & Murphy Quinlan, M. (2025). "NPM Calculator (Version 2.0)",', a(href='https://npmcalculator.hasp.ac.uk/', 'https://npmcalculator.hasp.ac.uk/', .noWS = 'outside'),'. Data asset provided by the Healthy & Sustainable Places Data Service (ES/Z504336/1), originally produced by the CDRC (ES/L011840/1;ES/L011891/1).', a(href='https://doi.org/10.5281/zenodo.7100435', 'https://doi.org/10.5281/zenodo.7100435', target='_blank'), .noWS = c("after-begin", "before-end"), style = "font-size: 1.6rem;color: #24226f;"),
-                  HTML('<a href="https://doi.org/10.5281/zenodo.7100435"><img src="https://zenodo.org/badge/525283616.svg" alt="DOI"></a>')
+                  HTML('<a href="https://doi.org/10.5281/zenodo.7100435" target="_blank"><img src="doi.png" alt="DOI"></a>')
                   ),
                   br(),
                   p("If you haven't already, please let us know how and why you are using our tool. This helps us plan future development:"),
-                                        actionButton('infoForm1Guide', "Open poll in new tab", icon = icon("square-poll-vertical"),
-                                               style = "color: white; background-color: #24226f", width = '100%',
-                                               onclick ="window.open('https://forms.office.com/e/MDEGQVeR6r', '_blank')"),),
+                             actionButton('infoForm1Guide', "Open survey", icon = icon("square-poll-vertical"),
+                               style = "color: white; background-color: #24226f", width = '100%'),
+                               br(),
+                               tags$details(
+              class = "survey-why-details survey-why-details-full",
+              tags$summary("Why do we collect this data?"),
+              p("We ask users to select a reason for using the Nutrient Profile Model Calculator so that we can better understand who is using the tool and how it is being used. This helps us to ensure the calculator continues to meet the needs of its user base."),
+              p("This information is collected in aggregated form and is used to support funding and sustainability applications, helping us to demonstrate reach and impact. This, in turn, supports our ability to keep the calculator open access and free of charge."),
+              p("We do ", tags$strong("not"), " collect, store, or analyse any data entered into the calculator, nor any results generated by its use. The only information collected is the selected reason for use."),
+              p("Reason for use data is retained for  ", tags$strong("10 years,"), "in line with UK Research and Innovation (UKRI) data retention policy.")
+            ),
+                               ),
                   column(5,
                   h3("Development"),
                   p("The NPM Calculator is based on the MSc work of Dr Vicki Jenneson. The original code for that project

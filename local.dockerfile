@@ -2,7 +2,7 @@
 FROM rocker/shiny-verse
 
 # Install R dependencies
-RUN install2.r --error --deps TRUE shinyBS shinythemes shinyjs shinydashboard shinydashboardPlus shinyWidgets remotes
+RUN install2.r --error --deps TRUE shinyBS shinythemes shinyjs shinydashboard shinydashboardPlus shinyWidgets remotes httr jsonlite
 
 # Install the  nutrientprofiler R package
 RUN R -e 'remotes::install_github("murphyqm/edits-nutrientprofiler", ref="ab1144a")'
