@@ -127,7 +127,9 @@ R -e "shiny::runApp(host='0.0.0.0', port=3838)"
 
 # New feature: collecting use info
 
-In order to store the output of the user feedback, Azure needs the SAS token for the storage account. This should be regenerated/rotated frequently.
+In order to store the output of the user feedback, Azure needs the SAS token for the storage account. This can be regenerated/rotated for security.
+
+N.B. if rotated/regenerated, you will also need to update the token used for the [app feedback monitor](https://github.com/Leeds-HASP/app-feedback-monitor) where it is saved as a [Repository Secret (APP_FEEDBACK_URL)](https://github.com/Leeds-HASP/app-feedback-monitor/settings/secrets/actions) (n.b. this is the SAS token added to the end of the table storage url).
 
 When running the app locally, the keys will not be available and an error message will show.
 
