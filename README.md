@@ -32,9 +32,11 @@ If the change is not included in a version but rather is the most recent commit
 on the `main` branch, you can change `@v2.0.0` to `@main`, or remove the `@v2.0.0`
 section completely.
 
-You can also specify a commit hash on a fork of the repository:
+You can also specify a commit hash on the repository or on a fork of the repository:
 
 ```docker
+RUN R -e 'remotes::install_github("Leeds-CDRC/nutrientprofiler", ref="8c5c887")'
+
 RUN R -e 'remotes::install_github("murphyqm/edits-nutrientprofiler", ref="ab1144a")'
 ```
 
@@ -111,6 +113,9 @@ Then, you can activate this env (`conda activate npm-env`) and use the `remotes`
 
 ```bash
 R -e 'remotes::install_github("Leeds-CDRC/nutrientprofiler@v2.0.0")'
+
+# Or again, a specific commit:
+R -e 'remotes::install_github("Leeds-CDRC/nutrientprofiler", ref="8c5c887")'
 ```
 Note this only needs to be done the first time the environment is activated.
 
