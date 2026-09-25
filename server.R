@@ -417,12 +417,13 @@ shinyServer(function(input, output, session) {
                      ifelse(input$Format == 1 && input$DrinkSG == 3, input$Vol * 1.00, #SG for diet carbonated
                             ifelse(input$Format == 1 && input$DrinkSG == 4, input$Vol * 1.07, #SG for energy drinks
                                    ifelse(input$Format == 1 && input$DrinkSG == 5, input$Vol *1.03, # SG for cordial/squash RTD
+                                          ifelse(input$Format == 1 && input$DrinkSG == 6, input$Vol *1.00, # SG for Other
               ifelse(input$Format == 2 && input$Pow_sold == 2, (input$Powder + input$Liquid)*1.03, # SG for cordial RTD
                      ifelse(input$Format == 2 && input$Pow_sold == 1, input$PowVol * 1.03, # SG for cordial RTD
                             ifelse(input$Format == 2 && input$Pow_sold == 3, input$WtPow,
                      ifelse(input$Format ==3 && input$Cor_sold == 2, (input$Cordial + input$Water)*1.03, # SG for cordial RTD
                             ifelse(input$Format ==3 && input$Cor_sold == 1, input$CorVol *1.03, # SG for cordial RTD
-                                   ifelse(input$Format == 3 && input$Cor_sold == 3, input$VolCor *1.09))))))))))) # SG for cordial undiluted
+                                   ifelse(input$Format == 3 && input$Cor_sold == 3, input$VolCor *1.09)))))))))))) # SG for cordial undiluted
      }
      })
      
@@ -444,12 +445,13 @@ shinyServer(function(input, output, session) {
                      ifelse(input$Format == 1 && input$DrinkSG == 3, input$Vol,
                             ifelse(input$Format == 1 && input$DrinkSG == 4, input$Vol, 
                                    ifelse(input$Format == 1 && input$DrinkSG == 5, input$Vol, 
-                                          ifelse(input$Format == 2 && input$Pow_sold == 2, (input$Powder + input$Liquid), 
-                                                 ifelse(input$Format == 2 && input$Pow_sold == 1, input$PowVol, 
-                                                        ifelse(input$Format == 2 && input$Pow_sold == 3, input$WtPow,
-                                                               ifelse(input$Format ==3 && input$Cor_sold == 2, (input$Cordial + input$Water), 
-                                                                      ifelse(input$Format ==3 && input$Cor_sold == 1, input$CorVol,
-                                                                             ifelse(input$Format == 3 && input$Cor_sold == 3, input$VolCor))))))))))) 
+                                        ifelse(input$Format == 1 && input$DrinkSG == 6, input$Vol, 
+                                                ifelse(input$Format == 2 && input$Pow_sold == 2, (input$Powder + input$Liquid), 
+                                                      ifelse(input$Format == 2 && input$Pow_sold == 1, input$PowVol, 
+                                                              ifelse(input$Format == 2 && input$Pow_sold == 3, input$WtPow,
+                                                                    ifelse(input$Format ==3 && input$Cor_sold == 2, (input$Cordial + input$Water), 
+                                                                            ifelse(input$Format ==3 && input$Cor_sold == 1, input$CorVol,
+                                                                                  ifelse(input$Format == 3 && input$Cor_sold == 3, input$VolCor)))))))))))) 
      }
      })
      
