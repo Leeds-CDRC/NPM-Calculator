@@ -568,7 +568,7 @@ shinyUI(
                                                                                                                     selected = FALSE),
                                                                           conditionalPanel(
                                                                            condition = "input.Type_button == 'TRUE'",
-                                                                          checkboxGroupInput("Format", label = "Drink format (select one)",
+                                                                          radioButtons("Format", label = "Drink format (select one)",
                                                                                             choices = list("Ready to drink"=1, "Powdered drink"=2, "Cordial/squash"=3)) 
                                                                           ),),
                                                                    column(4, 
@@ -579,10 +579,10 @@ shinyUI(
                                                                      ),
                                                                           conditionalPanel(
                                                                             condition = "input.Type_button == 'TRUE' && input.Format == '1'",
-                                                                            checkboxGroupInput("DrinkSG", label = "Select type of drink for appropriate specific gravity conversion",
+                                                                            radioButtons("DrinkSG", label = "Select type of drink for appropriate specific gravity conversion",
                                                                                                choices =list("Milk" = 1, "Carbonated/juice drink" = 2,
                                                                                                              "Diet carbonated drink" = 3, "Energy drink" = 4,
-                                                                                                             "Cordial/squash (ready to drink)" = 5))
+                                                                                                             "Cordial/squash (ready to drink)" = 5), selected = NULL)
                                                                           ),
                                                                      bsPopover("DrinkSG", "Specific Gravity", "1 ml of pure water weighs 1 g, but most drinks have a higher density. Select the drink type for a more accurate conversion of volume (in ml) to weight (in grams)",
                                                                                placement = "top", trigger = "hover", options = NULL),
@@ -598,7 +598,7 @@ shinyUI(
                                                                                placement = "top", trigger = "hover", options = NULL),
                                                                           conditionalPanel(
                                                                             condition = "input.Type_button =='TRUE' && input.Format == '2'",
-                                                                            checkboxGroupInput("Pow_sold", label = "How is nutrition information presented?",
+                                                                            radioButtons("Pow_sold", label = "How is nutrition information presented?",
                                                                                                choices = list("As consumed (diluted)" = 1,
                                                                                                               "As sold (preparation instructions given)" = 2,
                                                                                                               "As sold (preparation instructions not given)" = 3)),
@@ -606,7 +606,7 @@ shinyUI(
                                                                             placement = "top", trigger = "hover", options = NULL),                                                                        ),
                                                                           conditionalPanel(
                                                                             condition = "input.Type_button == 'TRUE' && input.Format == '3'",
-                                                                            checkboxGroupInput("Cor_sold", label = "How is nutrition information presented?",
+                                                                            radioButtons("Cor_sold", label = "How is nutrition information presented?",
                                                                                                choices = list("As consumed (diluted)" = 1,
                                                                                                               "As sold (preparation instructions given)" = 2,
                                                                                                               "As sold (preparation instructions not given)" = 3)),
